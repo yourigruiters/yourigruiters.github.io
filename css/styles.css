@@ -212,7 +212,14 @@ main {
   font-weight: 300;
 }
 
-.details a {
+.details .buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.details .button {
   width: max-content;
   appearance: none;
   text-decoration: none;
@@ -229,8 +236,18 @@ main {
   font-weight: 600;
 }
 
-.details a:hover {
+.details .button:hover {
   background-color: #EADBC8;
+}
+
+.details .link {
+  font-size: 12px;
+  color: #000;
+  text-decoration: underline;
+}
+
+.details .link:hover {
+  font-weight: bold;
 }
 
 footer {

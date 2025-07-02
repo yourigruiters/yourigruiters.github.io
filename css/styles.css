@@ -173,6 +173,9 @@ main {
 
 .frame .title {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .frame .role {
@@ -212,11 +215,16 @@ main {
   font-weight: 300;
 }
 
+.details b {
+  font-weight: bold;
+}
+
 .details .buttons {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
+  margin-top: -20px;
 }
 
 .details .button {

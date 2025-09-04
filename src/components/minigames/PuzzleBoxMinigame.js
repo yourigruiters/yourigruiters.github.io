@@ -9,6 +9,8 @@ const PuzzleBoxMinigame = ({ onNext }) => {
   const [emptyIndex, setEmptyIndex] = useState(15);
   const [isCompleted, setIsCompleted] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [showAutoSolve, setShowAutoSolve] = useState(false);
+  const [gameStartTime, setGameStartTime] = useState(null);
   const { success, error } = useToast();
 
   // Create the image paths
@@ -94,6 +96,38 @@ const PuzzleBoxMinigame = ({ onNext }) => {
   const handleContinue = () => {
     setShowIntro(false);
     initializePuzzle();
+    setGameStartTime(Date.now());
+  };
+
+  // Auto-solve timer effect
+  useEffect(() => {
+    if (gameStartTime && !isCompleted && !showAutoSolve) {
+      const timer = setTimeout(() => {
+        setShowAutoSolve(true);
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [gameStartTime, isCompleted, showAutoSolve]);
+
+  // Auto-solve function
+  const handleAutoSolve = () => {
+    const images = createImagePaths();
+    const solvedPuzzle = images.map((image, index) => ({
+      id: index,
+      image: image,
+      correctPosition: index,
+    }));
+
+    // Set the last piece as empty
+    solvedPuzzle[15] = { id: 15, image: null, correctPosition: 15 };
+
+    setPuzzle(solvedPuzzle);
+    setEmptyIndex(15);
+    setIsCompleted(true);
+    setShowAutoSolve(false);
+    success("🐨 Puzzle solved automatically!");
+    setTimeout(() => onNext(), 2000);
   };
 
   if (showIntro) {
@@ -119,6 +153,18 @@ const PuzzleBoxMinigame = ({ onNext }) => {
         >
           👁️ Preview Solution
         </button>
+
+        {/* Auto-solve Button */}
+        {showAutoSolve && (
+          <div className="mt-4">
+            <button
+              onClick={handleAutoSolve}
+              className="bg-sunset text-white font-semibold px-6 py-2 rounded-lg hover:bg-orange-600 transition"
+            >
+              ⚡ Auto-Solve Puzzle
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="flex justify-center mb-6">

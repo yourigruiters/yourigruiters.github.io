@@ -104,7 +104,7 @@ const PuzzleBoxMinigame = ({ onNext }) => {
     if (gameStartTime && !isCompleted && !showAutoSolve) {
       const timer = setTimeout(() => {
         setShowAutoSolve(true);
-      }, 10000); // 10 seconds
+      }, 120000); // 10 seconds
 
       return () => clearTimeout(timer);
     }

@@ -21,8 +21,7 @@ export const GAME_DESCRIPTIONS = {
   },
   ODD_ONE_OUT: {
     title: "Odd One Out",
-    description:
-      "Can you spot the difference? You'll see a group of items, and one of them doesn't belong with the others. Use your logical thinking to identify which item is the odd one out and click on it.",
+    description: "Guess you know what to do by now..",
   },
   SONG_SNIPPET: {
     title: "Song Snippet",

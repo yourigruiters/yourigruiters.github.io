@@ -50,10 +50,10 @@ const GameIntro = ({ title, description, onContinue }) => {
         <button
           onClick={handleContinue}
           disabled={isTyping}
-          className={`bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold px-10 py-4 rounded-lg transition-all duration-300 transform shadow-lg text-lg ${
+          className={`bg-gradient-to-br from-peach-dark via-peach to-cream-dark text-darkBg font-semibold px-10 py-4 rounded-lg transition-all duration-300 transform shadow-lg text-lg hover:scale-105 ${
             isTyping
               ? "opacity-50 cursor-not-allowed"
-              : "hover:from-blue-600 hover:to-purple-700 hover:scale-105"
+              : "hover:bg-gradient-to-br hover:from-cream-dark hover:via-cream hover:to-peach-dark"
           }`}
         >
           {isTyping ? "Loading..." : "Continue"}

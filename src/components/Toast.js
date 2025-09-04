@@ -17,17 +17,17 @@ const Toast = ({ message, type, isVisible, onClose }) => {
     switch (type) {
       case "success":
         return {
-          container: "bg-turquoise border-turquoise text-darkBg",
+          container: "bg-white/90 border-turquoise text-darkBg",
           icon: "✓",
         };
       case "error":
         return {
-          container: "bg-sunset border-sunset text-white",
+          container: "bg-white/90 border-sunset text-darkBg",
           icon: "✕",
         };
       default:
         return {
-          container: "bg-gray-500 border-gray-500 text-white",
+          container: "bg-white/90 border-gray-500 text-darkBg",
           icon: "ℹ",
         };
     }
@@ -36,18 +36,11 @@ const Toast = ({ message, type, isVisible, onClose }) => {
   const styles = getToastStyles();
 
   return (
-    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 animate-slide-down">
+    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 animate-slide-down w-full max-w-4xl px-6">
       <div
-        className={`${styles.container} border-2 rounded-full px-6 py-3 shadow-lg flex items-center space-x-3 min-w-[200px] max-w-[400px]`}
+        className={`${styles.container} border-2 rounded-xl px-6 py-4 shadow-lg flex items-center justify-center w-full`}
       >
-        <span className="text-lg font-bold">{styles.icon}</span>
-        <span className="font-medium">{message}</span>
-        <button
-          onClick={onClose}
-          className="ml-2 text-lg font-bold hover:opacity-70 transition-opacity"
-        >
-          ×
-        </button>
+        <span className="font-medium text-center">{message}</span>
       </div>
     </div>
   );

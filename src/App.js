@@ -65,7 +65,7 @@ function App() {
               <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
                 {/* Gradient Progress Fill */}
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full transition-all duration-500 ease-out"
+                  className="h-full bg-gradient-to-r from-peach-dark via-peach to-cream-dark rounded-full transition-all duration-500 ease-out"
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>

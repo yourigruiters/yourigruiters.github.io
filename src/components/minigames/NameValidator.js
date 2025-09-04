@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import GameIntro from "../GameIntro";
 import { GAME_DESCRIPTIONS } from "../../constants/gameData";
+import { useToast } from "../../contexts/ToastContext";
 
 const NameValidator = ({ onNext }) => {
   const [showIntro, setShowIntro] = useState(true);
   const [name, setName] = useState("");
   const [isValid, setIsValid] = useState(null);
+  const { success, error } = useToast();
 
   const handleContinue = () => {
     setShowIntro(false);
   };
 
   const validateName = () => {
-    // TODO: Implement validation logic
-    console.log("Validating name:", name);
+    const lowerName = name.toLowerCase().trim();
+    const validNames = ["luxmi", "laxmi"];
+
+    if (validNames.includes(lowerName)) {
+      setIsValid(true);
+      success("🦒 Giraffe says hello! Welcome, " + name + "!");
+      setTimeout(() => onNext(), 2000);
+    } else {
+      setIsValid(false);
+      error("😞 Disappointed... That's not quite right. Try again!");
+    }
   };
 
   if (showIntro) {
@@ -30,12 +41,13 @@ const NameValidator = ({ onNext }) => {
     <div className="text-center">
       <h2 className="text-xl font-bold mb-4">Name Validator</h2>
       <p className="mb-4">
-        Enter your name (at least 2 characters, letters only)
+        Enter your name (hint: it's either "luxmi" or "laxmi")
       </p>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        onKeyPress={(e) => e.key === "Enter" && validateName()}
         className="w-full p-3 border border-darkBorder rounded-lg bg-darkBg text-darkText mb-4"
         placeholder="Enter your name"
       />
@@ -45,7 +57,6 @@ const NameValidator = ({ onNext }) => {
       >
         Validate
       </button>
-      {/* TODO: Add validation feedback */}
     </div>
   );
 };

@@ -1,13 +1,13 @@
 export const GAME_DESCRIPTIONS = {
   NAME_VALIDATOR: {
-    title: "🦒 <br/> Hey there!👋",
+    title: "🦒👋",
     description:
       "Let's validate whether you are the right person to access this gift box! </br></br> Enter your name to begin your journey!",
   },
   DATE_VALIDATOR: {
-    title: "When was that walk?",
+    title: "First walk? 💃",
     description:
-      "Now let's validate the date of our first walk! </br></br> Shouldn't be to difficult as we've spoken about this just recently!",
+      "Sorry, couldn't really give you progress for knowing your name.. </br></br> Now let's validate the date of our first walk! </br></br> Shouldn't be to difficult as we've spoken about this just recently!",
   },
   WORDS_MINIGAME: {
     title: "Words Minigame",

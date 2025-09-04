@@ -23,13 +23,7 @@ const GameIntro = ({ title, description, onContinue }) => {
     "bg-violet-500",
     "bg-purple-500",
     "bg-fuchsia-500",
-    "bg-pink-500",
     "bg-rose-500",
-    "bg-slate-500",
-    "bg-gray-500",
-    "bg-zinc-500",
-    "bg-neutral-500",
-    "bg-stone-500",
     "bg-red-400",
     "bg-orange-400",
     "bg-amber-400",
@@ -45,13 +39,7 @@ const GameIntro = ({ title, description, onContinue }) => {
     "bg-violet-400",
     "bg-purple-400",
     "bg-fuchsia-400",
-    "bg-pink-400",
     "bg-rose-400",
-    "bg-slate-400",
-    "bg-gray-400",
-    "bg-zinc-400",
-    "bg-neutral-400",
-    "bg-stone-400",
   ];
 
   // Set random background color when component mounts

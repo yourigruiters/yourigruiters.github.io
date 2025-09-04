@@ -19,7 +19,7 @@ const NameValidator = ({ onNext }) => {
 
     if (validNames.includes(lowerName)) {
       setIsValid(true);
-      success("🦒 Giraffe says hello! Welcome, " + name + "!");
+      success("🐨 Hello! Welcome, " + name + "!");
       onNext();
     } else {
       setIsValid(false);

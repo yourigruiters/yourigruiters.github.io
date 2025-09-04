@@ -3,13 +3,13 @@ import { MINIGAME_STEPS, TOTAL_STEPS } from "./constants/minigames";
 import { createNextStepHandler } from "./utils/navigation";
 import { ToastProvider } from "./contexts/ToastContext";
 import CompletionScreen from "./components/CompletionScreen";
+import FinalScreen from "./components/FinalScreen";
 import {
   NameValidator,
   DateValidator,
   WordsMinigame,
   OptionMinigame,
   OddOneOutMinigame,
-  SongSnippetMinigame,
   PuzzleBoxMinigame,
 } from "./components/minigames";
 
@@ -29,10 +29,10 @@ function App() {
         return <OptionMinigame onNext={nextStep} />;
       case MINIGAME_STEPS.ODD_ONE_OUT:
         return <OddOneOutMinigame onNext={nextStep} />;
-      case MINIGAME_STEPS.SONG_SNIPPET:
-        return <SongSnippetMinigame onNext={nextStep} />;
       case MINIGAME_STEPS.PUZZLE_BOX:
         return <PuzzleBoxMinigame onNext={nextStep} />;
+      case MINIGAME_STEPS.FINAL_SCREEN:
+        return <FinalScreen />;
       case MINIGAME_STEPS.COMPLETION:
         return <CompletionScreen />;
       default:
@@ -40,11 +40,29 @@ function App() {
     }
   };
 
-  const progressPercentage =
-    currentStep === MINIGAME_STEPS.NAME_VALIDATOR
-      ? 0
-      : ((currentStep - MINIGAME_STEPS.NAME_VALIDATOR) / (TOTAL_STEPS - 1)) *
-        100;
+  // Only count the 5 minigames: DATE_VALIDATOR, WORDS_MINIGAME, OPTION_MINIGAME, ODD_ONE_OUT, PUZZLE_BOX
+  const MINIGAME_COUNT = 5;
+
+  const progressPercentage = (() => {
+    if (currentStep === MINIGAME_STEPS.NAME_VALIDATOR) {
+      return 0;
+    }
+
+    const minigameSteps = [
+      MINIGAME_STEPS.DATE_VALIDATOR,
+      MINIGAME_STEPS.WORDS_MINIGAME,
+      MINIGAME_STEPS.OPTION_MINIGAME,
+      MINIGAME_STEPS.ODD_ONE_OUT,
+      MINIGAME_STEPS.PUZZLE_BOX,
+    ];
+
+    const currentMinigameIndex = minigameSteps.indexOf(currentStep);
+    if (currentMinigameIndex === -1) {
+      return 100; // Final screen or completion
+    }
+
+    return ((currentMinigameIndex + 1) / MINIGAME_COUNT) * 100;
+  })();
 
   return (
     <ToastProvider>
@@ -61,11 +79,27 @@ function App() {
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm text-gray-400">Progress</span>
                 <span className="text-sm text-gray-400">
-                  {currentStep === MINIGAME_STEPS.NAME_VALIDATOR
-                    ? `0/${TOTAL_STEPS - 1}`
-                    : `${currentStep - MINIGAME_STEPS.NAME_VALIDATOR}/${
-                        TOTAL_STEPS - 1
-                      }`}
+                  {(() => {
+                    if (currentStep === MINIGAME_STEPS.NAME_VALIDATOR) {
+                      return `0/${MINIGAME_COUNT}`;
+                    }
+
+                    const minigameSteps = [
+                      MINIGAME_STEPS.DATE_VALIDATOR,
+                      MINIGAME_STEPS.WORDS_MINIGAME,
+                      MINIGAME_STEPS.OPTION_MINIGAME,
+                      MINIGAME_STEPS.ODD_ONE_OUT,
+                      MINIGAME_STEPS.PUZZLE_BOX,
+                    ];
+
+                    const currentMinigameIndex =
+                      minigameSteps.indexOf(currentStep);
+                    if (currentMinigameIndex === -1) {
+                      return `${MINIGAME_COUNT}/${MINIGAME_COUNT}`; // Final screen or completion
+                    }
+
+                    return `${currentMinigameIndex + 1}/${MINIGAME_COUNT}`;
+                  })()}
                 </span>
               </div>
 

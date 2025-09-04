@@ -31,6 +31,6 @@ export const GAME_DESCRIPTIONS = {
   PUZZLE_BOX: {
     title: "Puzzle Box",
     description:
-      "The final challenge awaits! You need to crack a 4-digit code to open the mysterious puzzle box. Use the clues provided to figure out the correct combination. Think logically and you'll succeed!",
+      "Let's see whether you can take on a real challange! </br></br> You'll be finished and rewarded after this one..",
   },
 };

@@ -36,20 +36,20 @@ const OddOneOutMinigame = ({ onNext }) => {
       correct: 2,
     },
     {
-      question: "Which 🍕 doesn't belong to me?",
-      option1: "Mexican",
-      option2: "Italian",
-      option3: "Nepalese",
-      option4: "Dutch",
-      correct: 3,
-    },
-    {
       question: "Which 👶 doesn't belong to you?",
       option1: "Alexander",
       option2: "Mikaela",
       option3: "Ebru",
       option4: "Levi",
       correct: 4,
+    },
+    {
+      question: "Which 🍕 doesn't belong to me?",
+      option1: "Mexican",
+      option2: "Italian",
+      option3: "Nepalese",
+      option4: "Dutch",
+      correct: 3,
     },
   ];
 

@@ -40,16 +40,20 @@ function App() {
     }
   };
 
-  const progressPercentage = ((currentStep + 1) / TOTAL_STEPS) * 100;
+  const progressPercentage =
+    currentStep === MINIGAME_STEPS.NAME_VALIDATOR
+      ? 0
+      : ((currentStep - MINIGAME_STEPS.NAME_VALIDATOR) / (TOTAL_STEPS - 1)) *
+        100;
 
   return (
     <ToastProvider>
       <div className="min-h-screen bg-darkBg text-darkText">
         {/* Fixed Header */}
-        <div className="fixed top-0 left-0 right-0 z-10 bg-darkPanel border-b border-darkBorder">
+        <div className="fixed top-0 left-0 right-0 z-10 bg-gradient-to-r from-darkPanel via-gray-800 to-darkPanel border-b border-darkBorder">
           <div className="max-w-4xl mx-auto px-6 py-4">
             <h1 className="text-2xl font-bold mb-3 text-center">
-              Guess you know me, huh?
+              🇬🇧 🦒 🇳🇱 🐨 🇦🇺
             </h1>
 
             {/* Progress Bar */}
@@ -57,7 +61,11 @@ function App() {
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm text-gray-400">Progress</span>
                 <span className="text-sm text-gray-400">
-                  {currentStep + 1}/{TOTAL_STEPS}
+                  {currentStep === MINIGAME_STEPS.NAME_VALIDATOR
+                    ? `0/${TOTAL_STEPS - 1}`
+                    : `${currentStep - MINIGAME_STEPS.NAME_VALIDATOR}/${
+                        TOTAL_STEPS - 1
+                      }`}
                 </span>
               </div>
 

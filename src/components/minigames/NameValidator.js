@@ -20,10 +20,10 @@ const NameValidator = ({ onNext }) => {
     if (validNames.includes(lowerName)) {
       setIsValid(true);
       success("🦒 Giraffe says hello! Welcome, " + name + "!");
-      setTimeout(() => onNext(), 2000);
+      onNext();
     } else {
       setIsValid(false);
-      error("😞 Disappointed... That's not quite right. Try again!");
+      error("😞...");
     }
   };
 
@@ -39,9 +39,9 @@ const NameValidator = ({ onNext }) => {
 
   return (
     <div className="text-center">
-      <h2 className="text-xl font-bold mb-4">🦒 Validator</h2>
+      <h2 className="text-xl font-bold mb-4">Enter your name</h2>
       <p className="mb-4">
-        Enter your name (hint: it's either "luxmi" or "laxmi")
+        With an U or an A, who am I to judge? They'll both work perfectly fine!
       </p>
       <input
         type="text"

@@ -1,13 +1,13 @@
 export const GAME_DESCRIPTIONS = {
   NAME_VALIDATOR: {
-    title: "🦒 <br/> Validator",
+    title: "🦒 <br/> Hey there!👋",
     description:
-      "Enter your name to begin your journey!<br/>Your name must be at least 2 characters long and contain only letters and spaces.<br/>This will help us personalize your experience throughout the quiz.",
+      "Let's validate whether you are the right person to access this gift box! </br></br> Enter your name to begin your journey!",
   },
   DATE_VALIDATOR: {
-    title: "Date Validator",
+    title: "When was that walk?",
     description:
-      "Now let's validate a date! Enter any past date after the year 1900. This could be your birthday, a historical event, or any memorable date from the past. Make sure it's a real date that has already occurred.",
+      "Now let's validate the date of our first walk! </br></br> Shouldn't be to difficult as we've spoken about this just recently!",
   },
   WORDS_MINIGAME: {
     title: "Words Minigame",

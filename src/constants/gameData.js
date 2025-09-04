@@ -15,9 +15,9 @@ export const GAME_DESCRIPTIONS = {
       "I'm going to throw a bunch of word combinations at you. </br></br> You make sure you finish them correctly!",
   },
   OPTION_MINIGAME: {
-    title: "Option Minigame",
+    title: "My favourites!",
     description:
-      "Test your decision-making skills! You'll be presented with multiple choice options. Choose the correct answer to advance. Think carefully - you only get one chance per question!",
+      "Do you even know me? I'll present you with a couple of questions and you'll decide. </br></br> Guess what? You'll get it right!",
   },
   ODD_ONE_OUT: {
     title: "Odd One Out",

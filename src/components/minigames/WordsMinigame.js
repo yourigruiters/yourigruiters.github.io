@@ -75,6 +75,12 @@ const WordsMinigame = ({ onNext }) => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      checkWord(currentWordIndex);
+    }
+  };
+
   const checkWord = (wordIndex) => {
     const word = words[wordIndex];
     const userAnswer = word.missing
@@ -136,6 +142,7 @@ const WordsMinigame = ({ onNext }) => {
               onChange={(e) =>
                 handleInputChange(currentWordIndex, index, e.target.value)
               }
+              onKeyPress={handleKeyPress}
               className="w-12 h-12 text-center border border-darkBorder rounded bg-darkBg text-darkText font-bold text-xl"
             />
           ))}

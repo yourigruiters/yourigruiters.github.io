@@ -10,9 +10,9 @@ export const GAME_DESCRIPTIONS = {
       "Sorry, couldn't really give you progress for knowing your name.. </br></br> Now let's validate the date of our first walk! </br></br> Shouldn't be to difficult as we've spoken about this just recently!",
   },
   WORDS_MINIGAME: {
-    title: "Words Minigame",
+    title: "Time to start working on that mind of yours!",
     description:
-      "Time for a typing challenge! You'll see a list of React-related words. Type any 3 of these words correctly to proceed. You can type them in any order, and the game will track your progress as you go.",
+      "I'm going to throw a bunch of word combinations at you. </br></br> You make sure you finish them correctly!",
   },
   OPTION_MINIGAME: {
     title: "Option Minigame",

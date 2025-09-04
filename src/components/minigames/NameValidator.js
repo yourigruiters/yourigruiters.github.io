@@ -39,7 +39,7 @@ const NameValidator = ({ onNext }) => {
 
   return (
     <div className="text-center">
-      <h2 className="text-xl font-bold mb-4">Name Validator</h2>
+      <h2 className="text-xl font-bold mb-4">🦒 Validator</h2>
       <p className="mb-4">
         Enter your name (hint: it's either "luxmi" or "laxmi")
       </p>

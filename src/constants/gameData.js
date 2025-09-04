@@ -1,8 +1,8 @@
 export const GAME_DESCRIPTIONS = {
   NAME_VALIDATOR: {
-    title: "Name Validator",
+    title: "🦒 <br/> Validator",
     description:
-      "Enter your name to begin your journey! Your name must be at least 2 characters long and contain only letters and spaces. This will help us personalize your experience throughout the quiz.",
+      "Enter your name to begin your journey!<br/>Your name must be at least 2 characters long and contain only letters and spaces.<br/>This will help us personalize your experience throughout the quiz.",
   },
   DATE_VALIDATOR: {
     title: "Date Validator",

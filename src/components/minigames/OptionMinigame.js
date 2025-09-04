@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const OptionMinigame = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [selected, setSelected] = useState(null);
   const [showResult, setShowResult] = useState(false);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const handleSelect = (option) => {
     // TODO: Implement option selection logic
     console.log("Selected option:", option);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.OPTION_MINIGAME.title}
+        description={GAME_DESCRIPTIONS.OPTION_MINIGAME.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

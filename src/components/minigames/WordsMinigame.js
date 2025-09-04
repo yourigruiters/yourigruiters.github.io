@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const WordsMinigame = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [input, setInput] = useState("");
   const [score, setScore] = useState(0);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const checkWord = () => {
     // TODO: Implement word checking logic
     console.log("Checking word:", input);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.WORDS_MINIGAME.title}
+        description={GAME_DESCRIPTIONS.WORDS_MINIGAME.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

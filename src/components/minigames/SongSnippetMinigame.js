@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const SongSnippetMinigame = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [guess, setGuess] = useState("");
   const [showResult, setShowResult] = useState(false);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const checkGuess = () => {
     // TODO: Implement guess checking logic
     console.log("Checking guess:", guess);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.SONG_SNIPPET.title}
+        description={GAME_DESCRIPTIONS.SONG_SNIPPET.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

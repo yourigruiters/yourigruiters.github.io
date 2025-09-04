@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const PuzzleBoxMinigame = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [code, setCode] = useState("");
   const [showResult, setShowResult] = useState(false);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const checkCode = () => {
     // TODO: Implement code checking logic
     console.log("Checking code:", code);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.PUZZLE_BOX.title}
+        description={GAME_DESCRIPTIONS.PUZZLE_BOX.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

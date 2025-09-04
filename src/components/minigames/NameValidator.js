@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const NameValidator = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [name, setName] = useState("");
   const [isValid, setIsValid] = useState(null);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const validateName = () => {
     // TODO: Implement validation logic
     console.log("Validating name:", name);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.NAME_VALIDATOR.title}
+        description={GAME_DESCRIPTIONS.NAME_VALIDATOR.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

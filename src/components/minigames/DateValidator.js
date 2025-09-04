@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import GameIntro from "../GameIntro";
+import { GAME_DESCRIPTIONS } from "../../constants/gameData";
 
 const DateValidator = ({ onNext }) => {
+  const [showIntro, setShowIntro] = useState(true);
   const [date, setDate] = useState("");
   const [isValid, setIsValid] = useState(null);
+
+  const handleContinue = () => {
+    setShowIntro(false);
+  };
 
   const validateDate = () => {
     // TODO: Implement validation logic
     console.log("Validating date:", date);
   };
+
+  if (showIntro) {
+    return (
+      <GameIntro
+        title={GAME_DESCRIPTIONS.DATE_VALIDATOR.title}
+        description={GAME_DESCRIPTIONS.DATE_VALIDATOR.description}
+        onContinue={handleContinue}
+      />
+    );
+  }
 
   return (
     <div className="text-center">

@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import data from "./data.json";
 
 import IntroBlock from "./Blocks/IntroBlock";
 import SkillsBlock from "./Blocks/SkillsBlock";
@@ -9,9 +8,14 @@ import ProjectsBlock from "./Blocks/ProjectsBlock";
 import ContactBlock from "./Blocks/ContactBlock";
 
 const App = () => {
-  const [leftWidth, setLeftWidth] = useState(data.global.portfolioWidth);
+  const [leftWidth, setLeftWidth] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [settings, setSettings] = useState(data.global);
+  const [settings, setSettings] = useState({
+    portfolioWidth: 50,
+    darkmode: true,
+    editorTheme: "Dark",
+    variant: "Developer",
+  });
 
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
@@ -53,8 +57,6 @@ const App = () => {
   const updateSetting = (key, value) => {
     const newSettings = { ...settings, [key]: value };
     setSettings(newSettings);
-    // Update the data object
-    data.global[key] = value;
   };
 
   useEffect(() => {
@@ -183,21 +185,24 @@ const App = () => {
                   <div>
                     <span className="text-blue-400">"headline"</span>:{" "}
                     <span className="text-yellow-400">
-                      "{data.intro.headline}"
+                      "Hello, I'm John Doe"
                     </span>
                     ,
                   </div>
                   <div>
                     <span className="text-blue-400">"subtitle"</span>:{" "}
                     <span className="text-yellow-400">
-                      "{data.intro.subtitle}"
+                      "Full Stack Developer & Problem Solver"
                     </span>
                     ,
                   </div>
                   <div>
                     <span className="text-blue-400">"description"</span>:{" "}
                     <span className="text-yellow-400">
-                      "{data.intro.description}"
+                      "I create beautiful, functional web applications that
+                      solve real-world problems. With expertise in both frontend
+                      and backend development, I bring ideas to life through
+                      code."
                     </span>
                     ,
                   </div>
@@ -251,16 +256,13 @@ const App = () => {
                 <div>
                   <span className="text-blue-400">"email"</span>:{" "}
                   <span className="text-yellow-400">
-                    "{data.contact.email}"
+                    "john.doe@example.com"
                   </span>
                   ,
                 </div>
                 <div>
                   <span className="text-blue-400">"phone"</span>:{" "}
-                  <span className="text-yellow-400">
-                    "{data.contact.phone}"
-                  </span>
-                  ,
+                  <span className="text-yellow-400">"+1 (555) 123-4567"</span>,
                 </div>
                 <div>
                   <span className="text-blue-400">"social"</span>: {"{"}

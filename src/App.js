@@ -6,12 +6,14 @@ import WorkBlock from "./Blocks/WorkBlock";
 import EducationBlock from "./Blocks/EducationBlock";
 import ProjectsBlock from "./Blocks/ProjectsBlock";
 import ContactBlock from "./Blocks/ContactBlock";
+import ColoredText from "./components/ColoredText";
+import Collapsible from "./components/Collapsible";
 
 const App = () => {
-  const [leftWidth, setLeftWidth] = useState(50);
+  const [leftWidth, setLeftWidth] = useState(25);
   const [isDragging, setIsDragging] = useState(false);
   const [settings, setSettings] = useState({
-    portfolioWidth: 50,
+    portfolioWidth: 25,
     darkmode: true,
     editorTheme: "Dark",
     variant: "Developer",
@@ -94,17 +96,13 @@ const App = () => {
           <div className="bg-gray-800 border-b border-gray-700 p-3 flex justify-between items-center gap-4 flex-shrink-0">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Command..."
               className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600 focus:border-gray-500 focus:outline-none flex-1 max-w-xs"
             />
 
             <div className="flex items-center gap-4">
               <button className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm border border-gray-600 transition-colors">
-                CMD
-              </button>
-
-              <button className="text-gray-300 hover:text-white text-sm transition-colors">
-                Toggle All
+                Toggle all
               </button>
             </div>
           </div>
@@ -114,10 +112,10 @@ const App = () => {
               <div className="mb-2">{"{"}</div>
 
               <div className="ml-4">
-                <span className="text-blue-400">"global"</span>: {"{"}
+                <ColoredText color="blue">"global"</ColoredText>: {"{"}
                 <div className="ml-4">
                   <div className="flex items-center">
-                    <span className="text-blue-400">"portfolioWidth"</span>:
+                    <ColoredText color="blue">"portfolioWidth"</ColoredText>:
                     <input
                       type="number"
                       min="10"
@@ -134,7 +132,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <span className="text-blue-400">"darkmode"</span>:
+                    <ColoredText color="blue">"darkmode"</ColoredText>:
                     <select
                       value={settings.darkmode.toString()}
                       onChange={(e) =>
@@ -149,7 +147,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <span className="text-blue-400">"editorTheme"</span>:
+                    <ColoredText color="blue">"editorTheme"</ColoredText>:
                     <select
                       value={settings.editorTheme}
                       onChange={(e) =>
@@ -164,7 +162,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <span className="text-blue-400">"variant"</span>:
+                    <ColoredText color="blue">"variant"</ColoredText>:
                     <select
                       value={settings.variant}
                       onChange={(e) => updateSetting("variant", e.target.value)}
@@ -180,97 +178,178 @@ const App = () => {
               </div>
 
               <div className="ml-4">
-                <span className="text-blue-400">"intro"</span>: {"{"}
-                <div className="ml-4 text-gray-500">
-                  <div>
-                    <span className="text-blue-400">"headline"</span>:{" "}
-                    <span className="text-yellow-400">
-                      "Hello, I'm John Doe"
-                    </span>
-                    ,
+                <Collapsible
+                  bracketType="curly"
+                  showComma={true}
+                  label={<ColoredText color="blue">"intro"</ColoredText>}
+                >
+                  <div className="ml-4">
+                    <div>
+                      <ColoredText color="blue">"headline"</ColoredText>:{" "}
+                      <ColoredText color="yellow">
+                        "Hello, I'm John Doe"
+                      </ColoredText>
+                      ,
+                    </div>
+                    <div>
+                      <ColoredText color="blue">"subtitle"</ColoredText>:{" "}
+                      <ColoredText color="yellow">
+                        "Full Stack Developer & Problem Solver"
+                      </ColoredText>
+                      ,
+                    </div>
+                    <div>
+                      <ColoredText color="blue">"description"</ColoredText>:{" "}
+                      <ColoredText color="yellow">
+                        "I create beautiful, functional web applications that
+                        solve real-world problems. With expertise in both
+                        frontend and backend development, I bring ideas to life
+                        through code."
+                      </ColoredText>
+                      ,
+                    </div>
+                    <div>
+                      <ColoredText color="gray">...</ColoredText>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-blue-400">"subtitle"</span>:{" "}
-                    <span className="text-yellow-400">
-                      "Full Stack Developer & Problem Solver"
-                    </span>
-                    ,
-                  </div>
-                  <div>
-                    <span className="text-blue-400">"description"</span>:{" "}
-                    <span className="text-yellow-400">
-                      "I create beautiful, functional web applications that
-                      solve real-world problems. With expertise in both frontend
-                      and backend development, I bring ideas to life through
-                      code."
-                    </span>
-                    ,
-                  </div>
-                  <div className="text-gray-400">...</div>
-                </div>
-                <div>{"}"},</div>
+                </Collapsible>
               </div>
 
               <div className="ml-4">
-                <span className="text-blue-400">"skills"</span>: {"{"}
-                <div className="ml-4 text-gray-500">
-                  <div>
-                    <span className="text-blue-400">"categories"</span>: [
+                <Collapsible
+                  bracketType="curly"
+                  showComma={true}
+                  label={<ColoredText color="blue">"skills"</ColoredText>}
+                >
+                  <div className="ml-4">
+                    <div>
+                      <Collapsible
+                        bracketType="square"
+                        showComma={true}
+                        label={
+                          <ColoredText color="blue">"categories"</ColoredText>
+                        }
+                      >
+                        <div className="ml-4">
+                          <ColoredText color="yellow">"Frontend"</ColoredText>,
+                          <ColoredText color="yellow">"Backend"</ColoredText>,
+                          <ColoredText color="yellow">"DevOps"</ColoredText>
+                        </div>
+                      </Collapsible>
+                    </div>
+                    <div>
+                      <Collapsible
+                        bracketType="square"
+                        label={
+                          <ColoredText color="blue">"technologies"</ColoredText>
+                        }
+                      >
+                        <div className="ml-4">
+                          <ColoredText color="yellow">"React"</ColoredText>,
+                          <ColoredText color="yellow">"Node.js"</ColoredText>,
+                          <ColoredText color="yellow">"Python"</ColoredText>
+                        </div>
+                      </Collapsible>
+                    </div>
                   </div>
-                  <div className="ml-4 text-gray-400">...</div>
-                  <div>],</div>
-                </div>
-                <div>{"}"},</div>
+                </Collapsible>
               </div>
 
               <div className="ml-4">
-                <span className="text-blue-400">"work"</span>: [
+                <Collapsible
+                  bracketType="square"
+                  showComma={true}
+                  label={<ColoredText color="blue">"work"</ColoredText>}
+                >
+                  <div className="ml-4">
+                    <Collapsible bracketType="curly" showComma={true}>
+                      <div className="ml-4">
+                        <div>
+                          <ColoredText color="blue">"company"</ColoredText>:{" "}
+                          <ColoredText color="yellow">"Tech Corp"</ColoredText>,
+                        </div>
+                        <div>
+                          <ColoredText color="blue">"position"</ColoredText>:{" "}
+                          <ColoredText color="yellow">
+                            "Senior Developer"
+                          </ColoredText>
+                          ,
+                        </div>
+                        <div>
+                          <ColoredText color="blue">"duration"</ColoredText>:{" "}
+                          <ColoredText color="yellow">"2020-2023"</ColoredText>
+                        </div>
+                      </div>
+                    </Collapsible>
+                    <Collapsible bracketType="curly">
+                      <div className="ml-4">
+                        <div>
+                          <ColoredText color="blue">"company"</ColoredText>:{" "}
+                          <ColoredText color="yellow">"StartupXYZ"</ColoredText>
+                          ,
+                        </div>
+                        <div>
+                          <ColoredText color="blue">"position"</ColoredText>:{" "}
+                          <ColoredText color="yellow">
+                            "Full Stack Developer"
+                          </ColoredText>
+                          ,
+                        </div>
+                        <div>
+                          <ColoredText color="blue">"duration"</ColoredText>:{" "}
+                          <ColoredText color="yellow">"2018-2020"</ColoredText>
+                        </div>
+                      </div>
+                    </Collapsible>
+                  </div>
+                </Collapsible>
               </div>
-              <div className="ml-8 text-gray-500">
-                <div>{"{"}</div>
-                <div className="ml-4 text-gray-400">...</div>
-                <div>{"}"},</div>
-              </div>
-              <div className="ml-4">],</div>
-            </div>
 
-            <div className="ml-4">
-              <span className="text-blue-400">"experience"</span>: {"{"}
-              <div className="ml-4 text-gray-500">
-                <div>
-                  <span className="text-blue-400">"projects"</span>: [...],
-                </div>
-                <div>
-                  <span className="text-blue-400">"education"</span>: [...],
-                </div>
-                <div>
-                  <span className="text-blue-400">"certifications"</span>: [...]
-                </div>
+              <div className="ml-4">
+                <Collapsible
+                  bracketType="curly"
+                  label={<ColoredText color="blue">"contact"</ColoredText>}
+                >
+                  <div className="ml-4">
+                    <div>
+                      <ColoredText color="blue">"email"</ColoredText>:{" "}
+                      <ColoredText color="yellow">
+                        "john.doe@example.com"
+                      </ColoredText>
+                      ,
+                    </div>
+                    <div>
+                      <ColoredText color="blue">"phone"</ColoredText>:{" "}
+                      <ColoredText color="yellow">
+                        "+1 (555) 123-4567"
+                      </ColoredText>
+                      ,
+                    </div>
+                    <div>
+                      <Collapsible
+                        bracketType="curly"
+                        label={<ColoredText color="blue">"social"</ColoredText>}
+                      >
+                        <div className="ml-4">
+                          <div>
+                            <ColoredText color="blue">"github"</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              "github.com/johndoe"
+                            </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue">"linkedin"</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              "linkedin.com/in/johndoe"
+                            </ColoredText>
+                          </div>
+                        </div>
+                      </Collapsible>
+                    </div>
+                  </div>
+                </Collapsible>
               </div>
-              <div>{"}"},</div>
-            </div>
-
-            <div className="ml-4">
-              <span className="text-blue-400">"contact"</span>: {"{"}
-              <div className="ml-4 text-gray-500">
-                <div>
-                  <span className="text-blue-400">"email"</span>:{" "}
-                  <span className="text-yellow-400">
-                    "john.doe@example.com"
-                  </span>
-                  ,
-                </div>
-                <div>
-                  <span className="text-blue-400">"phone"</span>:{" "}
-                  <span className="text-yellow-400">"+1 (555) 123-4567"</span>,
-                </div>
-                <div>
-                  <span className="text-blue-400">"social"</span>: {"{"}
-                </div>
-                <div className="ml-4 text-gray-400">...</div>
-                <div>{"}"}</div>
-              </div>
-              <div>{"}"}</div>
             </div>
 
             <div>{"}"}</div>

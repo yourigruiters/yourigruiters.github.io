@@ -1,6 +1,12 @@
 import React from "react";
 
-const ColoredText = ({ children, color = "blue", className = "" }) => {
+const ColoredText = ({
+  children,
+  color = "blue",
+  className = "",
+  linkTo = null,
+  onNavigate = null,
+}) => {
   const colorClasses = {
     blue: "text-blue-400",
     yellow: "text-yellow-400",
@@ -12,8 +18,21 @@ const ColoredText = ({ children, color = "blue", className = "" }) => {
   const baseClasses = "text-xs font-mono";
   const colorClass = colorClasses[color] || colorClasses.blue;
 
+  const handleClick = () => {
+    if (linkTo && onNavigate) {
+      onNavigate(linkTo);
+    }
+  };
+
+  const isClickable = linkTo && onNavigate;
+
   return (
-    <span className={`${baseClasses} ${colorClass} ${className}`}>
+    <span
+      className={`${baseClasses} ${colorClass} ${className} ${
+        isClickable ? "cursor-pointer hover:text-white transition-colors" : ""
+      }`}
+      onClick={isClickable ? handleClick : undefined}
+    >
       {children}
     </span>
   );

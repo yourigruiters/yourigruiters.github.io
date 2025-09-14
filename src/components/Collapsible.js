@@ -3,7 +3,7 @@ import ColoredText from "./ColoredText";
 
 const Collapsible = ({
   children,
-  isOpen = false,
+  isOpen = true,
   onToggle,
   bracketType = "curly", // "curly", "square", "round"
   className = "",
@@ -34,43 +34,45 @@ const Collapsible = ({
   const brackets = getBrackets();
 
   return (
-    <div className={`inline-block ${className}`}>
-      {label && (
-        <>
-          {label}
-          <span className="mr-1"> </span>
-        </>
-      )}
-      {isCollapsed ? (
-        // When collapsed, make the entire {...} clickable
-        <span
-          className="cursor-pointer hover:text-white transition-colors"
-          onClick={handleToggle}
-        >
-          {brackets.open}
-          <span className="text-gray-400">...</span>
-          {brackets.close}
-        </span>
-      ) : (
-        // When expanded, only brackets are clickable
-        <>
+    <div className={`block ${className}`}>
+      <div className="inline-block">
+        {label && (
+          <>
+            {label}
+            <span className="mr-1"> </span>
+          </>
+        )}
+        {isCollapsed ? (
+          // When collapsed, make the entire {...} clickable
           <span
             className="cursor-pointer hover:text-white transition-colors"
             onClick={handleToggle}
           >
             {brackets.open}
-          </span>
-          <div className="block">{children}</div>
-          <span
-            className="cursor-pointer hover:text-white transition-colors"
-            onClick={handleToggle}
-          >
+            <span className="text-gray-400">...</span>
             {brackets.close}
           </span>
-        </>
-      )}
+        ) : (
+          // When expanded, only brackets are clickable
+          <>
+            <span
+              className="cursor-pointer hover:text-white transition-colors"
+              onClick={handleToggle}
+            >
+              {brackets.open}
+            </span>
+            <div className="block">{children}</div>
+            <span
+              className="cursor-pointer hover:text-white transition-colors"
+              onClick={handleToggle}
+            >
+              {brackets.close}
+            </span>
+          </>
+        )}
 
-      {showComma && <span>,</span>}
+        {showComma && <span>,</span>}
+      </div>
     </div>
   );
 };

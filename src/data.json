@@ -1,0 +1,171 @@
+{
+  "global": {
+    "portfolioWidth": 50,
+    "darkmode": true,
+    "editorTheme": "Dark",
+    "variant": "Developer"
+  },
+  "intro": {
+    "headline": "Hello, I'm John Doe",
+    "subtitle": "Full Stack Developer & Problem Solver",
+    "description": "I create beautiful, functional web applications that solve real-world problems. With expertise in both frontend and backend development, I bring ideas to life through code.",
+    "cta": {
+      "text": "View My Work",
+      "action": "scrollToProjects"
+    },
+    "image": "/images/profile.jpg",
+    "background": {
+      "type": "gradient",
+      "colors": ["#667eea", "#764ba2"]
+    }
+  },
+  "skills": {
+    "categories": [
+      {
+        "name": "Frontend Development",
+        "icon": "💻",
+        "skills": [
+          { "name": "React", "level": 90, "years": 4 },
+          { "name": "Vue.js", "level": 85, "years": 3 },
+          { "name": "TypeScript", "level": 80, "years": 2 },
+          { "name": "Tailwind CSS", "level": 95, "years": 3 },
+          { "name": "Next.js", "level": 85, "years": 2 }
+        ]
+      },
+      {
+        "name": "Backend Development",
+        "icon": "⚙️",
+        "skills": [
+          { "name": "Node.js", "level": 90, "years": 4 },
+          { "name": "Express.js", "level": 85, "years": 3 },
+          { "name": "Python", "level": 75, "years": 2 },
+          { "name": "PostgreSQL", "level": 80, "years": 3 },
+          { "name": "MongoDB", "level": 75, "years": 2 }
+        ]
+      },
+      {
+        "name": "Tools & Technologies",
+        "icon": "🛠️",
+        "skills": [
+          { "name": "Git", "level": 90, "years": 5 },
+          { "name": "Docker", "level": 70, "years": 2 },
+          { "name": "AWS", "level": 75, "years": 2 },
+          { "name": "Figma", "level": 80, "years": 3 }
+        ]
+      }
+    ]
+  },
+  "work": [
+    {
+      "id": "tech-corp",
+      "company": "Tech Corp",
+      "position": "Senior Full Stack Developer",
+      "duration": "2022 - Present",
+      "location": "San Francisco, CA",
+      "type": "Full-time",
+      "description": "Led development of scalable web applications using React and Node.js. Implemented CI/CD pipelines and improved team productivity by 40%.",
+      "achievements": [
+        "Increased application performance by 60% through code optimization",
+        "Led a team of 5 developers on multiple projects",
+        "Implemented automated testing reducing bugs by 45%"
+      ],
+      "technologies": ["React", "Node.js", "PostgreSQL", "AWS", "Docker"],
+      "logo": "/images/tech-corp-logo.png"
+    },
+    {
+      "id": "startup-xyz",
+      "company": "StartupXYZ",
+      "position": "Frontend Developer",
+      "duration": "2020 - 2022",
+      "location": "Remote",
+      "type": "Full-time",
+      "description": "Developed responsive web applications and collaborated with design team to implement pixel-perfect UIs.",
+      "achievements": [
+        "Built 15+ responsive web applications",
+        "Improved user engagement by 35% through UI/UX improvements",
+        "Mentored 2 junior developers"
+      ],
+      "technologies": ["Vue.js", "TypeScript", "Tailwind CSS", "Figma"],
+      "logo": "/images/startup-xyz-logo.png"
+    }
+  ],
+  "experience": {
+    "projects": [
+      {
+        "id": "ecommerce-platform",
+        "name": "E-Commerce Platform",
+        "description": "Full-stack e-commerce solution with payment integration and real-time inventory management",
+        "technologies": ["React", "Node.js", "Stripe", "MongoDB"],
+        "github": "https://github.com/johndoe/ecommerce",
+        "live": "https://ecommerce-demo.com",
+        "image": "/images/ecommerce-screenshot.png",
+        "status": "Completed",
+        "year": "2023"
+      },
+      {
+        "id": "task-manager",
+        "name": "Task Management App",
+        "description": "Collaborative task management tool with real-time updates and team collaboration features",
+        "technologies": ["Vue.js", "Socket.io", "Express", "PostgreSQL"],
+        "github": "https://github.com/johndoe/taskmanager",
+        "live": "https://taskmanager-demo.com",
+        "image": "/images/taskmanager-screenshot.png",
+        "status": "Completed",
+        "year": "2022"
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Technology",
+        "degree": "Bachelor of Science in Computer Science",
+        "year": "2019",
+        "gpa": "3.8/4.0",
+        "location": "San Francisco, CA",
+        "relevantCourses": [
+          "Data Structures",
+          "Algorithms",
+          "Database Systems",
+          "Web Development"
+        ]
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "issuer": "Amazon Web Services",
+        "date": "2023",
+        "credentialId": "AWS-DEV-123456",
+        "expiryDate": "2026"
+      },
+      {
+        "name": "React Developer Certification",
+        "issuer": "Meta",
+        "date": "2022",
+        "credentialId": "META-REACT-789012",
+        "expiryDate": "2025"
+      }
+    ]
+  },
+  "contact": {
+    "email": "john.doe@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "website": "https://johndoe.dev",
+    "social": {
+      "linkedin": "https://linkedin.com/in/johndoe",
+      "github": "https://github.com/johndoe",
+      "twitter": "https://twitter.com/johndoe",
+      "instagram": "https://instagram.com/johndoe"
+    },
+    "availability": {
+      "status": "Available for freelance work",
+      "responseTime": "Within 24 hours",
+      "timezone": "PST (UTC-8)"
+    },
+    "preferredContact": ["email", "linkedin"],
+    "contactForm": {
+      "enabled": true,
+      "fields": ["name", "email", "subject", "message"]
+    }
+  }
+}

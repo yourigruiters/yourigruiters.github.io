@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import data from "./data.json";
 
 import IntroBlock from "./Blocks/IntroBlock";
 import SkillsBlock from "./Blocks/SkillsBlock";
@@ -8,8 +9,9 @@ import ProjectsBlock from "./Blocks/ProjectsBlock";
 import ContactBlock from "./Blocks/ContactBlock";
 
 const App = () => {
-  const [leftWidth, setLeftWidth] = useState(50);
+  const [leftWidth, setLeftWidth] = useState(data.global.portfolioWidth);
   const [isDragging, setIsDragging] = useState(false);
+  const [settings, setSettings] = useState(data.global);
 
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
@@ -43,6 +45,16 @@ const App = () => {
     setIsDragging(false);
     document.body.style.cursor = "";
     document.body.style.userSelect = "";
+
+    // Update settings when dragging stops
+    updateSetting("portfolioWidth", leftWidth);
+  };
+
+  const updateSetting = (key, value) => {
+    const newSettings = { ...settings, [key]: value };
+    setSettings(newSettings);
+    // Update the data object
+    data.global[key] = value;
   };
 
   useEffect(() => {
@@ -95,7 +107,172 @@ const App = () => {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto"></div>
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="text-green-400 text-xs font-mono">
+              <div className="mb-2">{"{"}</div>
+
+              <div className="ml-4">
+                <span className="text-blue-400">"global"</span>: {"{"}
+                <div className="ml-4">
+                  <div className="flex items-center">
+                    <span className="text-blue-400">"portfolioWidth"</span>:
+                    <input
+                      type="number"
+                      min="10"
+                      max="90"
+                      value={settings.portfolioWidth}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value);
+                        setLeftWidth(value);
+                        updateSetting("portfolioWidth", value);
+                      }}
+                      className="bg-gray-800 text-green-400 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                    />
+                    ,
+                  </div>
+
+                  <div className="flex items-center">
+                    <span className="text-blue-400">"darkmode"</span>:
+                    <select
+                      value={settings.darkmode.toString()}
+                      onChange={(e) =>
+                        updateSetting("darkmode", e.target.value === "true")
+                      }
+                      className="bg-gray-800 text-green-400 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2"
+                    >
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                    </select>
+                    ,
+                  </div>
+
+                  <div className="flex items-center">
+                    <span className="text-blue-400">"editorTheme"</span>:
+                    <select
+                      value={settings.editorTheme}
+                      onChange={(e) =>
+                        updateSetting("editorTheme", e.target.value)
+                      }
+                      className="bg-gray-800 text-green-400 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2"
+                    >
+                      <option value="Dark">"Dark"</option>
+                      <option value="Light">"Light"</option>
+                    </select>
+                    ,
+                  </div>
+
+                  <div className="flex items-center">
+                    <span className="text-blue-400">"variant"</span>:
+                    <select
+                      value={settings.variant}
+                      onChange={(e) => updateSetting("variant", e.target.value)}
+                      className="bg-gray-800 text-green-400 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2"
+                    >
+                      <option value="Teacher">"Teacher"</option>
+                      <option value="Developer">"Developer"</option>
+                      <option value="Combined">"Combined"</option>
+                    </select>
+                  </div>
+                </div>
+                <div>{"}"},</div>
+              </div>
+
+              <div className="ml-4">
+                <span className="text-blue-400">"intro"</span>: {"{"}
+                <div className="ml-4 text-gray-500">
+                  <div>
+                    <span className="text-blue-400">"headline"</span>:{" "}
+                    <span className="text-yellow-400">
+                      "{data.intro.headline}"
+                    </span>
+                    ,
+                  </div>
+                  <div>
+                    <span className="text-blue-400">"subtitle"</span>:{" "}
+                    <span className="text-yellow-400">
+                      "{data.intro.subtitle}"
+                    </span>
+                    ,
+                  </div>
+                  <div>
+                    <span className="text-blue-400">"description"</span>:{" "}
+                    <span className="text-yellow-400">
+                      "{data.intro.description}"
+                    </span>
+                    ,
+                  </div>
+                  <div className="text-gray-400">...</div>
+                </div>
+                <div>{"}"},</div>
+              </div>
+
+              <div className="ml-4">
+                <span className="text-blue-400">"skills"</span>: {"{"}
+                <div className="ml-4 text-gray-500">
+                  <div>
+                    <span className="text-blue-400">"categories"</span>: [
+                  </div>
+                  <div className="ml-4 text-gray-400">...</div>
+                  <div>],</div>
+                </div>
+                <div>{"}"},</div>
+              </div>
+
+              <div className="ml-4">
+                <span className="text-blue-400">"work"</span>: [
+              </div>
+              <div className="ml-8 text-gray-500">
+                <div>{"{"}</div>
+                <div className="ml-4 text-gray-400">...</div>
+                <div>{"}"},</div>
+              </div>
+              <div className="ml-4">],</div>
+            </div>
+
+            <div className="ml-4">
+              <span className="text-blue-400">"experience"</span>: {"{"}
+              <div className="ml-4 text-gray-500">
+                <div>
+                  <span className="text-blue-400">"projects"</span>: [...],
+                </div>
+                <div>
+                  <span className="text-blue-400">"education"</span>: [...],
+                </div>
+                <div>
+                  <span className="text-blue-400">"certifications"</span>: [...]
+                </div>
+              </div>
+              <div>{"}"},</div>
+            </div>
+
+            <div className="ml-4">
+              <span className="text-blue-400">"contact"</span>: {"{"}
+              <div className="ml-4 text-gray-500">
+                <div>
+                  <span className="text-blue-400">"email"</span>:{" "}
+                  <span className="text-yellow-400">
+                    "{data.contact.email}"
+                  </span>
+                  ,
+                </div>
+                <div>
+                  <span className="text-blue-400">"phone"</span>:{" "}
+                  <span className="text-yellow-400">
+                    "{data.contact.phone}"
+                  </span>
+                  ,
+                </div>
+                <div>
+                  <span className="text-blue-400">"social"</span>: {"{"}
+                </div>
+                <div className="ml-4 text-gray-400">...</div>
+                <div>{"}"}</div>
+              </div>
+              <div>{"}"}</div>
+            </div>
+
+            <div>{"}"}</div>
+          </div>
         </div>
 
         <div

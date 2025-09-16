@@ -38,6 +38,10 @@ const App = () => {
     contact: false,
   });
 
+  const [commandInput, setCommandInput] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
   const dragStartWidth = useRef(0);
@@ -114,6 +118,94 @@ const App = () => {
     });
   };
 
+  // Command suggestions based on current state
+  const getCommandSuggestions = () => {
+    const suggestions = [
+      {
+        text: "Toggle darkmode",
+        action: () => updateSetting("darkmode", !settings.darkmode),
+      },
+      {
+        text: "Toggle editor theme",
+        action: () =>
+          updateSetting(
+            "editorTheme",
+            settings.editorTheme === "Dark" ? "Light" : "Dark"
+          ),
+      },
+    ];
+
+    // Add variant options (only show the 2 that are not currently selected)
+    const currentVariant = settings.variant;
+    const allVariants = ["Developer", "Teacher", "Combined"];
+    const otherVariants = allVariants.filter((v) => v !== currentVariant);
+
+    otherVariants.forEach((variant) => {
+      suggestions.push({
+        text: `Change variant to ${variant}`,
+        action: () => updateSetting("variant", variant),
+      });
+    });
+
+    return suggestions;
+  };
+
+  const executeCommand = (commandText) => {
+    const suggestions = getCommandSuggestions();
+    const command = suggestions.find(
+      (s) => s.text.toLowerCase() === commandText.toLowerCase()
+    );
+    if (command) {
+      command.action();
+    }
+  };
+
+  const handleCommandInputChange = (e) => {
+    const value = e.target.value;
+    setCommandInput(value);
+    setShowSuggestions(true); // Always show suggestions when typing
+    setSelectedSuggestionIndex(-1);
+  };
+
+  const handleCommandKeyDown = (e) => {
+    const suggestions = getCommandSuggestions();
+    const filteredSuggestions = suggestions.filter((s) =>
+      s.text.toLowerCase().includes(commandInput.toLowerCase())
+    );
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedSuggestionIndex((prev) =>
+        prev < filteredSuggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedSuggestionIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (
+        selectedSuggestionIndex >= 0 &&
+        selectedSuggestionIndex < filteredSuggestions.length
+      ) {
+        const selectedCommand = filteredSuggestions[selectedSuggestionIndex];
+        executeCommand(selectedCommand.text);
+        setCommandInput("");
+        setShowSuggestions(false);
+        setSelectedSuggestionIndex(-1);
+      }
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+      setSelectedSuggestionIndex(-1);
+    }
+  };
+
+  const handleSuggestionClick = (commandText) => {
+    executeCommand(commandText);
+    setCommandInput("");
+    setShowSuggestions(false);
+    setSelectedSuggestionIndex(-1);
+  };
+
   const navigateToBlock = (blockName) => {
     const blockRef = blockRefs.current[blockName];
     if (blockRef && rightPanelRef.current) {
@@ -157,11 +249,50 @@ const App = () => {
           style={{ width: `${leftWidth}%` }}
         >
           <div className="bg-gray-800 border-b border-gray-700 p-3 flex justify-between items-center gap-4 flex-shrink-0">
-            <input
-              type="text"
-              placeholder="Command..."
-              className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600 focus:border-gray-500 focus:outline-none flex-1 max-w-xs"
-            />
+            <div className="relative flex-1 max-w-xs">
+              <input
+                type="text"
+                placeholder="Command..."
+                value={commandInput}
+                onChange={handleCommandInputChange}
+                onKeyDown={handleCommandKeyDown}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600 focus:border-gray-500 focus:outline-none w-full"
+              />
+              {showSuggestions && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-gray-600 rounded text-sm shadow-lg z-50 max-h-48 overflow-y-auto">
+                  {(() => {
+                    const filteredSuggestions = getCommandSuggestions().filter(
+                      (s) =>
+                        s.text
+                          .toLowerCase()
+                          .includes(commandInput.toLowerCase())
+                    );
+
+                    if (filteredSuggestions.length === 0) {
+                      return (
+                        <div className="px-3 py-2 text-gray-400">
+                          No commands matching
+                        </div>
+                      );
+                    }
+
+                    return filteredSuggestions.map((suggestion, index) => (
+                      <div
+                        key={suggestion.text}
+                        className={`px-3 py-2 cursor-pointer hover:bg-gray-700 text-white ${
+                          index === selectedSuggestionIndex ? "bg-gray-700" : ""
+                        }`}
+                        onClick={() => handleSuggestionClick(suggestion.text)}
+                      >
+                        {suggestion.text}
+                      </div>
+                    ));
+                  })()}
+                </div>
+              )}
+            </div>
 
             <div className="flex items-center gap-4">
               <button

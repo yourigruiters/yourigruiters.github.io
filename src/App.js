@@ -19,6 +19,15 @@ const App = () => {
     variant: "Developer",
   });
 
+  const [blockSettings, setBlockSettings] = useState({
+    intro: { show: true },
+    skills: { show: true },
+    work: { show: true, amount: 3 },
+    education: { show: true, amount: 2 },
+    projects: { show: true, amount: 2 },
+    contact: { show: true },
+  });
+
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
   const dragStartWidth = useRef(0);
@@ -60,6 +69,15 @@ const App = () => {
   const updateSetting = (key, value) => {
     const newSettings = { ...settings, [key]: value };
     setSettings(newSettings);
+  };
+
+  const updateBlockSetting = (blockName, key, value) => {
+    const newBlockSettings = { ...blockSettings };
+    newBlockSettings[blockName] = {
+      ...newBlockSettings[blockName],
+      [key]: value,
+    };
+    setBlockSettings(newBlockSettings);
   };
 
   const navigateToBlock = (blockName) => {
@@ -257,29 +275,81 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">headline</ColoredText>:{" "}
-                      <ColoredText color="yellow">
-                        Hello, I'm Youri Gruiters
-                      </ColoredText>
-                      ,
+                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <Collapsible
+                        bracketType="curly"
+                        showComma={true}
+                        isOpen={true}
+                      >
+                        <div className="ml-4">
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.intro.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "intro",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">subtitle</ColoredText>:{" "}
-                      <ColoredText color="yellow">
-                        Front-end Developer & Educator
-                      </ColoredText>
-                      ,
-                    </div>
-                    <div>
-                      <ColoredText color="blue">description</ColoredText>:{" "}
-                      <ColoredText color="yellow">
-                        Motivated and adaptable individual with a strong
-                        interest in personal and professional development. Holds
-                        a Bachelor's degree in IT & Media Design as well as IT &
-                        Education, blending technical knowledge with strong
-                        communication skills. Brings over 7 years of experience
-                        in development and 2.5 years in teaching.
-                      </ColoredText>
+                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <Collapsible bracketType="curly" isOpen={true}>
+                        <div className="ml-4">
+                          <div>
+                            <ColoredText color="blue">headline</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              Hello, I'm Youri Gruiters
+                            </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue">subtitle</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              Front-end Developer & Educator
+                            </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue">description</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              Motivated and adaptable individual with a strong
+                              interest in personal and professional development.
+                              Holds a Bachelor's degree in IT & Media Design as
+                              well as IT & Education, blending technical
+                              knowledge with strong communication skills. Brings
+                              over 7 years of experience in development and 2.5
+                              years in teaching.
+                            </ColoredText>
+                          </div>
+                        </div>
+                      </Collapsible>
                     </div>
                   </div>
                 </Collapsible>
@@ -301,69 +371,135 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
+                      <ColoredText color="blue">props</ColoredText>:{" "}
                       <Collapsible
-                        bracketType="square"
+                        bracketType="curly"
                         showComma={true}
-                        label={
-                          <ColoredText color="blue">categories</ColoredText>
-                        }
+                        isOpen={true}
                       >
                         <div className="ml-4">
-                          <div>
-                            <ColoredText color="yellow">
-                              Front-end Development
-                            </ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">
-                              Teaching & Education
-                            </ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">
-                              Project Management
-                            </ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">
-                              Communication
-                            </ColoredText>
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.skills.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "skills",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <Collapsible
-                        bracketType="square"
-                        label={
-                          <ColoredText color="blue">technologies</ColoredText>
-                        }
-                      >
+                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <Collapsible bracketType="curly" isOpen={true}>
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="yellow">ReactJS</ColoredText>,
+                            <Collapsible
+                              bracketType="square"
+                              showComma={true}
+                              label={
+                                <ColoredText color="blue">
+                                  categories
+                                </ColoredText>
+                              }
+                            >
+                              <div className="ml-4">
+                                <div>
+                                  <ColoredText color="yellow">
+                                    Front-end Development
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    Teaching & Education
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    Project Management
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    Communication
+                                  </ColoredText>
+                                </div>
+                              </div>
+                            </Collapsible>
                           </div>
                           <div>
-                            <ColoredText color="yellow">VueJS</ColoredText>,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">TypeScript</ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">CraftCMS</ColoredText>,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">
-                              HTML/CSS/JavaScript
-                            </ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">GIT</ColoredText>
+                            <Collapsible
+                              bracketType="square"
+                              label={
+                                <ColoredText color="blue">
+                                  technologies
+                                </ColoredText>
+                              }
+                            >
+                              <div className="ml-4">
+                                <div>
+                                  <ColoredText color="yellow">
+                                    ReactJS
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    VueJS
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    TypeScript
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    CraftCMS
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">
+                                    HTML/CSS/JavaScript
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText color="yellow">GIT</ColoredText>
+                                </div>
+                              </div>
+                            </Collapsible>
                           </div>
                         </div>
                       </Collapsible>
@@ -395,13 +531,56 @@ const App = () => {
                         isOpen={true}
                       >
                         <div className="ml-4">
-                          <div>
-                            <ColoredText color="blue">show</ColoredText>:{" "}
-                            <ColoredText color="yellow">true</ColoredText>,
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.work.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "work",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
+                            ,
                           </div>
-                          <div>
-                            <ColoredText color="blue">amount</ColoredText>:{" "}
-                            <ColoredText color="yellow">3</ColoredText>
+                          <div className="flex items-center">
+                            <ColoredText color="blue">amount</ColoredText>:
+                            <input
+                              type="number"
+                              min="1"
+                              max="10"
+                              value={blockSettings.work.amount}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "work",
+                                  "amount",
+                                  parseInt(e.target.value)
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                            />
                           </div>
                         </div>
                       </Collapsible>
@@ -588,13 +767,56 @@ const App = () => {
                         isOpen={true}
                       >
                         <div className="ml-4">
-                          <div>
-                            <ColoredText color="blue">show</ColoredText>:{" "}
-                            <ColoredText color="yellow">true</ColoredText>,
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.education.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "education",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
+                            ,
                           </div>
-                          <div>
-                            <ColoredText color="blue">amount</ColoredText>:{" "}
-                            <ColoredText color="yellow">2</ColoredText>
+                          <div className="flex items-center">
+                            <ColoredText color="blue">amount</ColoredText>:
+                            <input
+                              type="number"
+                              min="1"
+                              max="10"
+                              value={blockSettings.education.amount}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "education",
+                                  "amount",
+                                  parseInt(e.target.value)
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                            />
                           </div>
                         </div>
                       </Collapsible>
@@ -709,13 +931,56 @@ const App = () => {
                         isOpen={true}
                       >
                         <div className="ml-4">
-                          <div>
-                            <ColoredText color="blue">show</ColoredText>:{" "}
-                            <ColoredText color="yellow">true</ColoredText>,
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.projects.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "projects",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
+                            ,
                           </div>
-                          <div>
-                            <ColoredText color="blue">amount</ColoredText>:{" "}
-                            <ColoredText color="yellow">2</ColoredText>
+                          <div className="flex items-center">
+                            <ColoredText color="blue">amount</ColoredText>:
+                            <input
+                              type="number"
+                              min="1"
+                              max="10"
+                              value={blockSettings.projects.amount}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "projects",
+                                  "amount",
+                                  parseInt(e.target.value)
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                            />
                           </div>
                         </div>
                       </Collapsible>
@@ -798,34 +1063,91 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">email</ColoredText>:{" "}
-                      <ColoredText color="yellow">
-                        youriroc@gmail.com
-                      </ColoredText>
-                      ,
-                    </div>
-                    <div>
-                      <ColoredText color="blue">phone</ColoredText>:{" "}
-                      <ColoredText color="yellow">0424513249</ColoredText>,
-                    </div>
-                    <div>
-                      <ColoredText color="blue">location</ColoredText>:{" "}
-                      <ColoredText color="yellow">
-                        Brisbane, Australia
-                      </ColoredText>
-                      ,
-                    </div>
-                    <div>
+                      <ColoredText color="blue">props</ColoredText>:{" "}
                       <Collapsible
                         bracketType="curly"
-                        label={<ColoredText color="blue">social</ColoredText>}
+                        showComma={true}
+                        isOpen={true}
                       >
                         <div className="ml-4">
+                          <div className="flex items-center">
+                            <ColoredText color="blue">show</ColoredText>:
+                            <select
+                              value={blockSettings.contact.show.toString()}
+                              onChange={(e) =>
+                                updateBlockSetting(
+                                  "contact",
+                                  "show",
+                                  e.target.value === "true"
+                                )
+                              }
+                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              style={{
+                                backgroundImage: "none",
+                                borderImage: "none",
+                                boxShadow: "none",
+                                outline: "none",
+                              }}
+                            >
+                              <option
+                                value="true"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                true
+                              </option>
+                              <option
+                                value="false"
+                                className="bg-gray-800 text-gray-200"
+                              >
+                                false
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </Collapsible>
+                    </div>
+                    <div>
+                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <Collapsible bracketType="curly" isOpen={true}>
+                        <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">linkedin</ColoredText>:{" "}
+                            <ColoredText color="blue">email</ColoredText>:{" "}
                             <ColoredText color="yellow">
-                              https://nl.linkedin.com/in/yourigruiters
+                              youriroc@gmail.com
                             </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue">phone</ColoredText>:{" "}
+                            <ColoredText color="yellow">0424513249</ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue">location</ColoredText>:{" "}
+                            <ColoredText color="yellow">
+                              Brisbane, Australia
+                            </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <Collapsible
+                              bracketType="curly"
+                              label={
+                                <ColoredText color="blue">social</ColoredText>
+                              }
+                            >
+                              <div className="ml-4">
+                                <div>
+                                  <ColoredText color="blue">
+                                    linkedin
+                                  </ColoredText>
+                                  :{" "}
+                                  <ColoredText color="yellow">
+                                    https://nl.linkedin.com/in/yourigruiters
+                                  </ColoredText>
+                                </div>
+                              </div>
+                            </Collapsible>
                           </div>
                         </div>
                       </Collapsible>
@@ -857,6 +1179,12 @@ const App = () => {
             const blockName = BlockComponent.name
               .toLowerCase()
               .replace("block", "");
+
+            // Only render block if show is true
+            if (!blockSettings[blockName]?.show) {
+              return null;
+            }
+
             return (
               <div
                 key={index}

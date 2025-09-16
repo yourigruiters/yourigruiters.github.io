@@ -253,14 +253,14 @@ const App = () => {
     };
   }, [isDragging, leftWidth]);
 
-  // Block components
+  // Block components with their names
   const blocks = [
-    IntroBlock,
-    SkillsBlock,
-    WorkBlock,
-    EducationBlock,
-    ProjectsBlock,
-    ContactBlock,
+    { component: IntroBlock, name: "intro" },
+    { component: SkillsBlock, name: "skills" },
+    { component: WorkBlock, name: "work" },
+    { component: EducationBlock, name: "education" },
+    { component: ProjectsBlock, name: "projects" },
+    { component: ContactBlock, name: "contact" },
   ];
 
   return (
@@ -2040,10 +2040,8 @@ const App = () => {
               : undefined
           }
         >
-          {blocks.map((BlockComponent, index) => {
-            const blockName = BlockComponent.name
-              .toLowerCase()
-              .replace("block", "");
+          {blocks.map((block, index) => {
+            const { component: BlockComponent, name: blockName } = block;
 
             // Only render block if show is true
             if (!blockSettings[blockName]?.show) {

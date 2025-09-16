@@ -206,6 +206,10 @@ const App = () => {
     setSelectedSuggestionIndex(-1);
   };
 
+  // Helper function to get current theme
+  const getCurrentTheme = () =>
+    settings.editorTheme === "Light" ? "light" : "dark";
+
   const navigateToBlock = (blockName) => {
     const blockRef = blockRefs.current[blockName];
     if (blockRef && rightPanelRef.current) {
@@ -245,10 +249,18 @@ const App = () => {
     <div className="h-screen w-screen overflow-hidden" ref={containerRef}>
       <div className="flex h-full">
         <div
-          className="bg-black flex flex-col overflow-x-hidden"
+          className={`flex flex-col overflow-x-hidden ${
+            settings.editorTheme === "Light" ? "bg-gray-50" : "bg-black"
+          }`}
           style={{ width: `${leftWidth}%` }}
         >
-          <div className="bg-gray-800 border-b border-gray-700 p-3 flex justify-between items-center gap-4 flex-shrink-0">
+          <div
+            className={`border-b p-3 flex justify-between items-center gap-4 flex-shrink-0 ${
+              settings.editorTheme === "Light"
+                ? "bg-gray-200 border-gray-300"
+                : "bg-gray-800 border-gray-700"
+            }`}
+          >
             <div className="relative flex-1 max-w-xs">
               <input
                 type="text"
@@ -258,10 +270,20 @@ const App = () => {
                 onKeyDown={handleCommandKeyDown}
                 onFocus={() => setShowSuggestions(true)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-                className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600 focus:border-gray-500 focus:outline-none w-full"
+                className={`px-3 py-1 rounded text-sm border focus:outline-none w-full ${
+                  settings.editorTheme === "Light"
+                    ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                    : "bg-gray-700 text-white border-gray-600 focus:border-gray-500"
+                }`}
               />
               {showSuggestions && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-gray-600 rounded text-sm shadow-lg z-50 max-h-48 overflow-y-auto">
+                <div
+                  className={`absolute top-full left-0 right-0 mt-1 border rounded text-sm shadow-lg z-50 max-h-48 overflow-y-auto ${
+                    settings.editorTheme === "Light"
+                      ? "bg-white border-gray-300"
+                      : "bg-gray-800 border-gray-600"
+                  }`}
+                >
                   {(() => {
                     const filteredSuggestions = getCommandSuggestions().filter(
                       (s) =>
@@ -272,7 +294,13 @@ const App = () => {
 
                     if (filteredSuggestions.length === 0) {
                       return (
-                        <div className="px-3 py-2 text-gray-400">
+                        <div
+                          className={`px-3 py-2 ${
+                            settings.editorTheme === "Light"
+                              ? "text-gray-600"
+                              : "text-gray-400"
+                          }`}
+                        >
                           No commands matching
                         </div>
                       );
@@ -281,8 +309,18 @@ const App = () => {
                     return filteredSuggestions.map((suggestion, index) => (
                       <div
                         key={suggestion.text}
-                        className={`px-3 py-2 cursor-pointer hover:bg-gray-700 text-white ${
-                          index === selectedSuggestionIndex ? "bg-gray-700" : ""
+                        className={`px-3 py-2 cursor-pointer ${
+                          settings.editorTheme === "Light"
+                            ? `text-gray-800 hover:bg-gray-100 ${
+                                index === selectedSuggestionIndex
+                                  ? "bg-gray-100"
+                                  : ""
+                              }`
+                            : `text-white hover:bg-gray-700 ${
+                                index === selectedSuggestionIndex
+                                  ? "bg-gray-700"
+                                  : ""
+                              }`
                         }`}
                         onClick={() => handleSuggestionClick(suggestion.text)}
                       >
@@ -297,7 +335,11 @@ const App = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={toggleAllCollapsibles}
-                className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm border border-gray-600 transition-colors"
+                className={`px-3 py-1 rounded text-sm border transition-colors duration-150 ${
+                  settings.editorTheme === "Light"
+                    ? "bg-white hover:bg-gray-100 text-gray-800 border-gray-300"
+                    : "bg-gray-700 hover:bg-gray-600 text-white border-gray-600"
+                }`}
               >
                 {Object.values(collapsibleStates).every(
                   (state) => state === true
@@ -309,7 +351,13 @@ const App = () => {
           </div>
 
           <div className="flex-1 overflow-y-auto overflow-x-hidden p-4">
-            <div className="text-green-400 text-xs font-mono break-words overflow-wrap-anywhere">
+            <div
+              className={`text-xs font-mono break-words overflow-wrap-anywhere ${
+                settings.editorTheme === "Light"
+                  ? "text-green-600"
+                  : "text-green-400"
+              }`}
+            >
               <div className="mb-2">{"{"}</div>
 
               <div className="ml-4">
@@ -320,15 +368,22 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("global", isOpen)
                   }
+                  theme={getCurrentTheme()}
                   label={
                     <>
-                      <ColoredText color="blue">global</ColoredText>:
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        global
+                      </ColoredText>
+                      :
                     </>
                   }
                 >
                   <div className="ml-4">
                     <div className="flex items-center">
-                      <ColoredText color="blue">portfolioWidth</ColoredText>:
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        portfolioWidth
+                      </ColoredText>
+                      :
                       <input
                         type="number"
                         min="10"
@@ -339,19 +394,30 @@ const App = () => {
                           setLeftWidth(value);
                           updateSetting("portfolioWidth", value);
                         }}
-                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                        className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
+                          settings.editorTheme === "Light"
+                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                        }`}
                       />
                       ,
                     </div>
 
                     <div className="flex items-center">
-                      <ColoredText color="blue">darkmode</ColoredText>:
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        darkmode
+                      </ColoredText>
+                      :
                       <select
                         value={settings.darkmode.toString()}
                         onChange={(e) =>
                           updateSetting("darkmode", e.target.value === "true")
                         }
-                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                          settings.editorTheme === "Light"
+                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                        }`}
                         style={{
                           backgroundImage: "none",
                           borderImage: "none",
@@ -361,13 +427,21 @@ const App = () => {
                       >
                         <option
                           value="true"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           true
                         </option>
                         <option
                           value="false"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           false
                         </option>
@@ -376,13 +450,20 @@ const App = () => {
                     </div>
 
                     <div className="flex items-center">
-                      <ColoredText color="blue">editorTheme</ColoredText>:
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        editorTheme
+                      </ColoredText>
+                      :
                       <select
                         value={settings.editorTheme}
                         onChange={(e) =>
                           updateSetting("editorTheme", e.target.value)
                         }
-                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                          settings.editorTheme === "Light"
+                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                        }`}
                         style={{
                           backgroundImage: "none",
                           borderImage: "none",
@@ -392,13 +473,21 @@ const App = () => {
                       >
                         <option
                           value="Dark"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           Dark
                         </option>
                         <option
                           value="Light"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           Light
                         </option>
@@ -407,13 +496,20 @@ const App = () => {
                     </div>
 
                     <div className="flex items-center">
-                      <ColoredText color="blue">variant</ColoredText>:
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        variant
+                      </ColoredText>
+                      :
                       <select
                         value={settings.variant}
                         onChange={(e) =>
                           updateSetting("variant", e.target.value)
                         }
-                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                          settings.editorTheme === "Light"
+                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                        }`}
                         style={{
                           backgroundImage: "none",
                           borderImage: "none",
@@ -423,19 +519,31 @@ const App = () => {
                       >
                         <option
                           value="Teacher"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           Teacher
                         </option>
                         <option
                           value="Developer"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           Developer
                         </option>
                         <option
                           value="Combined"
-                          className="bg-gray-800 text-gray-200"
+                          className={
+                            settings.editorTheme === "Light"
+                              ? "bg-white text-gray-800"
+                              : "bg-gray-800 text-gray-200"
+                          }
                         >
                           Combined
                         </option>
@@ -451,6 +559,7 @@ const App = () => {
                   showComma={true}
                   isOpen={collapsibleStates.intro}
                   onToggle={(isOpen) => updateCollapsibleState("intro", isOpen)}
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -466,7 +575,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -474,7 +586,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.intro.show.toString()}
                               onChange={(e) =>
@@ -484,7 +599,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -494,13 +613,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -510,26 +637,47 @@ const App = () => {
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">headline</ColoredText>:{" "}
-                            <ColoredText color="yellow">
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              headline
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
                               Hello, I'm Youri Gruiters
                             </ColoredText>
                             ,
                           </div>
                           <div>
-                            <ColoredText color="blue">subtitle</ColoredText>:{" "}
-                            <ColoredText color="yellow">
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              subtitle
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
                               Front-end Developer & Educator
                             </ColoredText>
                             ,
                           </div>
                           <div>
-                            <ColoredText color="blue">description</ColoredText>:{" "}
-                            <ColoredText color="yellow">
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              description
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
                               Motivated and adaptable individual with a strong
                               interest in personal and professional development.
                               Holds a Bachelor's degree in IT & Media Design as
@@ -554,6 +702,7 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("skills", isOpen)
                   }
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -569,7 +718,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -577,7 +729,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.skills.show.toString()}
                               onChange={(e) =>
@@ -587,7 +742,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -597,13 +756,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -613,7 +780,10 @@ const App = () => {
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
@@ -621,32 +791,47 @@ const App = () => {
                               bracketType="square"
                               showComma={true}
                               label={
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   categories
                                 </ColoredText>
                               }
                             >
                               <div className="ml-4">
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     Front-end Development
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     Teaching & Education
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     Project Management
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     Communication
                                   </ColoredText>
                                 </div>
@@ -657,44 +842,67 @@ const App = () => {
                             <Collapsible
                               bracketType="square"
                               label={
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   technologies
                                 </ColoredText>
                               }
                             >
                               <div className="ml-4">
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     ReactJS
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     VueJS
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     TypeScript
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     CraftCMS
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     HTML/CSS/JavaScript
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
-                                  <ColoredText color="yellow">GIT</ColoredText>
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    GIT
+                                  </ColoredText>
                                 </div>
                               </div>
                             </Collapsible>
@@ -712,6 +920,7 @@ const App = () => {
                   showComma={true}
                   isOpen={collapsibleStates.work}
                   onToggle={(isOpen) => updateCollapsibleState("work", isOpen)}
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -727,7 +936,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -735,7 +947,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.work.show.toString()}
                               onChange={(e) =>
@@ -745,7 +960,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -755,13 +974,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -769,7 +996,10 @@ const App = () => {
                             ,
                           </div>
                           <div className="flex items-center">
-                            <ColoredText color="blue">amount</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              amount
+                            </ColoredText>
+                            :
                             <input
                               type="number"
                               min="1"
@@ -782,14 +1012,21 @@ const App = () => {
                                   parseInt(e.target.value)
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                             />
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -799,42 +1036,81 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">company</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Happy Horizon B.V.
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">position</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Front-end Developer
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">location</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Eindhoven, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">duration</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   April 2023 – June 2025
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   description
                                 </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Managed multiple projects simultaneously,
                                   coordinating directly with clients. Delivered
                                   dynamic development work using CraftCMS, VueJS
@@ -850,42 +1126,81 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">company</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   System4
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">position</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Front-end Developer
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">location</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Uden, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">duration</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   September 2022 – April 2023
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   description
                                 </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Specialized in building responsive web
                                   applications using ReactJS. Collaborated in
                                   Agile Scrum teams of 4-5 developers.
@@ -896,43 +1211,82 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">company</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   ROC Nijmegen
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">position</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Front-end Development Teacher
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">location</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Nijmegen, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">duration</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   August 2021 – August 2022, August 2018 –
                                   February 2020
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   description
                                 </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Delivered courses on HTML, CSS, JavaScript,
                                   ReactJS, and GIT. Served as mentor and
                                   internship supervisor for students.
@@ -955,6 +1309,7 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("education", isOpen)
                   }
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -970,7 +1325,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -978,7 +1336,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.education.show.toString()}
                               onChange={(e) =>
@@ -988,7 +1349,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -998,13 +1363,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -1012,7 +1385,10 @@ const App = () => {
                             ,
                           </div>
                           <div className="flex items-center">
-                            <ColoredText color="blue">amount</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              amount
+                            </ColoredText>
+                            :
                             <input
                               type="number"
                               min="1"
@@ -1025,14 +1401,21 @@ const App = () => {
                                   parseInt(e.target.value)
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                             />
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -1042,34 +1425,65 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">degree</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  degree
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Bachelor of IT & Media Design (cum laude)
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   "university"
                                 </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Fontys University of Applied Sciences
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">location</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Eindhoven, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">duration</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   2014 – 2018
                                 </ColoredText>
                               </div>
@@ -1078,34 +1492,65 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">degree</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  degree
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Bachelor of IT & Education (cum laude)
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
                                   "university"
                                 </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Fontys University of Applied Sciences
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">location</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Eindhoven, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">duration</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
                                 :{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   2015 – 2018
                                 </ColoredText>
                               </div>
@@ -1126,6 +1571,7 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("projects", isOpen)
                   }
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -1141,7 +1587,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -1149,7 +1598,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.projects.show.toString()}
                               onChange={(e) =>
@@ -1159,7 +1611,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -1169,13 +1625,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -1183,7 +1647,10 @@ const App = () => {
                             ,
                           </div>
                           <div className="flex items-center">
-                            <ColoredText color="blue">amount</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              amount
+                            </ColoredText>
+                            :
                             <input
                               type="number"
                               min="1"
@@ -1196,14 +1663,21 @@ const App = () => {
                                   parseInt(e.target.value)
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                             />
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -1213,22 +1687,49 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">name</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  name
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Portfolio Website
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">tech</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  tech
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   React, Tailwind
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">status</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  status
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Completed
                                 </ColoredText>
                               </div>
@@ -1237,22 +1738,49 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">name</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  name
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   E-commerce App
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">tech</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  tech
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Node.js, MongoDB
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">status</ColoredText>:{" "}
-                                <ColoredText color="yellow">
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  status
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   In Progress
                                 </ColoredText>
                               </div>
@@ -1272,6 +1800,7 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("contact", isOpen)
                   }
+                  theme={getCurrentTheme()}
                   label={
                     <>
                       <ColoredText
@@ -1287,7 +1816,10 @@ const App = () => {
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">props</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        props
+                      </ColoredText>
+                      :{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -1295,7 +1827,10 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
-                            <ColoredText color="blue">show</ColoredText>:
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              show
+                            </ColoredText>
+                            :
                             <select
                               value={blockSettings.contact.show.toString()}
                               onChange={(e) =>
@@ -1305,7 +1840,11 @@ const App = () => {
                                   e.target.value === "true"
                                 )
                               }
-                              className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
+                                settings.editorTheme === "Light"
+                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                              }`}
                               style={{
                                 backgroundImage: "none",
                                 borderImage: "none",
@@ -1315,13 +1854,21 @@ const App = () => {
                             >
                               <option
                                 value="true"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 true
                               </option>
                               <option
                                 value="false"
-                                className="bg-gray-800 text-gray-200"
+                                className={
+                                  settings.editorTheme === "Light"
+                                    ? "bg-white text-gray-800"
+                                    : "bg-gray-800 text-gray-200"
+                                }
                               >
                                 false
                               </option>
@@ -1331,24 +1878,47 @@ const App = () => {
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">data</ColoredText>:{" "}
+                      <ColoredText color="blue" theme={getCurrentTheme()}>
+                        data
+                      </ColoredText>
+                      :{" "}
                       <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">email</ColoredText>:{" "}
-                            <ColoredText color="yellow">
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              email
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
                               youriroc@gmail.com
                             </ColoredText>
                             ,
                           </div>
                           <div>
-                            <ColoredText color="blue">phone</ColoredText>:{" "}
-                            <ColoredText color="yellow">0424513249</ColoredText>
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              phone
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
+                              0424513249
+                            </ColoredText>
                             ,
                           </div>
                           <div>
-                            <ColoredText color="blue">location</ColoredText>:{" "}
-                            <ColoredText color="yellow">
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              location
+                            </ColoredText>
+                            :{" "}
+                            <ColoredText
+                              color="yellow"
+                              theme={getCurrentTheme()}
+                            >
                               Brisbane, Australia
                             </ColoredText>
                             ,
@@ -1357,16 +1927,27 @@ const App = () => {
                             <Collapsible
                               bracketType="curly"
                               label={
-                                <ColoredText color="blue">social</ColoredText>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  social
+                                </ColoredText>
                               }
                             >
                               <div className="ml-4">
                                 <div>
-                                  <ColoredText color="blue">
+                                  <ColoredText
+                                    color="blue"
+                                    theme={getCurrentTheme()}
+                                  >
                                     linkedin
                                   </ColoredText>
                                   :{" "}
-                                  <ColoredText color="yellow">
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
                                     https://nl.linkedin.com/in/yourigruiters
                                   </ColoredText>
                                 </div>

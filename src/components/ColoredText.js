@@ -7,14 +7,24 @@ const ColoredText = ({
   linkTo = null,
   onNavigate = null,
   autoQuotes = true,
+  theme = "dark",
 }) => {
-  const colorClasses = {
-    blue: "text-blue-400",
-    yellow: "text-yellow-400",
-    green: "text-green-400",
-    gray: "text-gray-400",
-    "gray-500": "text-gray-500",
-  };
+  const colorClasses =
+    theme === "light"
+      ? {
+          blue: "text-blue-600",
+          yellow: "text-yellow-600",
+          green: "text-green-600",
+          gray: "text-gray-600",
+          "gray-500": "text-gray-500",
+        }
+      : {
+          blue: "text-blue-400",
+          yellow: "text-yellow-400",
+          green: "text-green-400",
+          gray: "text-gray-400",
+          "gray-500": "text-gray-500",
+        };
 
   const baseClasses = "text-xs font-mono break-words overflow-wrap-anywhere";
   const colorClass = colorClasses[color] || colorClasses.blue;
@@ -30,7 +40,11 @@ const ColoredText = ({
   return (
     <span
       className={`${baseClasses} ${colorClass} ${className} ${
-        isClickable ? "cursor-pointer hover:text-white transition-colors" : ""
+        isClickable
+          ? `cursor-pointer transition-colors ${
+              theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+            }`
+          : ""
       }`}
       onClick={isClickable ? handleClick : undefined}
     >

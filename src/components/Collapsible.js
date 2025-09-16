@@ -10,6 +10,7 @@ const Collapsible = ({
   showComma = false,
   label = null, // Optional label text before the brackets
   inlineContent = false, // For props sections that should display inline
+  theme = "dark",
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(!isOpen);
 
@@ -51,25 +52,35 @@ const Collapsible = ({
         {isCollapsed ? (
           // When collapsed, make the entire {...} clickable inline
           <span
-            className="cursor-pointer hover:text-white transition-colors"
+            className={`cursor-pointer transition-colors ${
+              theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+            }`}
             onClick={handleToggle}
           >
             {brackets.open}
-            <span className="text-gray-400">...</span>
+            <span
+              className={theme === "light" ? "text-gray-600" : "text-gray-400"}
+            >
+              ...
+            </span>
             {brackets.close}
           </span>
         ) : (
           // When expanded, brackets are clickable and content goes below
           <>
             <span
-              className="cursor-pointer hover:text-white transition-colors"
+              className={`cursor-pointer transition-colors ${
+                theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+              }`}
               onClick={handleToggle}
             >
               {brackets.open}
             </span>
             <div className="block">{children}</div>
             <span
-              className="cursor-pointer hover:text-white transition-colors"
+              className={`cursor-pointer transition-colors ${
+                theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+              }`}
               onClick={handleToggle}
             >
               {brackets.close}

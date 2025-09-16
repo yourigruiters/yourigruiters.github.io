@@ -16,7 +16,7 @@ const ColoredText = ({
     "gray-500": "text-gray-500",
   };
 
-  const baseClasses = "text-xs font-mono";
+  const baseClasses = "text-xs font-mono break-words overflow-wrap-anywhere";
   const colorClass = colorClasses[color] || colorClasses.blue;
 
   const handleClick = () => {

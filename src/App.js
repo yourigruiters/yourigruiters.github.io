@@ -28,6 +28,16 @@ const App = () => {
     contact: { show: true },
   });
 
+  const [collapsibleStates, setCollapsibleStates] = useState({
+    global: true,
+    intro: true,
+    skills: true,
+    work: true,
+    education: true,
+    projects: true,
+    contact: true,
+  });
+
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
   const dragStartWidth = useRef(0);
@@ -80,6 +90,30 @@ const App = () => {
     setBlockSettings(newBlockSettings);
   };
 
+  const updateCollapsibleState = (collapsibleName, isOpen) => {
+    setCollapsibleStates((prev) => ({
+      ...prev,
+      [collapsibleName]: isOpen,
+    }));
+  };
+
+  const toggleAllCollapsibles = () => {
+    const allOpen = Object.values(collapsibleStates).every(
+      (state) => state === true
+    );
+    const newState = !allOpen;
+
+    setCollapsibleStates({
+      global: newState,
+      intro: newState,
+      skills: newState,
+      work: newState,
+      education: newState,
+      projects: newState,
+      contact: newState,
+    });
+  };
+
   const navigateToBlock = (blockName) => {
     const blockRef = blockRefs.current[blockName];
     if (blockRef && rightPanelRef.current) {
@@ -119,7 +153,7 @@ const App = () => {
     <div className="h-screen w-screen overflow-hidden" ref={containerRef}>
       <div className="flex h-full">
         <div
-          className="bg-black flex flex-col"
+          className="bg-black flex flex-col overflow-x-hidden"
           style={{ width: `${leftWidth}%` }}
         >
           <div className="bg-gray-800 border-b border-gray-700 p-3 flex justify-between items-center gap-4 flex-shrink-0">
@@ -130,139 +164,158 @@ const App = () => {
             />
 
             <div className="flex items-center gap-4">
-              <button className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm border border-gray-600 transition-colors">
-                Toggle all
+              <button
+                onClick={toggleAllCollapsibles}
+                className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm border border-gray-600 transition-colors"
+              >
+                {Object.values(collapsibleStates).every(
+                  (state) => state === true
+                )
+                  ? "Close all"
+                  : "Open all"}
               </button>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="text-green-400 text-xs font-mono">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden p-4">
+            <div className="text-green-400 text-xs font-mono break-words overflow-wrap-anywhere">
               <div className="mb-2">{"{"}</div>
 
               <div className="ml-4">
-                <ColoredText color="blue">global</ColoredText>: {"{"}
-                <div className="ml-4">
-                  <div className="flex items-center">
-                    <ColoredText color="blue">portfolioWidth</ColoredText>:
-                    <input
-                      type="number"
-                      min="10"
-                      max="90"
-                      value={settings.portfolioWidth}
-                      onChange={(e) => {
-                        const value = parseInt(e.target.value);
-                        setLeftWidth(value);
-                        updateSetting("portfolioWidth", value);
-                      }}
-                      className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
-                    />
-                    ,
-                  </div>
+                <Collapsible
+                  bracketType="curly"
+                  showComma={true}
+                  isOpen={collapsibleStates.global}
+                  onToggle={(isOpen) =>
+                    updateCollapsibleState("global", isOpen)
+                  }
+                  label={<ColoredText color="blue">global</ColoredText>}
+                >
+                  <div className="ml-4">
+                    <div className="flex items-center">
+                      <ColoredText color="blue">portfolioWidth</ColoredText>:
+                      <input
+                        type="number"
+                        min="10"
+                        max="90"
+                        value={settings.portfolioWidth}
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value);
+                          setLeftWidth(value);
+                          updateSetting("portfolioWidth", value);
+                        }}
+                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border border-gray-600 focus:border-gray-500 focus:outline-none ml-2 w-16"
+                      />
+                      ,
+                    </div>
 
-                  <div className="flex items-center">
-                    <ColoredText color="blue">darkmode</ColoredText>:
-                    <select
-                      value={settings.darkmode.toString()}
-                      onChange={(e) =>
-                        updateSetting("darkmode", e.target.value === "true")
-                      }
-                      className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
-                      style={{
-                        backgroundImage: "none",
-                        borderImage: "none",
-                        boxShadow: "none",
-                        outline: "none",
-                      }}
-                    >
-                      <option
-                        value="true"
-                        className="bg-gray-800 text-gray-200"
+                    <div className="flex items-center">
+                      <ColoredText color="blue">darkmode</ColoredText>:
+                      <select
+                        value={settings.darkmode.toString()}
+                        onChange={(e) =>
+                          updateSetting("darkmode", e.target.value === "true")
+                        }
+                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        style={{
+                          backgroundImage: "none",
+                          borderImage: "none",
+                          boxShadow: "none",
+                          outline: "none",
+                        }}
                       >
-                        true
-                      </option>
-                      <option
-                        value="false"
-                        className="bg-gray-800 text-gray-200"
-                      >
-                        false
-                      </option>
-                    </select>
-                    ,
-                  </div>
+                        <option
+                          value="true"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          true
+                        </option>
+                        <option
+                          value="false"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          false
+                        </option>
+                      </select>
+                      ,
+                    </div>
 
-                  <div className="flex items-center">
-                    <ColoredText color="blue">editorTheme</ColoredText>:
-                    <select
-                      value={settings.editorTheme}
-                      onChange={(e) =>
-                        updateSetting("editorTheme", e.target.value)
-                      }
-                      className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
-                      style={{
-                        backgroundImage: "none",
-                        borderImage: "none",
-                        boxShadow: "none",
-                        outline: "none",
-                      }}
-                    >
-                      <option
-                        value="Dark"
-                        className="bg-gray-800 text-gray-200"
+                    <div className="flex items-center">
+                      <ColoredText color="blue">editorTheme</ColoredText>:
+                      <select
+                        value={settings.editorTheme}
+                        onChange={(e) =>
+                          updateSetting("editorTheme", e.target.value)
+                        }
+                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        style={{
+                          backgroundImage: "none",
+                          borderImage: "none",
+                          boxShadow: "none",
+                          outline: "none",
+                        }}
                       >
-                        Dark
-                      </option>
-                      <option
-                        value="Light"
-                        className="bg-gray-800 text-gray-200"
-                      >
-                        Light
-                      </option>
-                    </select>
-                    ,
-                  </div>
+                        <option
+                          value="Dark"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          Dark
+                        </option>
+                        <option
+                          value="Light"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          Light
+                        </option>
+                      </select>
+                      ,
+                    </div>
 
-                  <div className="flex items-center">
-                    <ColoredText color="blue">variant</ColoredText>:
-                    <select
-                      value={settings.variant}
-                      onChange={(e) => updateSetting("variant", e.target.value)}
-                      className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
-                      style={{
-                        backgroundImage: "none",
-                        borderImage: "none",
-                        boxShadow: "none",
-                        outline: "none",
-                      }}
-                    >
-                      <option
-                        value="Teacher"
-                        className="bg-gray-800 text-gray-200"
+                    <div className="flex items-center">
+                      <ColoredText color="blue">variant</ColoredText>:
+                      <select
+                        value={settings.variant}
+                        onChange={(e) =>
+                          updateSetting("variant", e.target.value)
+                        }
+                        className="bg-gray-800 text-gray-200 px-2 py-1 rounded text-xs border-2 border-gray-600 focus:border-gray-500 focus:outline-none ml-2 appearance-none"
+                        style={{
+                          backgroundImage: "none",
+                          borderImage: "none",
+                          boxShadow: "none",
+                          outline: "none",
+                        }}
                       >
-                        Teacher
-                      </option>
-                      <option
-                        value="Developer"
-                        className="bg-gray-800 text-gray-200"
-                      >
-                        Developer
-                      </option>
-                      <option
-                        value="Combined"
-                        className="bg-gray-800 text-gray-200"
-                      >
-                        Combined
-                      </option>
-                    </select>
+                        <option
+                          value="Teacher"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          Teacher
+                        </option>
+                        <option
+                          value="Developer"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          Developer
+                        </option>
+                        <option
+                          value="Combined"
+                          className="bg-gray-800 text-gray-200"
+                        >
+                          Combined
+                        </option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div>{"}"},</div>
+                </Collapsible>
               </div>
 
               <div className="ml-4">
                 <Collapsible
                   bracketType="curly"
                   showComma={true}
+                  isOpen={collapsibleStates.intro}
+                  onToggle={(isOpen) => updateCollapsibleState("intro", isOpen)}
                   label={
                     <ColoredText
                       color="blue"
@@ -359,6 +412,10 @@ const App = () => {
                 <Collapsible
                   bracketType="curly"
                   showComma={true}
+                  isOpen={collapsibleStates.skills}
+                  onToggle={(isOpen) =>
+                    updateCollapsibleState("skills", isOpen)
+                  }
                   label={
                     <ColoredText
                       color="blue"
@@ -512,6 +569,8 @@ const App = () => {
                 <Collapsible
                   bracketType="curly"
                   showComma={true}
+                  isOpen={collapsibleStates.work}
+                  onToggle={(isOpen) => updateCollapsibleState("work", isOpen)}
                   label={
                     <ColoredText
                       color="blue"
@@ -748,6 +807,10 @@ const App = () => {
                 <Collapsible
                   bracketType="curly"
                   showComma={true}
+                  isOpen={collapsibleStates.education}
+                  onToggle={(isOpen) =>
+                    updateCollapsibleState("education", isOpen)
+                  }
                   label={
                     <ColoredText
                       color="blue"
@@ -912,6 +975,10 @@ const App = () => {
                 <Collapsible
                   bracketType="curly"
                   showComma={true}
+                  isOpen={collapsibleStates.projects}
+                  onToggle={(isOpen) =>
+                    updateCollapsibleState("projects", isOpen)
+                  }
                   label={
                     <ColoredText
                       color="blue"
@@ -1051,6 +1118,10 @@ const App = () => {
               <div className="ml-4">
                 <Collapsible
                   bracketType="curly"
+                  isOpen={collapsibleStates.contact}
+                  onToggle={(isOpen) =>
+                    updateCollapsibleState("contact", isOpen)
+                  }
                   label={
                     <ColoredText
                       color="blue"
@@ -1157,7 +1228,9 @@ const App = () => {
               </div>
             </div>
 
-            <div>{"}"}</div>
+            <div className="text-green-400 text-xs font-mono break-words overflow-wrap-anywhere">
+              {"}"}
+            </div>
           </div>
         </div>
 

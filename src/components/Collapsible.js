@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ColoredText from "./ColoredText";
 
 const Collapsible = ({
@@ -12,6 +12,11 @@ const Collapsible = ({
   inlineContent = false, // For props sections that should display inline
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(!isOpen);
+
+  // Sync internal state with external isOpen prop
+  useEffect(() => {
+    setIsCollapsed(!isOpen);
+  }, [isOpen]);
 
   const handleToggle = () => {
     const newState = !isCollapsed;

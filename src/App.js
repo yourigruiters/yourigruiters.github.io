@@ -264,7 +264,12 @@ const App = () => {
   ];
 
   return (
-    <div className="h-screen w-screen overflow-hidden" ref={containerRef}>
+    <div
+      className={`h-screen w-screen overflow-hidden ${
+        isMobile ? "mobile-viewport" : ""
+      }`}
+      ref={containerRef}
+    >
       <div className={`h-full ${isMobile ? "relative" : "flex"}`}>
         <div
           className={`flex flex-col overflow-x-hidden ${
@@ -274,7 +279,7 @@ const App = () => {
               ? `absolute inset-0 ${
                   activeMobilePanel === "left"
                     ? "z-20 left-0 w-[90%]"
-                    : "z-10 left-0 w-[10%] opacity-50"
+                    : "z-10 left-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200"
                 }`
               : ""
           }`}
@@ -2023,7 +2028,7 @@ const App = () => {
               ? `absolute inset-0 ${
                   activeMobilePanel === "right"
                     ? "z-20 left-[10%] w-[90%]"
-                    : "z-10 right-0 w-[10%] opacity-50"
+                    : "z-10 right-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200"
                 }`
               : "border-l border-gray-300"
           }`}

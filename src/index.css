@@ -7,3 +7,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Mobile viewport height fix */
+@supports (height: 100dvh) {
+  .mobile-viewport {
+    height: 100dvh;
+  }
+}
+
+@supports not (height: 100dvh) {
+  .mobile-viewport {
+    height: 100vh;
+  }
+}

@@ -39,9 +39,8 @@ const App = () => {
     const containerRect = containerRef.current.getBoundingClientRect();
     const deltaX = e.clientX - dragStartX.current;
     const deltaPercentage = (deltaX / containerRect.width) * 100;
-    const newWidth = Math.max(
-      10,
-      Math.min(90, dragStartWidth.current + deltaPercentage)
+    const newWidth = Math.floor(
+      Math.max(10, Math.min(90, dragStartWidth.current + deltaPercentage))
     );
 
     setLeftWidth(newWidth);
@@ -124,10 +123,10 @@ const App = () => {
               <div className="mb-2">{"{"}</div>
 
               <div className="ml-4">
-                <ColoredText color="blue">"global"</ColoredText>: {"{"}
+                <ColoredText color="blue">global</ColoredText>: {"{"}
                 <div className="ml-4">
                   <div className="flex items-center">
-                    <ColoredText color="blue">"portfolioWidth"</ColoredText>:
+                    <ColoredText color="blue">portfolioWidth</ColoredText>:
                     <input
                       type="number"
                       min="10"
@@ -144,7 +143,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <ColoredText color="blue">"darkmode"</ColoredText>:
+                    <ColoredText color="blue">darkmode</ColoredText>:
                     <select
                       value={settings.darkmode.toString()}
                       onChange={(e) =>
@@ -175,7 +174,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <ColoredText color="blue">"editorTheme"</ColoredText>:
+                    <ColoredText color="blue">editorTheme</ColoredText>:
                     <select
                       value={settings.editorTheme}
                       onChange={(e) =>
@@ -206,7 +205,7 @@ const App = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <ColoredText color="blue">"variant"</ColoredText>:
+                    <ColoredText color="blue">variant</ColoredText>:
                     <select
                       value={settings.variant}
                       onChange={(e) => updateSetting("variant", e.target.value)}
@@ -252,34 +251,34 @@ const App = () => {
                       linkTo="intro"
                       onNavigate={navigateToBlock}
                     >
-                      "intro"
+                      intro
                     </ColoredText>
                   }
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">"headline"</ColoredText>:{" "}
+                      <ColoredText color="blue">headline</ColoredText>:{" "}
                       <ColoredText color="yellow">
-                        "Hello, I'm Youri Gruiters"
+                        Hello, I'm Youri Gruiters
                       </ColoredText>
                       ,
                     </div>
                     <div>
-                      <ColoredText color="blue">"subtitle"</ColoredText>:{" "}
+                      <ColoredText color="blue">subtitle</ColoredText>:{" "}
                       <ColoredText color="yellow">
-                        "Front-end Developer & Educator"
+                        Front-end Developer & Educator
                       </ColoredText>
                       ,
                     </div>
                     <div>
-                      <ColoredText color="blue">"description"</ColoredText>:{" "}
+                      <ColoredText color="blue">description</ColoredText>:{" "}
                       <ColoredText color="yellow">
-                        "Motivated and adaptable individual with a strong
+                        Motivated and adaptable individual with a strong
                         interest in personal and professional development. Holds
                         a Bachelor's degree in IT & Media Design as well as IT &
                         Education, blending technical knowledge with strong
                         communication skills. Brings over 7 years of experience
-                        in development and 2.5 years in teaching."
+                        in development and 2.5 years in teaching.
                       </ColoredText>
                     </div>
                   </div>
@@ -296,7 +295,7 @@ const App = () => {
                       linkTo="skills"
                       onNavigate={navigateToBlock}
                     >
-                      "skills"
+                      skills
                     </ColoredText>
                   }
                 >
@@ -306,31 +305,31 @@ const App = () => {
                         bracketType="square"
                         showComma={true}
                         label={
-                          <ColoredText color="blue">"categories"</ColoredText>
+                          <ColoredText color="blue">categories</ColoredText>
                         }
                       >
                         <div className="ml-4">
                           <div>
                             <ColoredText color="yellow">
-                              "Front-end Development"
+                              Front-end Development
                             </ColoredText>
                             ,
                           </div>
                           <div>
                             <ColoredText color="yellow">
-                              "Teaching & Education"
+                              Teaching & Education
                             </ColoredText>
                             ,
                           </div>
                           <div>
                             <ColoredText color="yellow">
-                              "Project Management"
+                              Project Management
                             </ColoredText>
                             ,
                           </div>
                           <div>
                             <ColoredText color="yellow">
-                              "Communication"
+                              Communication
                             </ColoredText>
                           </div>
                         </div>
@@ -340,34 +339,31 @@ const App = () => {
                       <Collapsible
                         bracketType="square"
                         label={
-                          <ColoredText color="blue">"technologies"</ColoredText>
+                          <ColoredText color="blue">technologies</ColoredText>
                         }
                       >
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="yellow">"ReactJS"</ColoredText>,
+                            <ColoredText color="yellow">ReactJS</ColoredText>,
                           </div>
                           <div>
-                            <ColoredText color="yellow">"VueJS"</ColoredText>,
+                            <ColoredText color="yellow">VueJS</ColoredText>,
+                          </div>
+                          <div>
+                            <ColoredText color="yellow">TypeScript</ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="yellow">CraftCMS</ColoredText>,
                           </div>
                           <div>
                             <ColoredText color="yellow">
-                              "TypeScript"
+                              HTML/CSS/JavaScript
                             </ColoredText>
                             ,
                           </div>
                           <div>
-                            <ColoredText color="yellow">"CraftCMS"</ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">
-                              "HTML/CSS/JavaScript"
-                            </ColoredText>
-                            ,
-                          </div>
-                          <div>
-                            <ColoredText color="yellow">"GIT"</ColoredText>
+                            <ColoredText color="yellow">GIT</ColoredText>
                           </div>
                         </div>
                       </Collapsible>
@@ -386,13 +382,13 @@ const App = () => {
                       linkTo="work"
                       onNavigate={navigateToBlock}
                     >
-                      "work"
+                      work
                     </ColoredText>
                   }
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">"props"</ColoredText>:{" "}
+                      <ColoredText color="blue">props</ColoredText>:{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -400,18 +396,18 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">"show"</ColoredText>:{" "}
+                            <ColoredText color="blue">show</ColoredText>:{" "}
                             <ColoredText color="yellow">true</ColoredText>,
                           </div>
                           <div>
-                            <ColoredText color="blue">"amount"</ColoredText>:{" "}
+                            <ColoredText color="blue">amount</ColoredText>:{" "}
                             <ColoredText color="yellow">3</ColoredText>
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">"data"</ColoredText>:{" "}
+                      <ColoredText color="blue">data</ColoredText>:{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -421,55 +417,46 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">
-                                  "company"
+                                <ColoredText color="blue">company</ColoredText>:{" "}
+                                <ColoredText color="yellow">
+                                  Happy Horizon B.V.
                                 </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">position</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Happy Horizon B.V."
+                                  Front-end Developer
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">location</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  Eindhoven, The Netherlands
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">duration</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  April 2023 – June 2025
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
                                 <ColoredText color="blue">
-                                  "position"
+                                  description
                                 </ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Front-end Developer"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "location"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Eindhoven, The Netherlands"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "duration"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "April 2023 – June 2025"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "description"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Managed multiple projects simultaneously,
+                                  Managed multiple projects simultaneously,
                                   coordinating directly with clients. Delivered
                                   dynamic development work using CraftCMS, VueJS
-                                  and ReactJS frameworks."
+                                  and ReactJS frameworks.
                                 </ColoredText>
                               </div>
                             </div>
@@ -481,54 +468,45 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">
-                                  "company"
+                                <ColoredText color="blue">company</ColoredText>:{" "}
+                                <ColoredText color="yellow">
+                                  System4
                                 </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">position</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "System4"
+                                  Front-end Developer
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">location</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  Uden, The Netherlands
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">duration</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  September 2022 – April 2023
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
                                 <ColoredText color="blue">
-                                  "position"
+                                  description
                                 </ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Front-end Developer"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "location"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Uden, The Netherlands"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "duration"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "September 2022 – April 2023"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "description"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Specialized in building responsive web
+                                  Specialized in building responsive web
                                   applications using ReactJS. Collaborated in
-                                  Agile Scrum teams of 4-5 developers."
+                                  Agile Scrum teams of 4-5 developers.
                                 </ColoredText>
                               </div>
                             </div>
@@ -536,55 +514,46 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">
-                                  "company"
+                                <ColoredText color="blue">company</ColoredText>:{" "}
+                                <ColoredText color="yellow">
+                                  ROC Nijmegen
                                 </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">position</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "ROC Nijmegen"
+                                  Front-end Development Teacher
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">location</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  Nijmegen, The Netherlands
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText color="blue">duration</ColoredText>
+                                :{" "}
+                                <ColoredText color="yellow">
+                                  August 2021 – August 2022, August 2018 –
+                                  February 2020
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
                                 <ColoredText color="blue">
-                                  "position"
+                                  description
                                 </ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Front-end Development Teacher"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "location"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Nijmegen, The Netherlands"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "duration"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "August 2021 – August 2022, August 2018 –
-                                  February 2020"
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText color="blue">
-                                  "description"
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText color="yellow">
-                                  "Delivered courses on HTML, CSS, JavaScript,
+                                  Delivered courses on HTML, CSS, JavaScript,
                                   ReactJS, and GIT. Served as mentor and
-                                  internship supervisor for students."
+                                  internship supervisor for students.
                                 </ColoredText>
                               </div>
                             </div>
@@ -606,13 +575,13 @@ const App = () => {
                       linkTo="education"
                       onNavigate={navigateToBlock}
                     >
-                      "education"
+                      education
                     </ColoredText>
                   }
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">"props"</ColoredText>:{" "}
+                      <ColoredText color="blue">props</ColoredText>:{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -620,18 +589,18 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">"show"</ColoredText>:{" "}
+                            <ColoredText color="blue">show</ColoredText>:{" "}
                             <ColoredText color="yellow">true</ColoredText>,
                           </div>
                           <div>
-                            <ColoredText color="blue">"amount"</ColoredText>:{" "}
+                            <ColoredText color="blue">amount</ColoredText>:{" "}
                             <ColoredText color="yellow">2</ColoredText>
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">"data"</ColoredText>:{" "}
+                      <ColoredText color="blue">data</ColoredText>:{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -641,10 +610,9 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">"degree"</ColoredText>
-                                :{" "}
+                                <ColoredText color="blue">degree</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "Bachelor of IT & Media Design (cum laude)"
+                                  Bachelor of IT & Media Design (cum laude)
                                 </ColoredText>
                                 ,
                               </div>
@@ -654,27 +622,23 @@ const App = () => {
                                 </ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Fontys University of Applied Sciences"
+                                  Fontys University of Applied Sciences
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
-                                  "location"
-                                </ColoredText>
+                                <ColoredText color="blue">location</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Eindhoven, The Netherlands"
+                                  Eindhoven, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
-                                  "duration"
-                                </ColoredText>
+                                <ColoredText color="blue">duration</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "2014 – 2018"
+                                  2014 – 2018
                                 </ColoredText>
                               </div>
                             </div>
@@ -682,10 +646,9 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">"degree"</ColoredText>
-                                :{" "}
+                                <ColoredText color="blue">degree</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "Bachelor of IT & Education (cum laude)"
+                                  Bachelor of IT & Education (cum laude)
                                 </ColoredText>
                                 ,
                               </div>
@@ -695,27 +658,23 @@ const App = () => {
                                 </ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Fontys University of Applied Sciences"
+                                  Fontys University of Applied Sciences
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
-                                  "location"
-                                </ColoredText>
+                                <ColoredText color="blue">location</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "Eindhoven, The Netherlands"
+                                  Eindhoven, The Netherlands
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">
-                                  "duration"
-                                </ColoredText>
+                                <ColoredText color="blue">duration</ColoredText>
                                 :{" "}
                                 <ColoredText color="yellow">
-                                  "2015 – 2018"
+                                  2015 – 2018
                                 </ColoredText>
                               </div>
                             </div>
@@ -737,13 +696,13 @@ const App = () => {
                       linkTo="projects"
                       onNavigate={navigateToBlock}
                     >
-                      "projects"
+                      projects
                     </ColoredText>
                   }
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">"props"</ColoredText>:{" "}
+                      <ColoredText color="blue">props</ColoredText>:{" "}
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
@@ -751,18 +710,18 @@ const App = () => {
                       >
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">"show"</ColoredText>:{" "}
+                            <ColoredText color="blue">show</ColoredText>:{" "}
                             <ColoredText color="yellow">true</ColoredText>,
                           </div>
                           <div>
-                            <ColoredText color="blue">"amount"</ColoredText>:{" "}
+                            <ColoredText color="blue">amount</ColoredText>:{" "}
                             <ColoredText color="yellow">2</ColoredText>
                           </div>
                         </div>
                       </Collapsible>
                     </div>
                     <div>
-                      <ColoredText color="blue">"data"</ColoredText>:{" "}
+                      <ColoredText color="blue">data</ColoredText>:{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
                           <Collapsible
@@ -772,24 +731,23 @@ const App = () => {
                           >
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">"name"</ColoredText>:{" "}
+                                <ColoredText color="blue">name</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "Portfolio Website"
+                                  Portfolio Website
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">"tech"</ColoredText>:{" "}
+                                <ColoredText color="blue">tech</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "React, Tailwind"
+                                  React, Tailwind
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">"status"</ColoredText>
-                                :{" "}
+                                <ColoredText color="blue">status</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "Completed"
+                                  Completed
                                 </ColoredText>
                               </div>
                             </div>
@@ -797,24 +755,23 @@ const App = () => {
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
-                                <ColoredText color="blue">"name"</ColoredText>:{" "}
+                                <ColoredText color="blue">name</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "E-commerce App"
+                                  E-commerce App
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">"tech"</ColoredText>:{" "}
+                                <ColoredText color="blue">tech</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "Node.js, MongoDB"
+                                  Node.js, MongoDB
                                 </ColoredText>
                                 ,
                               </div>
                               <div>
-                                <ColoredText color="blue">"status"</ColoredText>
-                                :{" "}
+                                <ColoredText color="blue">status</ColoredText>:{" "}
                                 <ColoredText color="yellow">
-                                  "In Progress"
+                                  In Progress
                                 </ColoredText>
                               </div>
                             </div>
@@ -835,39 +792,39 @@ const App = () => {
                       linkTo="contact"
                       onNavigate={navigateToBlock}
                     >
-                      "contact"
+                      contact
                     </ColoredText>
                   }
                 >
                   <div className="ml-4">
                     <div>
-                      <ColoredText color="blue">"email"</ColoredText>:{" "}
+                      <ColoredText color="blue">email</ColoredText>:{" "}
                       <ColoredText color="yellow">
-                        "youriroc@gmail.com"
+                        youriroc@gmail.com
                       </ColoredText>
                       ,
                     </div>
                     <div>
-                      <ColoredText color="blue">"phone"</ColoredText>:{" "}
-                      <ColoredText color="yellow">"0424513249"</ColoredText>,
+                      <ColoredText color="blue">phone</ColoredText>:{" "}
+                      <ColoredText color="yellow">0424513249</ColoredText>,
                     </div>
                     <div>
-                      <ColoredText color="blue">"location"</ColoredText>:{" "}
+                      <ColoredText color="blue">location</ColoredText>:{" "}
                       <ColoredText color="yellow">
-                        "Brisbane, Australia"
+                        Brisbane, Australia
                       </ColoredText>
                       ,
                     </div>
                     <div>
                       <Collapsible
                         bracketType="curly"
-                        label={<ColoredText color="blue">"social"</ColoredText>}
+                        label={<ColoredText color="blue">social</ColoredText>}
                       >
                         <div className="ml-4">
                           <div>
-                            <ColoredText color="blue">"linkedin"</ColoredText>:{" "}
+                            <ColoredText color="blue">linkedin</ColoredText>:{" "}
                             <ColoredText color="yellow">
-                              "https://nl.linkedin.com/in/yourigruiters"
+                              https://nl.linkedin.com/in/yourigruiters
                             </ColoredText>
                           </div>
                         </div>

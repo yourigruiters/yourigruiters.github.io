@@ -6,6 +6,7 @@ const ColoredText = ({
   className = "",
   linkTo = null,
   onNavigate = null,
+  autoQuotes = true,
 }) => {
   const colorClasses = {
     blue: "text-blue-400",
@@ -33,7 +34,7 @@ const ColoredText = ({
       }`}
       onClick={isClickable ? handleClick : undefined}
     >
-      {children}
+      {autoQuotes ? `"${children}"` : children}
     </span>
   );
 };

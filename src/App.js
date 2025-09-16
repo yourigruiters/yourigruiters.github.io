@@ -29,13 +29,13 @@ const App = () => {
   });
 
   const [collapsibleStates, setCollapsibleStates] = useState({
-    global: true,
-    intro: true,
-    skills: true,
-    work: true,
-    education: true,
-    projects: true,
-    contact: true,
+    global: false,
+    intro: false,
+    skills: false,
+    work: false,
+    education: false,
+    projects: false,
+    contact: false,
   });
 
   const containerRef = useRef(null);
@@ -189,7 +189,11 @@ const App = () => {
                   onToggle={(isOpen) =>
                     updateCollapsibleState("global", isOpen)
                   }
-                  label={<ColoredText color="blue">global</ColoredText>}
+                  label={
+                    <>
+                      <ColoredText color="blue">global</ColoredText>:
+                    </>
+                  }
                 >
                   <div className="ml-4">
                     <div className="flex items-center">
@@ -317,13 +321,16 @@ const App = () => {
                   isOpen={collapsibleStates.intro}
                   onToggle={(isOpen) => updateCollapsibleState("intro", isOpen)}
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="intro"
-                      onNavigate={navigateToBlock}
-                    >
-                      intro
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="intro"
+                        onNavigate={navigateToBlock}
+                      >
+                        intro
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -332,7 +339,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -373,7 +380,7 @@ const App = () => {
                     </div>
                     <div>
                       <ColoredText color="blue">data</ColoredText>:{" "}
-                      <Collapsible bracketType="curly" isOpen={true}>
+                      <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
                             <ColoredText color="blue">headline</ColoredText>:{" "}
@@ -417,13 +424,16 @@ const App = () => {
                     updateCollapsibleState("skills", isOpen)
                   }
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="skills"
-                      onNavigate={navigateToBlock}
-                    >
-                      skills
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="skills"
+                        onNavigate={navigateToBlock}
+                      >
+                        skills
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -432,7 +442,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -473,7 +483,7 @@ const App = () => {
                     </div>
                     <div>
                       <ColoredText color="blue">data</ColoredText>:{" "}
-                      <Collapsible bracketType="curly" isOpen={true}>
+                      <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
                             <Collapsible
@@ -572,13 +582,16 @@ const App = () => {
                   isOpen={collapsibleStates.work}
                   onToggle={(isOpen) => updateCollapsibleState("work", isOpen)}
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="work"
-                      onNavigate={navigateToBlock}
-                    >
-                      work
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="work"
+                        onNavigate={navigateToBlock}
+                      >
+                        work
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -587,7 +600,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -651,7 +664,7 @@ const App = () => {
                           <Collapsible
                             bracketType="curly"
                             showComma={true}
-                            isOpen={true}
+                            isOpen={false}
                           >
                             <div className="ml-4">
                               <div>
@@ -702,7 +715,7 @@ const App = () => {
                           <Collapsible
                             bracketType="curly"
                             showComma={true}
-                            isOpen={true}
+                            isOpen={false}
                           >
                             <div className="ml-4">
                               <div>
@@ -812,13 +825,16 @@ const App = () => {
                     updateCollapsibleState("education", isOpen)
                   }
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="education"
-                      onNavigate={navigateToBlock}
-                    >
-                      education
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="education"
+                        onNavigate={navigateToBlock}
+                      >
+                        education
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -827,7 +843,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -891,7 +907,7 @@ const App = () => {
                           <Collapsible
                             bracketType="curly"
                             showComma={true}
-                            isOpen={true}
+                            isOpen={false}
                           >
                             <div className="ml-4">
                               <div>
@@ -980,13 +996,16 @@ const App = () => {
                     updateCollapsibleState("projects", isOpen)
                   }
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="projects"
-                      onNavigate={navigateToBlock}
-                    >
-                      projects
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="projects"
+                        onNavigate={navigateToBlock}
+                      >
+                        projects
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -995,7 +1014,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -1059,7 +1078,7 @@ const App = () => {
                           <Collapsible
                             bracketType="curly"
                             showComma={true}
-                            isOpen={true}
+                            isOpen={false}
                           >
                             <div className="ml-4">
                               <div>
@@ -1123,13 +1142,16 @@ const App = () => {
                     updateCollapsibleState("contact", isOpen)
                   }
                   label={
-                    <ColoredText
-                      color="blue"
-                      linkTo="contact"
-                      onNavigate={navigateToBlock}
-                    >
-                      contact
-                    </ColoredText>
+                    <>
+                      <ColoredText
+                        color="blue"
+                        linkTo="contact"
+                        onNavigate={navigateToBlock}
+                      >
+                        contact
+                      </ColoredText>
+                      :
+                    </>
                   }
                 >
                   <div className="ml-4">
@@ -1138,7 +1160,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={true}
+                        isOpen={false}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -1179,7 +1201,7 @@ const App = () => {
                     </div>
                     <div>
                       <ColoredText color="blue">data</ColoredText>:{" "}
-                      <Collapsible bracketType="curly" isOpen={true}>
+                      <Collapsible bracketType="curly" isOpen={false}>
                         <div className="ml-4">
                           <div>
                             <ColoredText color="blue">email</ColoredText>:{" "}

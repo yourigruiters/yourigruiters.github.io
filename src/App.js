@@ -41,6 +41,8 @@ const App = () => {
   const [commandInput, setCommandInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeMobilePanel, setActiveMobilePanel] = useState("left"); // "left" or "right"
 
   const containerRef = useRef(null);
   const dragStartX = useRef(0);
@@ -210,6 +212,22 @@ const App = () => {
   const getCurrentTheme = () =>
     settings.editorTheme === "Light" ? "light" : "dark";
 
+  // Mobile detection and panel switching
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const switchMobilePanel = () => {
+    setActiveMobilePanel((prev) => (prev === "left" ? "right" : "left"));
+  };
+
   const navigateToBlock = (blockName) => {
     const blockRef = blockRefs.current[blockName];
     if (blockRef && rightPanelRef.current) {
@@ -247,12 +265,31 @@ const App = () => {
 
   return (
     <div className="h-screen w-screen overflow-hidden" ref={containerRef}>
-      <div className="flex h-full">
+      <div className={`h-full ${isMobile ? "relative" : "flex"}`}>
         <div
           className={`flex flex-col overflow-x-hidden ${
             settings.editorTheme === "Light" ? "bg-gray-50" : "bg-black"
+          } ${
+            isMobile
+              ? `absolute inset-0 ${
+                  activeMobilePanel === "left"
+                    ? "z-20 left-0 w-[90%]"
+                    : "z-10 left-0 w-[10%] opacity-50"
+                }`
+              : ""
           }`}
-          style={{ width: `${leftWidth}%` }}
+          style={{
+            width: isMobile
+              ? activeMobilePanel === "left"
+                ? "90%"
+                : "100%"
+              : `${leftWidth}%`,
+          }}
+          onClick={
+            isMobile && activeMobilePanel === "right"
+              ? switchMobilePanel
+              : undefined
+          }
         >
           <div
             className={`border-b p-3 flex justify-between items-center gap-4 flex-shrink-0 ${
@@ -1968,19 +2005,40 @@ const App = () => {
           </div>
         </div>
 
-        <div
-          className="w-1 bg-gray-400 hover:bg-gray-600 cursor-col-resize flex-shrink-0 relative group"
-          onMouseDown={handleMouseDown}
-        >
-          <div className="absolute inset-y-0 -left-1 -right-1 bg-transparent group-hover:bg-gray-200 opacity-50"></div>
+        {!isMobile && (
+          <div
+            className="w-1 bg-gray-400 hover:bg-gray-600 cursor-col-resize flex-shrink-0 relative group"
+            onMouseDown={handleMouseDown}
+          >
+            <div className="absolute inset-y-0 -left-1 -right-1 bg-transparent group-hover:bg-gray-200 opacity-50"></div>
 
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-8 bg-gray-600 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        </div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-8 bg-gray-600 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+        )}
 
         <div
           ref={rightPanelRef}
-          className="overflow-y-auto border-l border-gray-300"
-          style={{ width: `${100 - leftWidth}%` }}
+          className={`overflow-y-auto ${
+            isMobile
+              ? `absolute inset-0 ${
+                  activeMobilePanel === "right"
+                    ? "z-20 left-[10%] w-[90%]"
+                    : "z-10 right-0 w-[10%] opacity-50"
+                }`
+              : "border-l border-gray-300"
+          }`}
+          style={{
+            width: isMobile
+              ? activeMobilePanel === "right"
+                ? "90%"
+                : "100%"
+              : `${100 - leftWidth}%`,
+          }}
+          onClick={
+            isMobile && activeMobilePanel === "left"
+              ? switchMobilePanel
+              : undefined
+          }
         >
           {blocks.map((BlockComponent, index) => {
             const blockName = BlockComponent.name

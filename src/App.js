@@ -38,7 +38,6 @@ const App = () => {
     contact: false,
   });
 
-  const [commandInput, setCommandInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
   const [isMobile, setIsMobile] = useState(false);
@@ -122,7 +121,19 @@ const App = () => {
 
   // Command suggestions based on current state
   const getCommandSuggestions = () => {
-    const suggestions = [
+    const suggestions = [];
+
+    // Add mobile-specific portfolio command as first option
+    if (isMobile) {
+      suggestions.push({
+        text: "Show portfolio",
+        action: () => {
+          setActiveMobilePanel("right");
+        },
+      });
+    }
+
+    suggestions.push(
       {
         text: "Toggle darkmode",
         action: () => updateSetting("darkmode", !settings.darkmode),
@@ -134,8 +145,8 @@ const App = () => {
             "editorTheme",
             settings.editorTheme === "Dark" ? "Light" : "Dark"
           ),
-      },
-    ];
+      }
+    );
 
     // Add variant options (only show the 2 that are not currently selected)
     const currentVariant = settings.variant;
@@ -162,48 +173,13 @@ const App = () => {
     }
   };
 
-  const handleCommandInputChange = (e) => {
-    const value = e.target.value;
-    setCommandInput(value);
-    setShowSuggestions(true); // Always show suggestions when typing
+  const handleCommandClick = () => {
+    setShowSuggestions(!showSuggestions);
     setSelectedSuggestionIndex(-1);
-  };
-
-  const handleCommandKeyDown = (e) => {
-    const suggestions = getCommandSuggestions();
-    const filteredSuggestions = suggestions.filter((s) =>
-      s.text.toLowerCase().includes(commandInput.toLowerCase())
-    );
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setSelectedSuggestionIndex((prev) =>
-        prev < filteredSuggestions.length - 1 ? prev + 1 : prev
-      );
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setSelectedSuggestionIndex((prev) => (prev > 0 ? prev - 1 : prev));
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (
-        selectedSuggestionIndex >= 0 &&
-        selectedSuggestionIndex < filteredSuggestions.length
-      ) {
-        const selectedCommand = filteredSuggestions[selectedSuggestionIndex];
-        executeCommand(selectedCommand.text);
-        setCommandInput("");
-        setShowSuggestions(false);
-        setSelectedSuggestionIndex(-1);
-      }
-    } else if (e.key === "Escape") {
-      setShowSuggestions(false);
-      setSelectedSuggestionIndex(-1);
-    }
   };
 
   const handleSuggestionClick = (commandText) => {
     executeCommand(commandText);
-    setCommandInput("");
     setShowSuggestions(false);
     setSelectedSuggestionIndex(-1);
   };
@@ -279,7 +255,7 @@ const App = () => {
               ? `absolute inset-0 ${
                   activeMobilePanel === "left"
                     ? "z-20 left-0 w-[90%]"
-                    : "z-10 left-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200"
+                    : "z-10 left-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200 pointer-events-none"
                 }`
               : ""
           }`}
@@ -289,6 +265,8 @@ const App = () => {
                 ? "90%"
                 : "100%"
               : `${leftWidth}%`,
+            ...(isMobile &&
+              activeMobilePanel === "right" && { pointerEvents: "auto" }),
           }}
           onClick={
             isMobile && activeMobilePanel === "right"
@@ -304,20 +282,16 @@ const App = () => {
             }`}
           >
             <div className="relative flex-1 max-w-xs">
-              <input
-                type="text"
-                placeholder="Command..."
-                value={commandInput}
-                onChange={handleCommandInputChange}
-                onKeyDown={handleCommandKeyDown}
-                onFocus={() => setShowSuggestions(true)}
-                onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-                className={`px-3 py-1 rounded text-sm border focus:outline-none w-full ${
+              <button
+                onClick={handleCommandClick}
+                className={`px-3 py-1 rounded text-sm border focus:outline-none w-full text-left ${
                   settings.editorTheme === "Light"
-                    ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
-                    : "bg-gray-700 text-white border-gray-600 focus:border-gray-500"
+                    ? "bg-white text-gray-800 border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                    : "bg-gray-700 text-white border-gray-600 hover:border-gray-500 hover:bg-gray-600"
                 }`}
-              />
+              >
+                Command button
+              </button>
               {showSuggestions && (
                 <div
                   className={`absolute top-full left-0 right-0 mt-1 border rounded text-sm shadow-lg z-50 max-h-48 overflow-y-auto ${
@@ -326,50 +300,27 @@ const App = () => {
                       : "bg-gray-800 border-gray-600"
                   }`}
                 >
-                  {(() => {
-                    const filteredSuggestions = getCommandSuggestions().filter(
-                      (s) =>
-                        s.text
-                          .toLowerCase()
-                          .includes(commandInput.toLowerCase())
-                    );
-
-                    if (filteredSuggestions.length === 0) {
-                      return (
-                        <div
-                          className={`px-3 py-2 ${
-                            settings.editorTheme === "Light"
-                              ? "text-gray-600"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          No commands matching
-                        </div>
-                      );
-                    }
-
-                    return filteredSuggestions.map((suggestion, index) => (
-                      <div
-                        key={suggestion.text}
-                        className={`px-3 py-2 cursor-pointer ${
-                          settings.editorTheme === "Light"
-                            ? `text-gray-800 hover:bg-gray-100 ${
-                                index === selectedSuggestionIndex
-                                  ? "bg-gray-100"
-                                  : ""
-                              }`
-                            : `text-white hover:bg-gray-700 ${
-                                index === selectedSuggestionIndex
-                                  ? "bg-gray-700"
-                                  : ""
-                              }`
-                        }`}
-                        onClick={() => handleSuggestionClick(suggestion.text)}
-                      >
-                        {suggestion.text}
-                      </div>
-                    ));
-                  })()}
+                  {getCommandSuggestions().map((suggestion, index) => (
+                    <div
+                      key={suggestion.text}
+                      className={`px-3 py-2 cursor-pointer ${
+                        settings.editorTheme === "Light"
+                          ? `text-gray-800 hover:bg-gray-100 ${
+                              index === selectedSuggestionIndex
+                                ? "bg-gray-100"
+                                : ""
+                            }`
+                          : `text-white hover:bg-gray-700 ${
+                              index === selectedSuggestionIndex
+                                ? "bg-gray-700"
+                                : ""
+                            }`
+                      }`}
+                      onClick={() => handleSuggestionClick(suggestion.text)}
+                    >
+                      {suggestion.text}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -403,196 +354,211 @@ const App = () => {
               <div className="mb-2">{"{"}</div>
 
               <div className="ml-4">
-                <Collapsible
-                  bracketType="curly"
-                  showComma={true}
-                  isOpen={collapsibleStates.global}
-                  onToggle={(isOpen) =>
-                    updateCollapsibleState("global", isOpen)
-                  }
-                  theme={getCurrentTheme()}
-                  label={
-                    <>
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        global
-                      </ColoredText>
-                      :
-                    </>
-                  }
+                <div
+                  ref={(el) => {
+                    if (el) {
+                      blockRefs.current.global = el;
+                    }
+                  }}
                 >
-                  <div className="ml-4">
-                    <div className="flex items-center">
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        portfolioWidth
-                      </ColoredText>
-                      :
-                      <input
-                        type="number"
-                        min="10"
-                        max="90"
-                        value={settings.portfolioWidth}
-                        onChange={(e) => {
-                          const value = parseInt(e.target.value);
-                          setLeftWidth(value);
-                          updateSetting("portfolioWidth", value);
-                        }}
-                        className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
-                          settings.editorTheme === "Light"
-                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
-                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                        }`}
-                      />
-                      ,
-                    </div>
+                  <Collapsible
+                    bracketType="curly"
+                    showComma={true}
+                    isOpen={collapsibleStates.global}
+                    onToggle={(isOpen) =>
+                      updateCollapsibleState("global", isOpen)
+                    }
+                    theme={getCurrentTheme()}
+                    label={
+                      <>
+                        <ColoredText
+                          color="blue"
+                          theme={getCurrentTheme()}
+                          linkTo="global"
+                          onNavigate={navigateToBlock}
+                        >
+                          global
+                        </ColoredText>
+                        :
+                      </>
+                    }
+                  >
+                    <div className="ml-4">
+                      {!isMobile && (
+                        <div className="flex items-center">
+                          <ColoredText color="blue" theme={getCurrentTheme()}>
+                            portfolioWidth
+                          </ColoredText>
+                          :
+                          <input
+                            type="number"
+                            min="10"
+                            max="90"
+                            value={settings.portfolioWidth}
+                            onChange={(e) => {
+                              const value = parseInt(e.target.value);
+                              setLeftWidth(value);
+                              updateSetting("portfolioWidth", value);
+                            }}
+                            className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                            }`}
+                          />
+                          ,
+                        </div>
+                      )}
 
-                    <div className="flex items-center">
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        darkmode
-                      </ColoredText>
-                      :
-                      <select
-                        value={settings.darkmode.toString()}
-                        onChange={(e) =>
-                          updateSetting("darkmode", e.target.value === "true")
-                        }
-                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                          settings.editorTheme === "Light"
-                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
-                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                        }`}
-                        style={{
-                          backgroundImage: "none",
-                          borderImage: "none",
-                          boxShadow: "none",
-                          outline: "none",
-                        }}
-                      >
-                        <option
-                          value="true"
-                          className={
-                            settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
+                      <div className="flex items-center">
+                        <ColoredText color="blue" theme={getCurrentTheme()}>
+                          darkmode
+                        </ColoredText>
+                        :
+                        <select
+                          value={settings.darkmode.toString()}
+                          onChange={(e) =>
+                            updateSetting("darkmode", e.target.value === "true")
                           }
-                        >
-                          true
-                        </option>
-                        <option
-                          value="false"
-                          className={
+                          className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
-                          }
+                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                          }`}
+                          style={{
+                            backgroundImage: "none",
+                            borderImage: "none",
+                            boxShadow: "none",
+                            outline: "none",
+                          }}
                         >
-                          false
-                        </option>
-                      </select>
-                      ,
-                    </div>
+                          <option
+                            value="true"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            true
+                          </option>
+                          <option
+                            value="false"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            false
+                          </option>
+                        </select>
+                        ,
+                      </div>
 
-                    <div className="flex items-center">
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        editorTheme
-                      </ColoredText>
-                      :
-                      <select
-                        value={settings.editorTheme}
-                        onChange={(e) =>
-                          updateSetting("editorTheme", e.target.value)
-                        }
-                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                          settings.editorTheme === "Light"
-                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
-                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                        }`}
-                        style={{
-                          backgroundImage: "none",
-                          borderImage: "none",
-                          boxShadow: "none",
-                          outline: "none",
-                        }}
-                      >
-                        <option
-                          value="Dark"
-                          className={
-                            settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
+                      <div className="flex items-center">
+                        <ColoredText color="blue" theme={getCurrentTheme()}>
+                          editorTheme
+                        </ColoredText>
+                        :
+                        <select
+                          value={settings.editorTheme}
+                          onChange={(e) =>
+                            updateSetting("editorTheme", e.target.value)
                           }
-                        >
-                          Dark
-                        </option>
-                        <option
-                          value="Light"
-                          className={
+                          className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
-                          }
+                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                          }`}
+                          style={{
+                            backgroundImage: "none",
+                            borderImage: "none",
+                            boxShadow: "none",
+                            outline: "none",
+                          }}
                         >
-                          Light
-                        </option>
-                      </select>
-                      ,
-                    </div>
+                          <option
+                            value="Dark"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            Dark
+                          </option>
+                          <option
+                            value="Light"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            Light
+                          </option>
+                        </select>
+                        ,
+                      </div>
 
-                    <div className="flex items-center">
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        variant
-                      </ColoredText>
-                      :
-                      <select
-                        value={settings.variant}
-                        onChange={(e) =>
-                          updateSetting("variant", e.target.value)
-                        }
-                        className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                          settings.editorTheme === "Light"
-                            ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
-                            : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                        }`}
-                        style={{
-                          backgroundImage: "none",
-                          borderImage: "none",
-                          boxShadow: "none",
-                          outline: "none",
-                        }}
-                      >
-                        <option
-                          value="Teacher"
-                          className={
-                            settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
+                      <div className="flex items-center">
+                        <ColoredText color="blue" theme={getCurrentTheme()}>
+                          variant
+                        </ColoredText>
+                        :
+                        <select
+                          value={settings.variant}
+                          onChange={(e) =>
+                            updateSetting("variant", e.target.value)
                           }
-                        >
-                          Teacher
-                        </option>
-                        <option
-                          value="Developer"
-                          className={
+                          className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
-                          }
+                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
+                          }`}
+                          style={{
+                            backgroundImage: "none",
+                            borderImage: "none",
+                            boxShadow: "none",
+                            outline: "none",
+                          }}
                         >
-                          Developer
-                        </option>
-                        <option
-                          value="Combined"
-                          className={
-                            settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800"
-                              : "bg-gray-800 text-gray-200"
-                          }
-                        >
-                          Combined
-                        </option>
-                      </select>
+                          <option
+                            value="Teacher"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            Teacher
+                          </option>
+                          <option
+                            value="Developer"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            Developer
+                          </option>
+                          <option
+                            value="Combined"
+                            className={
+                              settings.editorTheme === "Light"
+                                ? "bg-white text-gray-800"
+                                : "bg-gray-800 text-gray-200"
+                            }
+                          >
+                            Combined
+                          </option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                </Collapsible>
+                  </Collapsible>
+                </div>
               </div>
 
               <div className="ml-4">
@@ -2028,7 +1994,7 @@ const App = () => {
               ? `absolute inset-0 ${
                   activeMobilePanel === "right"
                     ? "z-20 left-[10%] w-[90%]"
-                    : "z-10 right-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200"
+                    : "z-10 right-0 w-[10%] opacity-50 hover:opacity-70 cursor-pointer transition-opacity duration-200 pointer-events-none"
                 }`
               : "border-l border-gray-300"
           }`}
@@ -2038,6 +2004,8 @@ const App = () => {
                 ? "90%"
                 : "100%"
               : `${100 - leftWidth}%`,
+            ...(isMobile &&
+              activeMobilePanel === "left" && { pointerEvents: "auto" }),
           }}
           onClick={
             isMobile && activeMobilePanel === "left"

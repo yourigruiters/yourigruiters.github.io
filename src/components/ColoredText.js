@@ -12,11 +12,11 @@ const ColoredText = ({
   const colorClasses =
     theme === "light"
       ? {
-          blue: "text-blue-600",
-          yellow: "text-yellow-600",
-          green: "text-green-600",
-          gray: "text-gray-600",
-          "gray-500": "text-gray-500",
+          blue: "!text-red-600",
+          yellow: "!text-green-600",
+          green: "!text-blue-600",
+          gray: "!text-purple-600",
+          "gray-500": "!text-gray-500",
         }
       : {
           blue: "text-blue-400",
@@ -42,7 +42,7 @@ const ColoredText = ({
       className={`${baseClasses} ${colorClass} ${className} ${
         isClickable
           ? `cursor-pointer transition-colors ${
-              theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+              theme === "light" ? "hover:!text-red-900" : "hover:text-white"
             }`
           : ""
       }`}

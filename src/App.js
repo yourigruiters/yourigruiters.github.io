@@ -10,10 +10,10 @@ import ColoredText from "./components/ColoredText";
 import Collapsible from "./components/Collapsible";
 
 const App = () => {
-  const [leftWidth, setLeftWidth] = useState(25);
+  const [leftWidth, setLeftWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
   const [settings, setSettings] = useState({
-    portfolioWidth: 25,
+    portfolioWidth: 35,
     darkmode: true,
     editorTheme: "Dark",
     variant: "Developer",
@@ -29,7 +29,7 @@ const App = () => {
   });
 
   const [collapsibleStates, setCollapsibleStates] = useState({
-    global: false,
+    global: true,
     intro: false,
     skills: false,
     work: false,
@@ -249,7 +249,7 @@ const App = () => {
       <div className={`h-full ${isMobile ? "relative" : "flex"}`}>
         <div
           className={`flex flex-col overflow-x-hidden ${
-            settings.editorTheme === "Light" ? "bg-gray-50" : "bg-black"
+            settings.editorTheme === "Light" ? "bg-slate-50" : "bg-black"
           } ${
             isMobile
               ? `absolute inset-0 ${
@@ -277,7 +277,7 @@ const App = () => {
           <div
             className={`border-b p-3 flex justify-between items-center gap-4 flex-shrink-0 ${
               settings.editorTheme === "Light"
-                ? "bg-gray-200 border-gray-300"
+                ? "bg-slate-100 border-slate-300"
                 : "bg-gray-800 border-gray-700"
             }`}
           >
@@ -286,17 +286,17 @@ const App = () => {
                 onClick={handleCommandClick}
                 className={`px-3 py-1 rounded text-sm border focus:outline-none w-full text-left ${
                   settings.editorTheme === "Light"
-                    ? "bg-white text-gray-800 border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                    ? "bg-white text-slate-800 border-slate-300 hover:border-slate-400 hover:bg-slate-50"
                     : "bg-gray-700 text-white border-gray-600 hover:border-gray-500 hover:bg-gray-600"
                 }`}
               >
-                Command button
+                Command
               </button>
               {showSuggestions && (
                 <div
                   className={`absolute top-full left-0 right-0 mt-1 border rounded text-sm shadow-lg z-50 max-h-48 overflow-y-auto ${
                     settings.editorTheme === "Light"
-                      ? "bg-white border-gray-300"
+                      ? "bg-white border-slate-300"
                       : "bg-gray-800 border-gray-600"
                   }`}
                 >
@@ -305,9 +305,9 @@ const App = () => {
                       key={suggestion.text}
                       className={`px-3 py-2 cursor-pointer ${
                         settings.editorTheme === "Light"
-                          ? `text-gray-800 hover:bg-gray-100 ${
+                          ? `text-slate-800 hover:bg-slate-100 ${
                               index === selectedSuggestionIndex
-                                ? "bg-gray-100"
+                                ? "bg-slate-100"
                                 : ""
                             }`
                           : `text-white hover:bg-gray-700 ${
@@ -330,7 +330,7 @@ const App = () => {
                 onClick={toggleAllCollapsibles}
                 className={`px-3 py-1 rounded text-sm border transition-colors duration-150 ${
                   settings.editorTheme === "Light"
-                    ? "bg-white hover:bg-gray-100 text-gray-800 border-gray-300"
+                    ? "bg-white hover:bg-slate-100 text-slate-800 border-slate-300"
                     : "bg-gray-700 hover:bg-gray-600 text-white border-gray-600"
                 }`}
               >
@@ -347,7 +347,7 @@ const App = () => {
             <div
               className={`text-xs font-mono break-words overflow-wrap-anywhere ${
                 settings.editorTheme === "Light"
-                  ? "text-green-600"
+                  ? "text-indigo-600"
                   : "text-green-400"
               }`}
             >
@@ -402,7 +402,7 @@ const App = () => {
                             }}
                             className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                 : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                             }`}
                           />
@@ -422,7 +422,7 @@ const App = () => {
                           }
                           className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                               : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                           }`}
                           style={{
@@ -436,7 +436,7 @@ const App = () => {
                             value="true"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -446,7 +446,7 @@ const App = () => {
                             value="false"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -468,7 +468,7 @@ const App = () => {
                           }
                           className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                               : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                           }`}
                           style={{
@@ -482,7 +482,7 @@ const App = () => {
                             value="Dark"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -492,7 +492,7 @@ const App = () => {
                             value="Light"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -514,7 +514,7 @@ const App = () => {
                           }
                           className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                             settings.editorTheme === "Light"
-                              ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                              ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                               : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                           }`}
                           style={{
@@ -528,7 +528,7 @@ const App = () => {
                             value="Teacher"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -538,7 +538,7 @@ const App = () => {
                             value="Developer"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -548,7 +548,7 @@ const App = () => {
                             value="Combined"
                             className={
                               settings.editorTheme === "Light"
-                                ? "bg-white text-gray-800"
+                                ? "bg-white text-slate-800"
                                 : "bg-gray-800 text-gray-200"
                             }
                           >
@@ -573,6 +573,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="intro"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         intro
@@ -609,7 +610,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -623,7 +624,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -633,7 +634,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -716,6 +717,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="skills"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         skills
@@ -752,7 +754,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -766,7 +768,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -776,7 +778,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -934,6 +936,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="work"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         work
@@ -970,7 +973,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -984,7 +987,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -994,7 +997,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1022,7 +1025,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                             />
@@ -1323,6 +1326,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="education"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         education
@@ -1359,7 +1363,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -1373,7 +1377,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1383,7 +1387,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1411,7 +1415,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                             />
@@ -1585,6 +1589,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="projects"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         projects
@@ -1621,7 +1626,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -1635,7 +1640,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1645,7 +1650,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1673,7 +1678,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                             />
@@ -1814,6 +1819,7 @@ const App = () => {
                       <ColoredText
                         color="blue"
                         linkTo="contact"
+                        theme={getCurrentTheme()}
                         onNavigate={navigateToBlock}
                       >
                         contact
@@ -1850,7 +1856,7 @@ const App = () => {
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
                                 settings.editorTheme === "Light"
-                                  ? "bg-white text-gray-800 border-gray-300 focus:border-gray-400"
+                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
                                   : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
                               }`}
                               style={{
@@ -1864,7 +1870,7 @@ const App = () => {
                                 value="true"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1874,7 +1880,7 @@ const App = () => {
                                 value="false"
                                 className={
                                   settings.editorTheme === "Light"
-                                    ? "bg-white text-gray-800"
+                                    ? "bg-white text-slate-800"
                                     : "bg-gray-800 text-gray-200"
                                 }
                               >
@@ -1970,7 +1976,13 @@ const App = () => {
               </div>
             </div>
 
-            <div className="text-green-400 text-xs font-mono break-words overflow-wrap-anywhere">
+            <div
+              className={`text-xs font-mono break-words overflow-wrap-anywhere ${
+                settings.editorTheme === "Light"
+                  ? "text-indigo-600"
+                  : "text-green-400"
+              }`}
+            >
               {"}"}
             </div>
           </div>

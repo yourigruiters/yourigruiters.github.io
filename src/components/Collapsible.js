@@ -53,7 +53,7 @@ const Collapsible = ({
           // When collapsed, make the entire {...} clickable inline
           <span
             className={`cursor-pointer transition-colors ${
-              theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+              theme === "light" ? "hover:text-red-900" : "hover:text-white"
             }`}
             onClick={handleToggle}
           >
@@ -70,7 +70,7 @@ const Collapsible = ({
           <>
             <span
               className={`cursor-pointer transition-colors ${
-                theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+                theme === "light" ? "hover:text-red-900" : "hover:text-white"
               }`}
               onClick={handleToggle}
             >
@@ -79,7 +79,7 @@ const Collapsible = ({
             <div className="block">{children}</div>
             <span
               className={`cursor-pointer transition-colors ${
-                theme === "light" ? "hover:text-gray-800" : "hover:text-white"
+                theme === "light" ? "hover:text-red-900" : "hover:text-white"
               }`}
               onClick={handleToggle}
             >

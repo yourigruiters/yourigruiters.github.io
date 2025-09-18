@@ -2001,7 +2001,7 @@ const App = () => {
                               color="yellow"
                               theme={getCurrentTheme()}
                             >
-                              Brisbane, Australia
+                              Perth, Australia
                             </ColoredText>
                             ,
                           </div>
@@ -2110,7 +2110,7 @@ const App = () => {
                   }
                 }}
               >
-                <BlockComponent />
+                <BlockComponent settings={settings} />
               </div>
             );
           })}

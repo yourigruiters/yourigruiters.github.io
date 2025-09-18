@@ -9,6 +9,25 @@ import ContactBlock from "./Blocks/ContactBlock";
 import ColoredText from "./components/ColoredText";
 import Collapsible from "./components/Collapsible";
 
+// localStorage utility functions
+const saveToLocalStorage = (key, data) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (error) {
+    console.warn(`Failed to save ${key} to localStorage:`, error);
+  }
+};
+
+const loadFromLocalStorage = (key, defaultValue = null) => {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.warn(`Failed to load ${key} from localStorage:`, error);
+    return defaultValue;
+  }
+};
+
 const App = () => {
   const [leftWidth, setLeftWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
@@ -68,6 +87,7 @@ const App = () => {
     );
 
     setLeftWidth(newWidth);
+    saveToLocalStorage("portfolioLeftWidth", newWidth);
   };
 
   const handleMouseUp = () => {
@@ -84,6 +104,7 @@ const App = () => {
   const updateSetting = (key, value) => {
     const newSettings = { ...settings, [key]: value };
     setSettings(newSettings);
+    saveToLocalStorage("portfolioSettings", newSettings);
   };
 
   const updateBlockSetting = (blockName, key, value) => {
@@ -93,13 +114,18 @@ const App = () => {
       [key]: value,
     };
     setBlockSettings(newBlockSettings);
+    saveToLocalStorage("portfolioBlockSettings", newBlockSettings);
   };
 
   const updateCollapsibleState = (collapsibleName, isOpen) => {
-    setCollapsibleStates((prev) => ({
-      ...prev,
-      [collapsibleName]: isOpen,
-    }));
+    setCollapsibleStates((prev) => {
+      const newStates = {
+        ...prev,
+        [collapsibleName]: isOpen,
+      };
+      saveToLocalStorage("portfolioCollapsibleStates", newStates);
+      return newStates;
+    });
   };
 
   const toggleAllCollapsibles = () => {
@@ -108,7 +134,7 @@ const App = () => {
     );
     const newState = !allOpen;
 
-    setCollapsibleStates({
+    const newCollapsibleStates = {
       global: newState,
       intro: newState,
       skills: newState,
@@ -116,7 +142,10 @@ const App = () => {
       education: newState,
       projects: newState,
       contact: newState,
-    });
+    };
+
+    setCollapsibleStates(newCollapsibleStates);
+    saveToLocalStorage("portfolioCollapsibleStates", newCollapsibleStates);
   };
 
   // Command suggestions based on current state
@@ -187,6 +216,45 @@ const App = () => {
   // Helper function to get current theme
   const getCurrentTheme = () =>
     settings.editorTheme === "Light" ? "light" : "dark";
+
+  // Load settings from localStorage on component mount
+  useEffect(() => {
+    const savedSettings = loadFromLocalStorage("portfolioSettings", {
+      portfolioWidth: 35,
+      darkmode: true,
+      editorTheme: "Dark",
+      variant: "Developer",
+    });
+
+    const savedBlockSettings = loadFromLocalStorage("portfolioBlockSettings", {
+      intro: { show: true },
+      skills: { show: true },
+      work: { show: true, amount: 3 },
+      education: { show: true, amount: 2 },
+      projects: { show: true, amount: 2 },
+      contact: { show: true },
+    });
+
+    const savedCollapsibleStates = loadFromLocalStorage(
+      "portfolioCollapsibleStates",
+      {
+        global: true,
+        intro: false,
+        skills: false,
+        work: false,
+        education: false,
+        projects: false,
+        contact: false,
+      }
+    );
+
+    const savedLeftWidth = loadFromLocalStorage("portfolioLeftWidth", 35);
+
+    setSettings(savedSettings);
+    setBlockSettings(savedBlockSettings);
+    setCollapsibleStates(savedCollapsibleStates);
+    setLeftWidth(savedLeftWidth);
+  }, []);
 
   // Mobile detection and panel switching
   useEffect(() => {

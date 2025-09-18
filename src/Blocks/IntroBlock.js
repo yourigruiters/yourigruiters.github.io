@@ -6,16 +6,16 @@ const IntroBlock = ({ settings }) => {
   return (
     <div
       id="intro"
-      className={`min-h-screen py-16 px-6 ${
+      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
       }`}
     >
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <h1
-            className={`text-5xl md:text-6xl font-bold mb-6 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 ${
               isDarkMode ? "text-white" : "text-slate-900"
             }`}
           >
@@ -26,7 +26,7 @@ const IntroBlock = ({ settings }) => {
           </h1>
 
           <h2
-            className={`text-2xl md:text-3xl font-semibold mb-8 ${
+            className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-6 sm:mb-8 ${
               isDarkMode ? "text-slate-300" : "text-slate-600"
             }`}
           >
@@ -34,11 +34,11 @@ const IntroBlock = ({ settings }) => {
           </h2>
 
           <div
-            className={`max-w-3xl mx-auto text-lg leading-relaxed ${
+            className={`max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-2 ${
               isDarkMode ? "text-slate-400" : "text-slate-600"
             }`}
           >
-            <p className="mb-6">
+            <p className="mb-4 sm:mb-6">
               Motivated and adaptable individual with a strong interest in
               personal and professional development. Holds a Bachelor's degree
               in{" "}
@@ -65,33 +65,39 @@ const IntroBlock = ({ settings }) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-12">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12">
           <div
-            className={`px-6 py-3 rounded-full border ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
               isDarkMode
                 ? "bg-slate-800 border-slate-700 text-slate-300"
                 : "bg-white border-slate-200 text-slate-700"
             } shadow-lg`}
           >
-            <span className="font-medium">Front-end Development</span>
+            <span className="font-medium text-sm sm:text-base">
+              Front-end Development
+            </span>
           </div>
           <div
-            className={`px-6 py-3 rounded-full border ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
               isDarkMode
                 ? "bg-slate-800 border-slate-700 text-slate-300"
                 : "bg-white border-slate-200 text-slate-700"
             } shadow-lg`}
           >
-            <span className="font-medium">Education & Teaching</span>
+            <span className="font-medium text-sm sm:text-base">
+              Education & Teaching
+            </span>
           </div>
           <div
-            className={`px-6 py-3 rounded-full border ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
               isDarkMode
                 ? "bg-slate-800 border-slate-700 text-slate-300"
                 : "bg-white border-slate-200 text-slate-700"
             } shadow-lg`}
           >
-            <span className="font-medium">Project Management</span>
+            <span className="font-medium text-sm sm:text-base">
+              Project Management
+            </span>
           </div>
         </div>
       </div>

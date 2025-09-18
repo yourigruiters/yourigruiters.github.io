@@ -1108,11 +1108,7 @@ const App = () => {
                       :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
-                          <Collapsible
-                            bracketType="curly"
-                            showComma={true}
-                            isOpen={false}
-                          >
+                          <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
                               <div>
                                 <ColoredText
@@ -1198,11 +1194,7 @@ const App = () => {
                               </div>
                             </div>
                           </Collapsible>
-                          <Collapsible
-                            bracketType="curly"
-                            showComma={true}
-                            isOpen={false}
-                          >
+                          <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
                               <div>
                                 <ColoredText
@@ -1498,11 +1490,7 @@ const App = () => {
                       :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
-                          <Collapsible
-                            bracketType="curly"
-                            showComma={true}
-                            isOpen={false}
-                          >
+                          <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
                               <div>
                                 <ColoredText
@@ -1761,11 +1749,7 @@ const App = () => {
                       :{" "}
                       <Collapsible bracketType="square" isOpen={false}>
                         <div className="ml-4">
-                          <Collapsible
-                            bracketType="curly"
-                            showComma={true}
-                            isOpen={false}
-                          >
+                          <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
                               <div>
                                 <ColoredText

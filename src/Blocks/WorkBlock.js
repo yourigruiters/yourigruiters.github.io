@@ -1,15 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const WorkBlock = ({ settings }) => {
+const WorkBlock = ({ settings, blockSettings }) => {
   const isDarkMode = settings?.darkmode ?? true;
-  const [expandedItems, setExpandedItems] = useState({});
-
-  const toggleExpanded = (index) => {
-    setExpandedItems((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
+  const variant = settings?.variant || "Combined";
+  const showOnlyFullTime = blockSettings?.work?.showOnlyFullTime ?? true;
 
   const workExperience = [
     {
@@ -26,6 +20,7 @@ const WorkBlock = ({ settings }) => {
         "VueJS",
         "ReactJS",
       ],
+      isFullTime: true,
     },
     {
       company: "System4",
@@ -40,6 +35,7 @@ const WorkBlock = ({ settings }) => {
         "Team Collaboration",
         "Responsive Design",
       ],
+      isFullTime: true,
     },
     {
       company: "ROC Nijmegen",
@@ -54,6 +50,7 @@ const WorkBlock = ({ settings }) => {
         "Student Mentoring",
         "Technical Training",
       ],
+      isFullTime: true,
     },
     {
       company: "Ubiquiti",
@@ -69,6 +66,22 @@ const WorkBlock = ({ settings }) => {
         "Cross-functional Teamwork",
         "Scalable Solutions",
       ],
+      isFullTime: true,
+    },
+    {
+      company: "ROC Nijmegen",
+      position: "Front-end Development Teacher",
+      location: "Nijmegen, The Netherlands",
+      duration: "August 2018 – February 2020",
+      description:
+        "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
+      highlights: [
+        "Teaching",
+        "Curriculum Development",
+        "Student Mentoring",
+        "Technical Training",
+      ],
+      isFullTime: true,
     },
     {
       company: "Ceed Learning",
@@ -84,22 +97,46 @@ const WorkBlock = ({ settings }) => {
         "Part-time Work",
         "Multi-tasking",
       ],
-    },
-    {
-      company: "ROC Nijmegen",
-      position: "Front-end Development Teacher",
-      location: "Nijmegen, The Netherlands",
-      duration: "August 2018 – February 2020",
-      description:
-        "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
-      highlights: [
-        "Teaching",
-        "Curriculum Development",
-        "Student Mentoring",
-        "Technical Training",
-      ],
+      isFullTime: false,
     },
   ];
+
+  // Filter work experience based on showOnlyFullTime prop
+  const filteredWorkExperience = showOnlyFullTime
+    ? workExperience.filter((job) => job.isFullTime)
+    : workExperience;
+
+  // Initialize expanded items based on variant
+  const getInitialExpandedItems = () => {
+    const initial = {};
+    filteredWorkExperience.forEach((job, index) => {
+      if (variant === "Teacher") {
+        // Open teaching jobs by default (ROC Nijmegen positions)
+        initial[index] = job.position.toLowerCase().includes("teacher");
+      } else if (variant === "Developer") {
+        // Open development jobs by default (all non-teaching positions)
+        initial[index] = !job.position.toLowerCase().includes("teacher");
+      } else {
+        // Combined: keep everything closed by default
+        initial[index] = false;
+      }
+    });
+    return initial;
+  };
+
+  const [expandedItems, setExpandedItems] = useState(getInitialExpandedItems());
+
+  // Update expanded items when variant or showOnlyFullTime changes
+  useEffect(() => {
+    setExpandedItems(getInitialExpandedItems());
+  }, [variant, showOnlyFullTime]);
+
+  const toggleExpanded = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   return (
     <div
@@ -129,7 +166,7 @@ const WorkBlock = ({ settings }) => {
         </div>
 
         <div className="space-y-6 sm:space-y-8">
-          {workExperience.map((job, index) => (
+          {filteredWorkExperience.map((job, index) => (
             <div
               key={index}
               className={`relative p-4 sm:p-6 rounded-xl border ${

@@ -35,14 +35,14 @@ const App = () => {
     portfolioWidth: 35,
     darkmode: true,
     editorTheme: "Dark",
-    variant: "Developer",
+    variant: "Combined",
   });
 
   const [blockSettings, setBlockSettings] = useState({
     intro: { show: true },
     skills: { show: true },
-    work: { show: true, amount: 6 },
-    education: { show: true, amount: 4 },
+    work: { show: true, showOnlyFullTime: true },
+    education: { show: true, showOnlyUniversityDegrees: true },
     projects: { show: true, amount: 2 },
     contact: { show: true },
   });
@@ -223,14 +223,14 @@ const App = () => {
       portfolioWidth: 35,
       darkmode: true,
       editorTheme: "Dark",
-      variant: "Developer",
+      variant: "Combined",
     });
 
     const savedBlockSettings = loadFromLocalStorage("portfolioBlockSettings", {
       intro: { show: true },
       skills: { show: true },
-      work: { show: true, amount: 6 },
-      education: { show: true, amount: 4 },
+      work: { show: true, showOnlyFullTime: true },
+      education: { show: true, showOnlyUniversityDegrees: true },
       projects: { show: true, amount: 2 },
       contact: { show: true },
     });
@@ -653,68 +653,6 @@ const App = () => {
                   <div className="ml-4">
                     <div>
                       <ColoredText color="blue" theme={getCurrentTheme()}>
-                        props
-                      </ColoredText>
-                      :{" "}
-                      <Collapsible
-                        bracketType="curly"
-                        showComma={true}
-                        isOpen={false}
-                      >
-                        <div className="ml-4">
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
-                            </ColoredText>
-                            :
-                            <select
-                              value={blockSettings.intro.show.toString()}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "intro",
-                                  "show",
-                                  e.target.value === "true"
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                              style={{
-                                backgroundImage: "none",
-                                borderImage: "none",
-                                boxShadow: "none",
-                                outline: "none",
-                              }}
-                            >
-                              <option
-                                value="true"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                true
-                              </option>
-                              <option
-                                value="false"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                false
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </Collapsible>
-                    </div>
-                    <div>
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
                         data
                       </ColoredText>
                       :{" "}
@@ -795,68 +733,6 @@ const App = () => {
                   }
                 >
                   <div className="ml-4">
-                    <div>
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
-                        props
-                      </ColoredText>
-                      :{" "}
-                      <Collapsible
-                        bracketType="curly"
-                        showComma={true}
-                        isOpen={false}
-                      >
-                        <div className="ml-4">
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
-                            </ColoredText>
-                            :
-                            <select
-                              value={blockSettings.skills.show.toString()}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "skills",
-                                  "show",
-                                  e.target.value === "true"
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                              style={{
-                                backgroundImage: "none",
-                                borderImage: "none",
-                                boxShadow: "none",
-                                outline: "none",
-                              }}
-                            >
-                              <option
-                                value="true"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                true
-                              </option>
-                              <option
-                                value="false"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                false
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </Collapsible>
-                    </div>
                     <div>
                       <ColoredText color="blue" theme={getCurrentTheme()}>
                         data
@@ -1027,15 +903,15 @@ const App = () => {
                         <div className="ml-4">
                           <div className="flex items-center">
                             <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
+                              showOnlyFullTime
                             </ColoredText>
                             :
                             <select
-                              value={blockSettings.work.show.toString()}
+                              value={blockSettings.work.showOnlyFullTime.toString()}
                               onChange={(e) =>
                                 updateBlockSetting(
                                   "work",
-                                  "show",
+                                  "showOnlyFullTime",
                                   e.target.value === "true"
                                 )
                               }
@@ -1072,31 +948,6 @@ const App = () => {
                                 false
                               </option>
                             </select>
-                            ,
-                          </div>
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              amount
-                            </ColoredText>
-                            :
-                            <input
-                              type="number"
-                              min="1"
-                              max="10"
-                              value={blockSettings.work.amount}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "work",
-                                  "amount",
-                                  parseInt(e.target.value)
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                            />
                           </div>
                         </div>
                       </Collapsible>
@@ -1666,15 +1517,15 @@ const App = () => {
                         <div className="ml-4">
                           <div className="flex items-center">
                             <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
+                              showOnlyUniversityDegrees
                             </ColoredText>
                             :
                             <select
-                              value={blockSettings.education.show.toString()}
+                              value={blockSettings.education.showOnlyUniversityDegrees.toString()}
                               onChange={(e) =>
                                 updateBlockSetting(
                                   "education",
-                                  "show",
+                                  "showOnlyUniversityDegrees",
                                   e.target.value === "true"
                                 )
                               }
@@ -1711,31 +1562,6 @@ const App = () => {
                                 false
                               </option>
                             </select>
-                            ,
-                          </div>
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              amount
-                            </ColoredText>
-                            :
-                            <input
-                              type="number"
-                              min="1"
-                              max="10"
-                              value={blockSettings.education.amount}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "education",
-                                  "amount",
-                                  parseInt(e.target.value)
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                            />
                           </div>
                         </div>
                       </Collapsible>
@@ -2048,93 +1874,6 @@ const App = () => {
                   <div className="ml-4">
                     <div>
                       <ColoredText color="blue" theme={getCurrentTheme()}>
-                        props
-                      </ColoredText>
-                      :{" "}
-                      <Collapsible
-                        bracketType="curly"
-                        showComma={true}
-                        isOpen={false}
-                      >
-                        <div className="ml-4">
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
-                            </ColoredText>
-                            :
-                            <select
-                              value={blockSettings.projects.show.toString()}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "projects",
-                                  "show",
-                                  e.target.value === "true"
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                              style={{
-                                backgroundImage: "none",
-                                borderImage: "none",
-                                boxShadow: "none",
-                                outline: "none",
-                              }}
-                            >
-                              <option
-                                value="true"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                true
-                              </option>
-                              <option
-                                value="false"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                false
-                              </option>
-                            </select>
-                            ,
-                          </div>
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              amount
-                            </ColoredText>
-                            :
-                            <input
-                              type="number"
-                              min="1"
-                              max="10"
-                              value={blockSettings.projects.amount}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "projects",
-                                  "amount",
-                                  parseInt(e.target.value)
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border focus:outline-none ml-2 w-16 ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </Collapsible>
-                    </div>
-                    <div>
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
                         data
                       </ColoredText>
                       :{" "}
@@ -2274,68 +2013,6 @@ const App = () => {
                   <div className="ml-4">
                     <div>
                       <ColoredText color="blue" theme={getCurrentTheme()}>
-                        props
-                      </ColoredText>
-                      :{" "}
-                      <Collapsible
-                        bracketType="curly"
-                        showComma={true}
-                        isOpen={false}
-                      >
-                        <div className="ml-4">
-                          <div className="flex items-center">
-                            <ColoredText color="blue" theme={getCurrentTheme()}>
-                              show
-                            </ColoredText>
-                            :
-                            <select
-                              value={blockSettings.contact.show.toString()}
-                              onChange={(e) =>
-                                updateBlockSetting(
-                                  "contact",
-                                  "show",
-                                  e.target.value === "true"
-                                )
-                              }
-                              className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
-                                settings.editorTheme === "Light"
-                                  ? "bg-white text-slate-800 border-slate-300 focus:border-slate-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-600 focus:border-gray-500"
-                              }`}
-                              style={{
-                                backgroundImage: "none",
-                                borderImage: "none",
-                                boxShadow: "none",
-                                outline: "none",
-                              }}
-                            >
-                              <option
-                                value="true"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                true
-                              </option>
-                              <option
-                                value="false"
-                                className={
-                                  settings.editorTheme === "Light"
-                                    ? "bg-white text-slate-800"
-                                    : "bg-gray-800 text-gray-200"
-                                }
-                              >
-                                false
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </Collapsible>
-                    </div>
-                    <div>
-                      <ColoredText color="blue" theme={getCurrentTheme()}>
                         data
                       </ColoredText>
                       :{" "}
@@ -2471,11 +2148,6 @@ const App = () => {
           {blocks.map((block, index) => {
             const { component: BlockComponent, name: blockName } = block;
 
-            // Only render block if show is true
-            if (!blockSettings[blockName]?.show) {
-              return null;
-            }
-
             return (
               <div
                 key={index}
@@ -2485,7 +2157,10 @@ const App = () => {
                   }
                 }}
               >
-                <BlockComponent settings={settings} />
+                <BlockComponent
+                  settings={settings}
+                  blockSettings={blockSettings}
+                />
               </div>
             );
           })}

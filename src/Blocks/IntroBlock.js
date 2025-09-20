@@ -2,6 +2,107 @@ import { useContext } from "react";
 
 const IntroBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
+  const variant = settings?.variant || "Combined";
+
+  // Define content based on variant
+  const getVariantContent = () => {
+    switch (variant) {
+      case "Teacher":
+        return {
+          subtitle: "Educator & Front-end Developer",
+          description: (
+            <>
+              <p className="mb-4 sm:mb-6">
+                Motivated and adaptable individual with a strong interest in
+                personal and professional development. Holds a Bachelor's degree
+                in IT & Media Design as well as{" "}
+                <span className="font-semibold text-purple-500">
+                  IT & Education
+                </span>
+                , blending technical knowledge with strong communication skills.
+              </p>
+              <p>
+                Brings over 7 years of experience in development and{" "}
+                <span className="font-semibold text-purple-500">
+                  2.5 years in teaching
+                </span>
+                .
+              </p>
+            </>
+          ),
+          labels: [
+            "Teaching & Education",
+            "Curriculum Development",
+            "Student Mentoring",
+          ],
+        };
+      case "Developer":
+        return {
+          subtitle: "Front-end Developer & Educator",
+          description: (
+            <>
+              <p className="mb-4 sm:mb-6">
+                Motivated and adaptable individual with a strong interest in
+                personal and professional development. Holds a Bachelor's degree
+                in{" "}
+                <span className="font-semibold text-blue-500">
+                  IT & Media Design
+                </span>{" "}
+                as well as IT & Education, blending technical knowledge with
+                strong communication skills.
+              </p>
+              <p>
+                Brings over{" "}
+                <span className="font-semibold text-blue-500">
+                  7 years of experience
+                </span>{" "}
+                in development and 2.5 years in teaching.
+              </p>
+            </>
+          ),
+          labels: ["Front-end Development", "ReactJS", "TypeScript"],
+        };
+      default: // Combined
+        return {
+          subtitle: "Front-end Developer & Educator",
+          description: (
+            <>
+              <p className="mb-4 sm:mb-6">
+                Motivated and adaptable individual with a strong interest in
+                personal and professional development. Holds a Bachelor's degree
+                in{" "}
+                <span className="font-semibold text-blue-500">
+                  IT & Media Design
+                </span>{" "}
+                as well as{" "}
+                <span className="font-semibold text-purple-500">
+                  IT & Education
+                </span>
+                , blending technical knowledge with strong communication skills.
+              </p>
+              <p>
+                Brings over{" "}
+                <span className="font-semibold text-blue-500">
+                  7 years of experience
+                </span>{" "}
+                in development and{" "}
+                <span className="font-semibold text-purple-500">
+                  2.5 years in teaching
+                </span>
+                .
+              </p>
+            </>
+          ),
+          labels: [
+            "Front-end Development",
+            "Education & Teaching",
+            "Project Management",
+          ],
+        };
+    }
+  };
+
+  const content = getVariantContent();
 
   return (
     <div
@@ -30,7 +131,7 @@ const IntroBlock = ({ settings }) => {
               isDarkMode ? "text-slate-300" : "text-slate-600"
             }`}
           >
-            Front-end Developer & Educator
+            {content.subtitle}
           </h2>
 
           <div
@@ -38,67 +139,23 @@ const IntroBlock = ({ settings }) => {
               isDarkMode ? "text-slate-400" : "text-slate-600"
             }`}
           >
-            <p className="mb-4 sm:mb-6">
-              Motivated and adaptable individual with a strong interest in
-              personal and professional development. Holds a Bachelor's degree
-              in{" "}
-              <span className="font-semibold text-blue-500">
-                IT & Media Design
-              </span>{" "}
-              as well as{" "}
-              <span className="font-semibold text-purple-500">
-                IT & Education
-              </span>
-              , blending technical knowledge with strong communication skills.
-            </p>
-            <p>
-              Brings over{" "}
-              <span className="font-semibold text-blue-500">
-                7 years of experience
-              </span>{" "}
-              in development and{" "}
-              <span className="font-semibold text-purple-500">
-                2.5 years in teaching
-              </span>
-              .
-            </p>
+            {content.description}
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12">
-          <div
-            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
-              isDarkMode
-                ? "bg-slate-800 border-slate-700 text-slate-300"
-                : "bg-white border-slate-200 text-slate-700"
-            } shadow-lg`}
-          >
-            <span className="font-medium text-sm sm:text-base">
-              Front-end Development
-            </span>
-          </div>
-          <div
-            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
-              isDarkMode
-                ? "bg-slate-800 border-slate-700 text-slate-300"
-                : "bg-white border-slate-200 text-slate-700"
-            } shadow-lg`}
-          >
-            <span className="font-medium text-sm sm:text-base">
-              Education & Teaching
-            </span>
-          </div>
-          <div
-            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
-              isDarkMode
-                ? "bg-slate-800 border-slate-700 text-slate-300"
-                : "bg-white border-slate-200 text-slate-700"
-            } shadow-lg`}
-          >
-            <span className="font-medium text-sm sm:text-base">
-              Project Management
-            </span>
-          </div>
+          {content.labels.map((label, index) => (
+            <div
+              key={index}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border text-center ${
+                isDarkMode
+                  ? "bg-slate-800 border-slate-700 text-slate-300"
+                  : "bg-white border-slate-200 text-slate-700"
+              } shadow-lg`}
+            >
+              <span className="font-medium text-sm sm:text-base">{label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

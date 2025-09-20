@@ -28,6 +28,73 @@ const loadFromLocalStorage = (key, defaultValue = null) => {
   }
 };
 
+// Function to filter technologies based on variant
+const getFilteredTechnologies = (variant) => {
+  const allTechnologies = [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Typescript",
+    "CraftCMS",
+    "React",
+    "Redux",
+    "Vue",
+    "Pinia",
+    "GIT",
+    "Rest API's",
+    "GraphQL",
+    "Firebase",
+    "NoSQL",
+    "Wordpress",
+    "NodeJS",
+    "Express",
+    "Socket.IO",
+    "MongoDB",
+    "Tailwind",
+    "Bootstrap",
+    "PHP",
+    "SQL",
+    "jQuery",
+    "Curriculum Development",
+    "Student Mentoring",
+    "Technical Training",
+    "Agile Scrum",
+    "Client Coordination",
+    "Team Leadership",
+    "Technical Writing",
+    "Presentation Skills",
+    "Cross-functional Collaboration",
+  ];
+
+  if (variant === "Combined") {
+    return allTechnologies;
+  } else if (variant === "Developer") {
+    // Remove: Curriculum Development, Student Mentoring
+    return allTechnologies.filter(
+      (tech) =>
+        tech !== "Curriculum Development" && tech !== "Student Mentoring"
+    );
+  } else if (variant === "Teacher") {
+    // Remove: CraftCMS, Vue, Pinia, Rest API's, GraphQL, Express, NodeJS, Socket.IO, MongoDB, Client Coordination, Team Leadership, Cross-functional Collaboration
+    return allTechnologies.filter(
+      (tech) =>
+        tech !== "CraftCMS" &&
+        tech !== "Vue" &&
+        tech !== "Pinia" &&
+        tech !== "Rest API's" &&
+        tech !== "GraphQL" &&
+        tech !== "Express" &&
+        tech !== "NodeJS" &&
+        tech !== "Socket.IO" &&
+        tech !== "MongoDB" &&
+        tech !== "Client Coordination" &&
+        tech !== "Team Leadership" &&
+        tech !== "Cross-functional Collaboration"
+    );
+  }
+  return allTechnologies;
+};
+
 const App = () => {
   const [leftWidth, setLeftWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
@@ -701,6 +768,43 @@ const App = () => {
                               over 7 years of experience in development and 2.5
                               years in teaching.
                             </ColoredText>
+                            ,
+                          </div>
+                          <div>
+                            <ColoredText color="blue" theme={getCurrentTheme()}>
+                              keywords
+                            </ColoredText>
+                            :{" "}
+                            <Collapsible bracketType="square" isOpen={false}>
+                              <div className="ml-4">
+                                <div>
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    Front-end Development
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    Education & Teaching
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    Project Management
+                                  </ColoredText>
+                                </div>
+                              </div>
+                            </Collapsible>
                           </div>
                         </div>
                       </Collapsible>
@@ -743,58 +847,6 @@ const App = () => {
                           <div>
                             <Collapsible
                               bracketType="square"
-                              showComma={true}
-                              label={
-                                <ColoredText
-                                  color="blue"
-                                  theme={getCurrentTheme()}
-                                >
-                                  categories
-                                </ColoredText>
-                              }
-                            >
-                              <div className="ml-4">
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    Front-end Development
-                                  </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    Teaching & Education
-                                  </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    Project Management
-                                  </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    Communication
-                                  </ColoredText>
-                                </div>
-                              </div>
-                            </Collapsible>
-                          </div>
-                          <div>
-                            <Collapsible
-                              bracketType="square"
                               label={
                                 <ColoredText
                                   color="blue"
@@ -807,56 +859,103 @@ const App = () => {
                               <div className="ml-4">
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    ReactJS
+                                    showAll
+                                  </ColoredText>
+                                  :{" "}
+                                  <ColoredText
+                                    color="green"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    true
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    VueJS
+                                    blurIrrelevant
+                                  </ColoredText>
+                                  :{" "}
+                                  <ColoredText
+                                    color="green"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    true
                                   </ColoredText>
                                   ,
                                 </div>
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    TypeScript
+                                    categories
                                   </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
+                                  :{" "}
+                                  <Collapsible
+                                    bracketType="curly"
+                                    isOpen={false}
                                   >
-                                    CraftCMS
-                                  </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    HTML/CSS/JavaScript
-                                  </ColoredText>
-                                  ,
-                                </div>
-                                <div>
-                                  <ColoredText
-                                    color="yellow"
-                                    theme={getCurrentTheme()}
-                                  >
-                                    GIT
-                                  </ColoredText>
+                                    <div className="ml-4">
+                                      <div>
+                                        <ColoredText
+                                          color="blue"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          combined
+                                        </ColoredText>
+                                        :{" "}
+                                        <ColoredText
+                                          color="green"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          all
+                                        </ColoredText>
+                                        ,
+                                      </div>
+                                      <div>
+                                        <ColoredText
+                                          color="blue"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          developer
+                                        </ColoredText>
+                                        :{" "}
+                                        <ColoredText
+                                          color="yellow"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          "excludes: Curriculum Development,
+                                          Student Mentoring"
+                                        </ColoredText>
+                                        ,
+                                      </div>
+                                      <div>
+                                        <ColoredText
+                                          color="blue"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          teacher
+                                        </ColoredText>
+                                        :{" "}
+                                        <ColoredText
+                                          color="yellow"
+                                          theme={getCurrentTheme()}
+                                        >
+                                          "excludes: CraftCMS, Vue, Pinia, Rest
+                                          API's, GraphQL, Express, NodeJS,
+                                          Socket.IO, MongoDB, Client
+                                          Coordination, Team Leadership,
+                                          Cross-functional Collaboration"
+                                        </ColoredText>
+                                      </div>
+                                    </div>
+                                  </Collapsible>
                                 </div>
                               </div>
                             </Collapsible>
@@ -1037,10 +1136,15 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Managed multiple projects simultaneously,
-                                  coordinating directly with clients. Delivered
-                                  dynamic development work using CraftCMS, VueJS
-                                  and ReactJS frameworks.
+                                  Led front-end development for multiple client
+                                  projects, managing end-to-end delivery from
+                                  concept to deployment. Coordinated directly
+                                  with stakeholders to understand requirements
+                                  and deliver custom solutions using CraftCMS,
+                                  VueJS, and ReactJS. Successfully managed
+                                  project timelines and maintained high code
+                                  quality standards while meeting client
+                                  expectations.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1123,9 +1227,15 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Specialized in building responsive web
-                                  applications using ReactJS. Collaborated in
-                                  Agile Scrum teams of 4-5 developers.
+                                  Developed high-performance, responsive web
+                                  applications using ReactJS with focus on user
+                                  experience and performance optimization.
+                                  Collaborated effectively in Agile Scrum teams
+                                  of 4-5 developers, participating in daily
+                                  standups, sprint planning, and code reviews.
+                                  Contributed to architectural decisions and
+                                  implemented best practices for scalable
+                                  front-end development.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1208,9 +1318,16 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Delivered courses on HTML, CSS, JavaScript,
-                                  ReactJS, and GIT. Served as mentor and
-                                  internship supervisor for students.
+                                  Designed and delivered comprehensive front-end
+                                  development curriculum covering modern web
+                                  technologies including HTML5, CSS3, JavaScript
+                                  ES6+, ReactJS, and version control with GIT.
+                                  Mentored students through hands-on projects
+                                  and provided guidance for internship
+                                  placements. Created engaging learning
+                                  materials and practical exercises that
+                                  prepared students for real-world development
+                                  challenges.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1293,10 +1410,16 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Contributed to development of UniFi Portal,
-                                  UniFi Network, and internal component
-                                  libraries. Utilized ReactJS and TypeScript in
-                                  a large, collaborative development team.
+                                  Contributed to the development of UniFi Portal
+                                  and UniFi Network, enterprise-grade networking
+                                  management platforms used by millions of users
+                                  worldwide. Built reusable component libraries
+                                  and maintained high code quality standards
+                                  using ReactJS and TypeScript. Collaborated
+                                  with cross-functional teams in a fast-paced,
+                                  large-scale development environment,
+                                  implementing features that directly impacted
+                                  user experience and platform performance.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1380,10 +1503,16 @@ const App = () => {
                                   theme={getCurrentTheme()}
                                 >
                                   Designed, developed, and maintained Ceed
-                                  Learning's website and e-learning platform.
-                                  Worked part-time alongside teaching duties,
-                                  balancing multiple responsibilities
-                                  effectively.
+                                  Learning's comprehensive website and
+                                  e-learning platform, creating an engaging
+                                  digital learning environment for students.
+                                  Implemented multimedia content integration and
+                                  responsive design principles to ensure optimal
+                                  user experience across devices. Successfully
+                                  managed part-time development responsibilities
+                                  alongside full-time teaching duties,
+                                  demonstrating strong time management and
+                                  multitasking abilities.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1466,9 +1595,16 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Delivered courses on HTML, CSS, JavaScript,
-                                  ReactJS, and GIT. Served as mentor and
-                                  internship supervisor for students.
+                                  Established and developed the front-end
+                                  development curriculum from the ground up,
+                                  teaching students modern web technologies
+                                  including HTML5, CSS3, JavaScript, ReactJS,
+                                  and GIT. Supervised student internships and
+                                  provided career guidance, helping students
+                                  transition into professional development
+                                  roles. Created interactive learning
+                                  experiences and maintained up-to-date course
+                                  content reflecting industry best practices.
                                 </ColoredText>
                               </div>
                             </div>
@@ -1587,7 +1723,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Bachelor of IT & Media Design (cum laude)
+                                  Bachelor of IT & Media Design
                                 </ColoredText>
                                 ,
                               </div>
@@ -1637,6 +1773,22 @@ const App = () => {
                                 >
                                   2014 – 2018
                                 </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  cumLaude
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="green"
+                                  theme={getCurrentTheme()}
+                                >
+                                  true
+                                </ColoredText>
                               </div>
                             </div>
                           </Collapsible>
@@ -1654,7 +1806,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Bachelor of IT & Education (cum laude)
+                                  Bachelor of IT & Education
                                 </ColoredText>
                                 ,
                               </div>
@@ -1703,6 +1855,22 @@ const App = () => {
                                   theme={getCurrentTheme()}
                                 >
                                   2015 – 2018
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  cumLaude
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="green"
+                                  theme={getCurrentTheme()}
+                                >
+                                  true
                                 </ColoredText>
                               </div>
                             </div>
@@ -2164,6 +2332,26 @@ const App = () => {
               </div>
             );
           })}
+
+          {/* Copyright Bar */}
+          <div
+            className={`py-4 px-4 border-t ${
+              settings.darkmode
+                ? "bg-slate-900 border-slate-700"
+                : "bg-slate-50 border-slate-200"
+            }`}
+          >
+            <div className="max-w-4xl mx-auto text-center">
+              <p
+                className={`text-sm ${
+                  settings.darkmode ? "text-slate-400" : "text-slate-600"
+                }`}
+              >
+                © {new Date().getFullYear()} Youri Gruiters. All rights
+                reserved.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

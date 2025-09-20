@@ -1,13 +1,32 @@
 const SkillsBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
+  const variant = settings?.variant || "Combined";
 
-  const technologies = [
-    "ReactJS",
-    "VueJS",
-    "TypeScript",
+  const allTechnologies = [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Typescript",
     "CraftCMS",
-    "HTML/CSS/JavaScript",
+    "React",
+    "Redux",
+    "Vue",
+    "Pinia",
     "GIT",
+    "Rest API's",
+    "GraphQL",
+    "Firebase",
+    "NoSQL",
+    "Wordpress",
+    "NodeJS",
+    "Express",
+    "Socket.IO",
+    "MongoDB",
+    "Tailwind",
+    "Bootstrap",
+    "PHP",
+    "SQL",
+    "jQuery",
     "Curriculum Development",
     "Student Mentoring",
     "Technical Training",
@@ -18,6 +37,35 @@ const SkillsBlock = ({ settings }) => {
     "Presentation Skills",
     "Cross-functional Collaboration",
   ];
+
+  // Check if technology belongs to current variant
+  const isTechnologyRelevant = (tech) => {
+    if (variant === "Combined") {
+      return true;
+    } else if (variant === "Developer") {
+      // Remove: Curriculum Development, Student Mentoring
+      return tech !== "Curriculum Development" && tech !== "Student Mentoring";
+    } else if (variant === "Teacher") {
+      // Remove: CraftCMS, Vue, Pinia, Rest API's, GraphQL, Express, NodeJS, Socket.IO, MongoDB, Client Coordination, Team Leadership, Cross-functional Collaboration
+      return (
+        tech !== "CraftCMS" &&
+        tech !== "Vue" &&
+        tech !== "Pinia" &&
+        tech !== "Rest API's" &&
+        tech !== "GraphQL" &&
+        tech !== "Express" &&
+        tech !== "NodeJS" &&
+        tech !== "Socket.IO" &&
+        tech !== "MongoDB" &&
+        tech !== "Client Coordination" &&
+        tech !== "Team Leadership" &&
+        tech !== "Cross-functional Collaboration"
+      );
+    }
+    return true;
+  };
+
+  const technologies = allTechnologies;
 
   return (
     <div
@@ -67,10 +115,14 @@ const SkillsBlock = ({ settings }) => {
               {technologies.map((tech, index) => (
                 <div
                   key={index}
-                  className={`px-2 sm:px-3 py-1 sm:py-2 rounded-lg border text-center ${
-                    isDarkMode
-                      ? "bg-slate-700 border-slate-600 text-slate-300"
-                      : "bg-slate-50 border-slate-300 text-slate-700"
+                  className={`px-2 sm:px-3 py-1 sm:py-2 rounded-lg border text-center transition-all duration-300 ${
+                    isTechnologyRelevant(tech)
+                      ? isDarkMode
+                        ? "bg-slate-700 border-slate-600 text-slate-300"
+                        : "bg-slate-50 border-slate-300 text-slate-700"
+                      : isDarkMode
+                      ? "bg-slate-800 border-slate-700 text-slate-500 blur-sm opacity-50"
+                      : "bg-slate-100 border-slate-200 text-slate-400 blur-sm opacity-50"
                   }`}
                 >
                   <span className="font-medium text-xs sm:text-sm">{tech}</span>

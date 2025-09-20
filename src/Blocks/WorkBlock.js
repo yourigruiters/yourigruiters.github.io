@@ -12,7 +12,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Eindhoven, The Netherlands",
       duration: "April 2023 – June 2025",
       description:
-        "Managed multiple projects simultaneously, coordinating directly with clients. Delivered dynamic development work using CraftCMS, VueJS and ReactJS frameworks.",
+        "Led front-end development for multiple client projects, managing end-to-end delivery from concept to deployment. Coordinated directly with stakeholders to understand requirements and deliver custom solutions using CraftCMS, VueJS, and ReactJS. Successfully managed project timelines and maintained high code quality standards while meeting client expectations.",
       highlights: [
         "Client Coordination",
         "Multi-project Management",
@@ -28,7 +28,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Uden, The Netherlands",
       duration: "September 2022 – April 2023",
       description:
-        "Specialized in building responsive web applications using ReactJS. Collaborated in Agile Scrum teams of 4-5 developers.",
+        "Developed high-performance, responsive web applications using ReactJS with focus on user experience and performance optimization. Collaborated effectively in Agile Scrum teams of 4-5 developers, participating in daily standups, sprint planning, and code reviews. Contributed to architectural decisions and implemented best practices for scalable front-end development.",
       highlights: [
         "ReactJS",
         "Agile Scrum",
@@ -43,7 +43,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Nijmegen, The Netherlands",
       duration: "August 2021 – August 2022",
       description:
-        "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
+        "Designed and delivered comprehensive front-end development curriculum covering modern web technologies including HTML5, CSS3, JavaScript ES6+, ReactJS, and version control with GIT. Mentored students through hands-on projects and provided guidance for internship placements. Created engaging learning materials and practical exercises that prepared students for real-world development challenges.",
       highlights: [
         "Teaching",
         "Curriculum Development",
@@ -58,7 +58,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Stockholm, Sweden",
       duration: "September 2020 – July 2021",
       description:
-        "Contributed to development of UniFi Portal, UniFi Network, and internal component libraries. Utilized ReactJS and TypeScript in a large, collaborative development team.",
+        "Contributed to the development of UniFi Portal and UniFi Network, enterprise-grade networking management platforms used by millions of users worldwide. Built reusable component libraries and maintained high code quality standards using ReactJS and TypeScript. Collaborated with cross-functional teams in a fast-paced, large-scale development environment, implementing features that directly impacted user experience and platform performance.",
       highlights: [
         "ReactJS",
         "TypeScript",
@@ -74,7 +74,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Nijmegen, The Netherlands",
       duration: "August 2018 – February 2020",
       description:
-        "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
+        "Established and developed the front-end development curriculum from the ground up, teaching students modern web technologies including HTML5, CSS3, JavaScript, ReactJS, and GIT. Supervised student internships and provided career guidance, helping students transition into professional development roles. Created interactive learning experiences and maintained up-to-date course content reflecting industry best practices.",
       highlights: [
         "Teaching",
         "Curriculum Development",
@@ -89,7 +89,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
       location: "Johannesburg, South Africa",
       duration: "August 2018 – August 2019",
       description:
-        "Designed, developed, and maintained Ceed Learning's website and e-learning platform. Worked part-time alongside teaching duties, balancing multiple responsibilities effectively.",
+        "Designed, developed, and maintained Ceed Learning's comprehensive website and e-learning platform, creating an engaging digital learning environment for students. Implemented multimedia content integration and responsive design principles to ensure optimal user experience across devices. Successfully managed part-time development responsibilities alongside full-time teaching duties, demonstrating strong time management and multitasking abilities.",
       highlights: [
         "Web Development",
         "E-learning Platform",

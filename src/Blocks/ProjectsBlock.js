@@ -3,64 +3,74 @@ const ProjectsBlock = ({ settings }) => {
 
   const projects = [
     {
-      name: "Portfolio Website",
-      tech: ["React", "Tailwind"],
+      name: "Ubiquiti Chat Frontend",
+      tech: ["React", "TypeScript", "Redux", "Socket.IO", "Sass", "Cypress"],
       status: "Completed",
       description:
-        "A modern, responsive portfolio website showcasing professional experience and skills. Features dynamic theming, interactive components, and optimized performance.",
+        "Frontend for real-time chat application created for Ubiquiti coding challenge. Built with custom React setup, TypeScript, and Redux for state management with comprehensive testing suite.",
       features: [
-        "Responsive Design",
-        "Dynamic Theming",
-        "Interactive UI",
-        "Performance Optimized",
+        "Real-time Messaging UI",
+        "TypeScript Implementation",
+        "Redux State Management",
+        "Custom Webpack Config",
+        "E2E Testing with Cypress",
+        "Mobile Responsive Design",
+        "Sass Styling with BEM",
       ],
       statusColor: "green",
-      githubUrl: "https://github.com/yourigruiters/portfolio",
+      githubUrl: "https://github.com/yourigruiters/React-Chat-Frontend",
     },
     {
-      name: "E-commerce App",
-      tech: ["Node.js", "MongoDB"],
-      status: "In Progress",
+      name: "Ubiquiti Chat Backend",
+      tech: ["Express", "TypeScript", "Socket.IO", "Winston", "Mocha", "Chai"],
+      status: "Completed",
       description:
-        "Full-stack e-commerce application with user authentication, product management, and payment integration. Built with modern web technologies and best practices.",
+        "Backend server for real-time chat application created for Ubiquiti coding challenge. Features WebSocket communication, logging, and comprehensive unit testing with proper signal handling.",
       features: [
+        "WebSocket Communication",
+        "TypeScript Server Implementation",
+        "Winston Logging System",
+        "Unit Testing with Mocha/Chai",
+        "SIGINT/SIGTERM Signal Handling",
+        "CORS Configuration",
+        "Heroku Deployment Ready",
+      ],
+      statusColor: "green",
+      githubUrl: "https://github.com/yourigruiters/React-Chat-Backend",
+    },
+    {
+      name: "Full Stack Hangouts",
+      tech: ["React", "Node.js", "Express", "MongoDB"],
+      status: "Completed",
+      description:
+        "A comprehensive social platform for organizing and managing events and hangouts. Built with modern web technologies and featuring user authentication and event management.",
+      features: [
+        "Event Management",
         "User Authentication",
-        "Product Management",
-        "Payment Integration",
-        "Admin Dashboard",
-      ],
-      statusColor: "blue",
-      githubUrl: "https://github.com/yourigruiters/ecommerce-app",
-    },
-    {
-      name: "Task Management System",
-      tech: ["Vue.js", "Express", "PostgreSQL"],
-      status: "Completed",
-      description:
-        "A comprehensive task management application with real-time collaboration features, project tracking, and team management capabilities.",
-      features: [
         "Real-time Updates",
-        "Team Collaboration",
-        "Project Tracking",
-        "File Sharing",
+        "Social Features",
+        "Database Integration",
+        "Responsive Design",
       ],
       statusColor: "green",
-      githubUrl: "https://github.com/yourigruiters/task-management",
+      githubUrl: "https://github.com/yourigruiters/Full-Stack-Hangouts",
     },
     {
-      name: "Learning Management Platform",
-      tech: ["React", "TypeScript", "Firebase"],
-      status: "In Progress",
+      name: "JavaScript MMORPG",
+      tech: ["JavaScript", "HTML5", "Canvas", "WebSockets"],
+      status: "Discontinued",
       description:
-        "Educational platform designed for online learning with video streaming, interactive quizzes, progress tracking, and student management features.",
+        "A browser-based multiplayer online role-playing game built with vanilla JavaScript and HTML5 Canvas. Features real-time multiplayer gameplay, character progression, and interactive game mechanics.",
       features: [
-        "Video Streaming",
-        "Interactive Quizzes",
-        "Progress Tracking",
-        "Student Analytics",
+        "Real-time Multiplayer",
+        "Character Progression",
+        "Interactive Gameplay",
+        "Canvas Rendering",
+        "WebSocket Communication",
+        "Game State Management",
       ],
-      statusColor: "blue",
-      githubUrl: "https://github.com/yourigruiters/learning-platform",
+      statusColor: "yellow",
+      githubUrl: "https://github.com/yourigruiters/JS-MMORPG",
     },
   ];
 
@@ -105,6 +115,58 @@ const ProjectsBlock = ({ settings }) => {
           >
             A showcase of my development work and technical capabilities
           </p>
+        </div>
+
+        {/* Work Agreement Notice Banner */}
+        <div
+          className={`mb-8 p-4 sm:p-6 rounded-xl border ${
+            isDarkMode
+              ? "bg-amber-900/20 border-amber-700/50"
+              : "bg-amber-50 border-amber-200"
+          }`}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${
+                isDarkMode
+                  ? "bg-amber-800 text-amber-200"
+                  : "bg-amber-200 text-amber-800"
+              }`}
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3
+                className={`text-sm sm:text-base font-semibold mb-1 ${
+                  isDarkMode ? "text-amber-200" : "text-amber-800"
+                }`}
+              >
+                Work Agreement Notice
+              </h3>
+              <p
+                className={`text-xs sm:text-sm leading-relaxed ${
+                  isDarkMode ? "text-amber-300" : "text-amber-700"
+                }`}
+              >
+                Due to work agreements and confidentiality requirements, I
+                cannot showcase work-related projects. The projects displayed
+                here are personal sample projects and older portfolio pieces
+                available on my GitHub profile.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8">

@@ -159,7 +159,7 @@ const ContactBlock = ({ settings }) => {
                     isDarkMode ? "bg-blue-700" : "bg-blue-600"
                   }`}
                 >
-                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-2">
+                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-0 md:pb-2">
                     💼
                   </span>
                 </div>
@@ -190,7 +190,7 @@ const ContactBlock = ({ settings }) => {
                     isDarkMode ? "bg-pink-600" : "bg-pink-500"
                   }`}
                 >
-                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-2">
+                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-0 md:pb-2">
                     📷
                   </span>
                 </div>

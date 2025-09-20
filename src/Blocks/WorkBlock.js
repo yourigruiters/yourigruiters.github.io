@@ -194,7 +194,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
                       {job.company}
                     </h4>
                     <p
-                      className={`text-xs sm:text-sm ${
+                      className={`text-xs sm:text-sm mb-2 sm:mb-3 ${
                         isDarkMode ? "text-slate-400" : "text-slate-600"
                       }`}
                     >

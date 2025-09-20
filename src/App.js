@@ -775,33 +775,117 @@ const App = () => {
                               keywords
                             </ColoredText>
                             :{" "}
-                            <Collapsible bracketType="square" isOpen={false}>
+                            <Collapsible bracketType="curly" isOpen={false}>
                               <div className="ml-4">
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    Front-end Development
+                                    combined
                                   </ColoredText>
+                                  :{" "}
+                                  <Collapsible
+                                    bracketType="square"
+                                    isOpen={true}
+                                  >
+                                    <div className="ml-4">
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Front-end Development
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Education & Teaching
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Project Management
+                                      </ColoredText>
+                                    </div>
+                                  </Collapsible>
                                   ,
                                 </div>
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    Education & Teaching
+                                    developer
                                   </ColoredText>
+                                  :{" "}
+                                  <Collapsible
+                                    bracketType="square"
+                                    isOpen={true}
+                                  >
+                                    <div className="ml-4">
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Front-end Development
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Full-stack Development
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Technical Leadership
+                                      </ColoredText>
+                                    </div>
+                                  </Collapsible>
                                   ,
                                 </div>
                                 <div>
                                   <ColoredText
-                                    color="yellow"
+                                    color="blue"
                                     theme={getCurrentTheme()}
                                   >
-                                    Project Management
+                                    teacher
                                   </ColoredText>
+                                  :{" "}
+                                  <Collapsible
+                                    bracketType="square"
+                                    isOpen={true}
+                                  >
+                                    <div className="ml-4">
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Education & Teaching
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Student Mentoring
+                                      </ColoredText>
+                                      ,
+                                      <ColoredText
+                                        color="yellow"
+                                        theme={getCurrentTheme()}
+                                      >
+                                        Curriculum Development
+                                      </ColoredText>
+                                    </div>
+                                  </Collapsible>
                                 </div>
                               </div>
                             </Collapsible>
@@ -868,6 +952,7 @@ const App = () => {
                                   <ColoredText
                                     color="green"
                                     theme={getCurrentTheme()}
+                                    autoQuotes={false}
                                   >
                                     true
                                   </ColoredText>
@@ -884,6 +969,7 @@ const App = () => {
                                   <ColoredText
                                     color="green"
                                     theme={getCurrentTheme()}
+                                    autoQuotes={false}
                                   >
                                     true
                                   </ColoredText>
@@ -910,12 +996,19 @@ const App = () => {
                                           combined
                                         </ColoredText>
                                         :{" "}
-                                        <ColoredText
-                                          color="green"
-                                          theme={getCurrentTheme()}
+                                        <Collapsible
+                                          bracketType="square"
+                                          isOpen={true}
                                         >
-                                          all
-                                        </ColoredText>
+                                          <div className="ml-4">
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              *
+                                            </ColoredText>
+                                          </div>
+                                        </Collapsible>
                                         ,
                                       </div>
                                       <div>
@@ -926,13 +1019,26 @@ const App = () => {
                                           developer
                                         </ColoredText>
                                         :{" "}
-                                        <ColoredText
-                                          color="yellow"
-                                          theme={getCurrentTheme()}
+                                        <Collapsible
+                                          bracketType="square"
+                                          isOpen={false}
                                         >
-                                          "excludes: Curriculum Development,
-                                          Student Mentoring"
-                                        </ColoredText>
+                                          <div className="ml-4">
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Curriculum Development
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Student Mentoring
+                                            </ColoredText>
+                                          </div>
+                                        </Collapsible>
                                         ,
                                       </div>
                                       <div>
@@ -943,16 +1049,96 @@ const App = () => {
                                           teacher
                                         </ColoredText>
                                         :{" "}
-                                        <ColoredText
-                                          color="yellow"
-                                          theme={getCurrentTheme()}
+                                        <Collapsible
+                                          bracketType="square"
+                                          isOpen={false}
                                         >
-                                          "excludes: CraftCMS, Vue, Pinia, Rest
-                                          API's, GraphQL, Express, NodeJS,
-                                          Socket.IO, MongoDB, Client
-                                          Coordination, Team Leadership,
-                                          Cross-functional Collaboration"
-                                        </ColoredText>
+                                          <div className="ml-4">
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              CraftCMS
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Vue
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Pinia
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Rest API's
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              GraphQL
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Express
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              NodeJS
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Socket.IO
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              MongoDB
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Client Coordination
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Team Leadership
+                                            </ColoredText>
+                                            ,
+                                            <ColoredText
+                                              color="yellow"
+                                              theme={getCurrentTheme()}
+                                            >
+                                              Cross-functional Collaboration
+                                            </ColoredText>
+                                          </div>
+                                        </Collapsible>
                                       </div>
                                     </div>
                                   </Collapsible>
@@ -997,7 +1183,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={false}
+                        isOpen={true}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -1056,7 +1242,7 @@ const App = () => {
                         data
                       </ColoredText>
                       :{" "}
-                      <Collapsible bracketType="square" isOpen={false}>
+                      <Collapsible bracketType="square" isOpen={true}>
                         <div className="ml-4">
                           <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
@@ -1648,7 +1834,7 @@ const App = () => {
                       <Collapsible
                         bracketType="curly"
                         showComma={true}
-                        isOpen={false}
+                        isOpen={true}
                       >
                         <div className="ml-4">
                           <div className="flex items-center">
@@ -1707,7 +1893,7 @@ const App = () => {
                         data
                       </ColoredText>
                       :{" "}
-                      <Collapsible bracketType="square" isOpen={false}>
+                      <Collapsible bracketType="square" isOpen={true}>
                         <div className="ml-4">
                           <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
@@ -1786,6 +1972,7 @@ const App = () => {
                                 <ColoredText
                                   color="green"
                                   theme={getCurrentTheme()}
+                                  autoQuotes={false}
                                 >
                                   true
                                 </ColoredText>
@@ -1869,6 +2056,7 @@ const App = () => {
                                 <ColoredText
                                   color="green"
                                   theme={getCurrentTheme()}
+                                  autoQuotes={false}
                                 >
                                   true
                                 </ColoredText>
@@ -2045,7 +2233,7 @@ const App = () => {
                         data
                       </ColoredText>
                       :{" "}
-                      <Collapsible bracketType="square" isOpen={false}>
+                      <Collapsible bracketType="square" isOpen={true}>
                         <div className="ml-4">
                           <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
@@ -2061,7 +2249,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Portfolio Website
+                                  Ubiquiti Chat Frontend
                                 </ColoredText>
                                 ,
                               </div>
@@ -2077,7 +2265,8 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  React, Tailwind
+                                  React, TypeScript, Redux, Socket.IO, Sass,
+                                  Cypress
                                 </ColoredText>
                                 ,
                               </div>
@@ -2094,6 +2283,157 @@ const App = () => {
                                   theme={getCurrentTheme()}
                                 >
                                   Completed
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  githubUrl
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  https://github.com/yourigruiters/React-Chat-Frontend
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  name
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Ubiquiti Chat Backend
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  tech
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Express, TypeScript, Socket.IO, Winston,
+                                  Mocha, Chai
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  status
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Completed
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  githubUrl
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  https://github.com/yourigruiters/React-Chat-Backend
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  name
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Full Stack Hangouts
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  tech
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  React, Node.js, Express, MongoDB
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  status
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Completed
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  githubUrl
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  https://github.com/yourigruiters/Full-Stack-Hangouts
                                 </ColoredText>
                               </div>
                             </div>
@@ -2112,7 +2452,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  E-commerce App
+                                  JavaScript MMORPG
                                 </ColoredText>
                                 ,
                               </div>
@@ -2128,7 +2468,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  Node.js, MongoDB
+                                  JavaScript, HTML5, Canvas, WebSockets
                                 </ColoredText>
                                 ,
                               </div>
@@ -2144,7 +2484,23 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  In Progress
+                                  Discontinued
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  githubUrl
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  https://github.com/yourigruiters/JS-MMORPG
                                 </ColoredText>
                               </div>
                             </div>
@@ -2251,6 +2607,22 @@ const App = () => {
                                     theme={getCurrentTheme()}
                                   >
                                     https://nl.linkedin.com/in/yourigruiters
+                                  </ColoredText>
+                                  ,
+                                </div>
+                                <div>
+                                  <ColoredText
+                                    color="blue"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    instagram
+                                  </ColoredText>
+                                  :{" "}
+                                  <ColoredText
+                                    color="yellow"
+                                    theme={getCurrentTheme()}
+                                  >
+                                    https://www.instagram.com/youri.gruiters
                                   </ColoredText>
                                 </div>
                               </div>

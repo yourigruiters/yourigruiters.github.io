@@ -6,6 +6,7 @@ const ContactBlock = ({ settings }) => {
     phone: "0424513249",
     location: "Perth, Australia",
     linkedin: "https://nl.linkedin.com/in/yourigruiters",
+    instagram: "https://www.instagram.com/youri.gruiters",
   };
 
   return (
@@ -158,7 +159,9 @@ const ContactBlock = ({ settings }) => {
                     isDarkMode ? "bg-blue-700" : "bg-blue-600"
                   }`}
                 >
-                  <span className="text-white text-lg sm:text-xl">💼</span>
+                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-2">
+                    💼
+                  </span>
                 </div>
                 <div className="min-w-0 flex-1">
                   <p
@@ -177,6 +180,37 @@ const ContactBlock = ({ settings }) => {
                     }`}
                   >
                     Connect on LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <div
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    isDarkMode ? "bg-pink-600" : "bg-pink-500"
+                  }`}
+                >
+                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-2">
+                    📷
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p
+                    className={`text-xs sm:text-sm font-medium ${
+                      isDarkMode ? "text-slate-400" : "text-slate-600"
+                    }`}
+                  >
+                    Instagram
+                  </p>
+                  <a
+                    href={contactInfo.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-sm sm:text-base md:text-lg font-semibold hover:text-pink-400 transition-colors duration-300 break-all ${
+                      isDarkMode ? "text-white" : "text-slate-900"
+                    }`}
+                  >
+                    Follow on Instagram
                   </a>
                 </div>
               </div>

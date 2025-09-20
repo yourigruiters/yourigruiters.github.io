@@ -1,5 +1,15 @@
+import { useState } from "react";
+
 const EducationBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const toggleExpanded = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   const education = [
     {
@@ -26,12 +36,36 @@ const EducationBlock = ({ settings }) => {
         "Curriculum Development",
       ],
     },
+    {
+      degree: "Full Stack Development Bootcamp",
+      university: "Salt",
+      location: "Stockholm, Sweden",
+      duration: "2020",
+      achievements: [
+        "Full Stack Development",
+        "Modern Web Technologies",
+        "Agile Development",
+        "Industry Best Practices",
+      ],
+    },
+    {
+      degree: "IT & Management",
+      university: "ROC de Leijgraaf",
+      location: "Veghel, The Netherlands",
+      duration: "2010 – 2014",
+      achievements: [
+        "IT Fundamentals",
+        "Management Skills",
+        "Project Coordination",
+        "Business Analysis",
+      ],
+    },
   ];
 
   return (
     <div
       id="education"
-      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
@@ -63,24 +97,14 @@ const EducationBlock = ({ settings }) => {
                 isDarkMode
                   ? "bg-slate-800 border-slate-700"
                   : "bg-white border-slate-200"
-              } shadow-lg hover:shadow-xl transition-shadow duration-300`}
+              } shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group`}
+              onClick={() => toggleExpanded(index)}
             >
-              {/* Degree icon */}
-              <div
-                className={`absolute -top-3 sm:-top-4 left-6 sm:left-8 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center ${
-                  isDarkMode ? "bg-purple-500" : "bg-purple-500"
-                }`}
-              >
-                <span className="text-white font-bold text-xs sm:text-sm">
-                  🎓
-                </span>
-              </div>
-
-              <div className="pt-2 sm:pt-4">
-                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4 sm:mb-6">
+              <div className="w-full">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3 sm:mb-4">
                   <div className="flex-1">
                     <h3
-                      className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 ${
+                      className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-purple-400 transition-colors duration-300 ${
                         isDarkMode ? "text-white" : "text-slate-900"
                       }`}
                     >
@@ -101,60 +125,66 @@ const EducationBlock = ({ settings }) => {
                       📍 {edu.location}
                     </p>
                   </div>
-                  <div
-                    className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium mt-2 lg:mt-0 self-start ${
-                      isDarkMode
-                        ? "bg-slate-700 text-slate-300"
-                        : "bg-slate-100 text-slate-700"
-                    }`}
-                  >
-                    {edu.duration}
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium ${
+                        isDarkMode
+                          ? "bg-slate-700 text-slate-300"
+                          : "bg-slate-100 text-slate-700"
+                      }`}
+                    >
+                      {edu.duration}
+                    </div>
+                    <div
+                      className={`w-6 h-6 flex items-center justify-center transition-transform duration-300 ${
+                        expandedItems[index] ? "rotate-180" : "rotate-0"
+                      }`}
+                    >
+                      <svg
+                        className={`w-4 h-4 ${
+                          isDarkMode ? "text-slate-400" : "text-slate-600"
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {edu.achievements.map((achievement, achievementIndex) => (
-                    <span
-                      key={achievementIndex}
-                      className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
-                        isDarkMode
-                          ? "bg-purple-900 text-purple-300 border border-purple-700"
-                          : "bg-purple-100 text-purple-700 border border-purple-200"
-                      }`}
-                    >
-                      {achievement}
-                    </span>
-                  ))}
+                {/* Collapsible content */}
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    expandedItems[index]
+                      ? "max-h-96 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {edu.achievements.map((achievement, achievementIndex) => (
+                      <span
+                        key={achievementIndex}
+                        className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                          isDarkMode
+                            ? "bg-slate-700 text-slate-300"
+                            : "bg-slate-100 text-slate-700"
+                        }`}
+                      >
+                        {achievement}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Additional info */}
-        <div
-          className={`mt-8 sm:mt-12 p-4 sm:p-6 rounded-xl border text-center ${
-            isDarkMode
-              ? "bg-slate-800 border-slate-700"
-              : "bg-white border-slate-200"
-          } shadow-lg`}
-        >
-          <h3
-            className={`text-base sm:text-lg font-semibold mb-2 ${
-              isDarkMode ? "text-slate-200" : "text-slate-800"
-            }`}
-          >
-            Dual Degree Achievement
-          </h3>
-          <p
-            className={`text-xs sm:text-sm px-2 ${
-              isDarkMode ? "text-slate-400" : "text-slate-600"
-            }`}
-          >
-            Successfully completed two bachelor's degrees simultaneously,
-            demonstrating exceptional time management and dedication to both
-            technical excellence and educational expertise.
-          </p>
         </div>
       </div>
     </div>

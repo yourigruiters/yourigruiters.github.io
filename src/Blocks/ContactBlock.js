@@ -11,7 +11,7 @@ const ContactBlock = ({ settings }) => {
   return (
     <div
       id="contact"
-      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
@@ -193,9 +193,8 @@ const ContactBlock = ({ settings }) => {
                     isDarkMode ? "text-slate-300" : "text-slate-700"
                   }`}
                 >
-                  💡 <strong>Available for:</strong> Full-time positions,
-                  freelance projects, consulting opportunities, and technical
-                  mentorship.
+                  💡 <strong>Available for:</strong> casual positions on a
+                  'working holiday visa' in Australia.
                 </p>
               </div>
             </div>

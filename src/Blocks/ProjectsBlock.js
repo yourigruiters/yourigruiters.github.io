@@ -15,6 +15,7 @@ const ProjectsBlock = ({ settings }) => {
         "Performance Optimized",
       ],
       statusColor: "green",
+      githubUrl: "https://github.com/yourigruiters/portfolio",
     },
     {
       name: "E-commerce App",
@@ -29,6 +30,37 @@ const ProjectsBlock = ({ settings }) => {
         "Admin Dashboard",
       ],
       statusColor: "blue",
+      githubUrl: "https://github.com/yourigruiters/ecommerce-app",
+    },
+    {
+      name: "Task Management System",
+      tech: ["Vue.js", "Express", "PostgreSQL"],
+      status: "Completed",
+      description:
+        "A comprehensive task management application with real-time collaboration features, project tracking, and team management capabilities.",
+      features: [
+        "Real-time Updates",
+        "Team Collaboration",
+        "Project Tracking",
+        "File Sharing",
+      ],
+      statusColor: "green",
+      githubUrl: "https://github.com/yourigruiters/task-management",
+    },
+    {
+      name: "Learning Management Platform",
+      tech: ["React", "TypeScript", "Firebase"],
+      status: "In Progress",
+      description:
+        "Educational platform designed for online learning with video streaming, interactive quizzes, progress tracking, and student management features.",
+      features: [
+        "Video Streaming",
+        "Interactive Quizzes",
+        "Progress Tracking",
+        "Student Analytics",
+      ],
+      statusColor: "blue",
+      githubUrl: "https://github.com/yourigruiters/learning-platform",
     },
   ];
 
@@ -51,7 +83,7 @@ const ProjectsBlock = ({ settings }) => {
   return (
     <div
       id="projects"
-      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
@@ -77,17 +109,20 @@ const ProjectsBlock = ({ settings }) => {
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
-            <div
+            <a
               key={index}
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`relative p-4 sm:p-6 md:p-8 rounded-xl border ${
                 isDarkMode
                   ? "bg-slate-800 border-slate-700"
                   : "bg-white border-slate-200"
-              } shadow-lg hover:shadow-xl transition-shadow duration-300 group`}
+              } shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer block`}
             >
               {/* Project status badge */}
               <div
-                className={`absolute -top-2 sm:-top-3 right-4 sm:right-6 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium border ${getStatusStyles(
+                className={`absolute -top-2 sm:-top-3 right-4 sm:right-6 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium border z-10 ${getStatusStyles(
                   project.status,
                   project.statusColor
                 )}`}
@@ -160,42 +195,8 @@ const ProjectsBlock = ({ settings }) => {
                     : "group-hover:bg-blue-50/50"
                 }`}
               />
-            </div>
+            </a>
           ))}
-        </div>
-
-        {/* Call to action */}
-        <div
-          className={`mt-8 sm:mt-12 md:mt-16 p-4 sm:p-6 md:p-8 rounded-xl border text-center ${
-            isDarkMode
-              ? "bg-slate-800 border-slate-700"
-              : "bg-white border-slate-200"
-          } shadow-lg`}
-        >
-          <h3
-            className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 ${
-              isDarkMode ? "text-white" : "text-slate-900"
-            }`}
-          >
-            Interested in my work?
-          </h3>
-          <p
-            className={`text-sm sm:text-base md:text-lg mb-4 sm:mb-6 px-2 ${
-              isDarkMode ? "text-slate-400" : "text-slate-600"
-            }`}
-          >
-            I'm always excited to take on new challenges and create amazing
-            digital experiences.
-          </p>
-          <button
-            className={`px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
-              isDarkMode
-                ? "bg-blue-600 hover:bg-blue-700 text-white"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
-            } shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
-          >
-            Let's Work Together
-          </button>
         </div>
       </div>
     </div>

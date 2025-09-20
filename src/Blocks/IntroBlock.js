@@ -6,7 +6,7 @@ const IntroBlock = ({ settings }) => {
   return (
     <div
       id="intro"
-      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"

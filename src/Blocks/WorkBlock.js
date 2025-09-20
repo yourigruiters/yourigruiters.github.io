@@ -1,5 +1,15 @@
+import { useState } from "react";
+
 const WorkBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const toggleExpanded = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   const workExperience = [
     {
@@ -35,7 +45,51 @@ const WorkBlock = ({ settings }) => {
       company: "ROC Nijmegen",
       position: "Front-end Development Teacher",
       location: "Nijmegen, The Netherlands",
-      duration: "August 2021 – August 2022, August 2018 – February 2020",
+      duration: "August 2021 – August 2022",
+      description:
+        "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
+      highlights: [
+        "Teaching",
+        "Curriculum Development",
+        "Student Mentoring",
+        "Technical Training",
+      ],
+    },
+    {
+      company: "Ubiquiti",
+      position: "Front-end Developer",
+      location: "Stockholm, Sweden",
+      duration: "September 2020 – July 2021",
+      description:
+        "Contributed to development of UniFi Portal, UniFi Network, and internal component libraries. Utilized ReactJS and TypeScript in a large, collaborative development team.",
+      highlights: [
+        "ReactJS",
+        "TypeScript",
+        "Component Libraries",
+        "Cross-functional Teamwork",
+        "Scalable Solutions",
+      ],
+    },
+    {
+      company: "Ceed Learning",
+      position: "Web Developer & Multimedia Designer",
+      location: "Johannesburg, South Africa",
+      duration: "August 2018 – August 2019",
+      description:
+        "Designed, developed, and maintained Ceed Learning's website and e-learning platform. Worked part-time alongside teaching duties, balancing multiple responsibilities effectively.",
+      highlights: [
+        "Web Development",
+        "E-learning Platform",
+        "Multimedia Design",
+        "Part-time Work",
+        "Multi-tasking",
+      ],
+    },
+    {
+      company: "ROC Nijmegen",
+      position: "Front-end Development Teacher",
+      location: "Nijmegen, The Netherlands",
+      duration: "August 2018 – February 2020",
       description:
         "Delivered courses on HTML, CSS, JavaScript, ReactJS, and GIT. Served as mentor and internship supervisor for students.",
       highlights: [
@@ -50,7 +104,7 @@ const WorkBlock = ({ settings }) => {
   return (
     <div
       id="work"
-      className={`min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
@@ -82,22 +136,14 @@ const WorkBlock = ({ settings }) => {
                 isDarkMode
                   ? "bg-slate-800 border-slate-700"
                   : "bg-white border-slate-200"
-              } shadow-lg hover:shadow-xl transition-shadow duration-300`}
+              } shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group`}
+              onClick={() => toggleExpanded(index)}
             >
-              {/* Timeline indicator */}
-              <div
-                className={`absolute left-4 sm:left-6 top-6 sm:top-8 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 sm:border-4 ${
-                  isDarkMode
-                    ? "bg-blue-500 border-slate-800"
-                    : "bg-blue-500 border-white"
-                }`}
-              />
-
-              <div className="ml-8 sm:ml-12">
+              <div className="w-full">
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3 sm:mb-4">
                   <div className="flex-1">
                     <h3
-                      className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 ${
+                      className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors duration-300 ${
                         isDarkMode ? "text-white" : "text-slate-900"
                       }`}
                     >
@@ -118,38 +164,70 @@ const WorkBlock = ({ settings }) => {
                       📍 {job.location}
                     </p>
                   </div>
-                  <div
-                    className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium mt-2 lg:mt-0 self-start ${
-                      isDarkMode
-                        ? "bg-slate-700 text-slate-300"
-                        : "bg-slate-100 text-slate-700"
-                    }`}
-                  >
-                    {job.duration}
-                  </div>
-                </div>
-
-                <p
-                  className={`text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 ${
-                    isDarkMode ? "text-slate-300" : "text-slate-700"
-                  }`}
-                >
-                  {job.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {job.highlights.map((highlight, highlightIndex) => (
-                    <span
-                      key={highlightIndex}
-                      className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium ${
                         isDarkMode
                           ? "bg-slate-700 text-slate-300"
                           : "bg-slate-100 text-slate-700"
                       }`}
                     >
-                      {highlight}
-                    </span>
-                  ))}
+                      {job.duration}
+                    </div>
+                    <div
+                      className={`w-6 h-6 flex items-center justify-center transition-transform duration-300 ${
+                        expandedItems[index] ? "rotate-180" : "rotate-0"
+                      }`}
+                    >
+                      <svg
+                        className={`w-4 h-4 ${
+                          isDarkMode ? "text-slate-400" : "text-slate-600"
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Collapsible content */}
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    expandedItems[index]
+                      ? "max-h-96 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p
+                    className={`text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 ${
+                      isDarkMode ? "text-slate-300" : "text-slate-700"
+                    }`}
+                  >
+                    {job.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {job.highlights.map((highlight, highlightIndex) => (
+                      <span
+                        key={highlightIndex}
+                        className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                          isDarkMode
+                            ? "bg-slate-700 text-slate-300"
+                            : "bg-slate-100 text-slate-700"
+                        }`}
+                      >
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

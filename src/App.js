@@ -41,8 +41,8 @@ const App = () => {
   const [blockSettings, setBlockSettings] = useState({
     intro: { show: true },
     skills: { show: true },
-    work: { show: true, amount: 3 },
-    education: { show: true, amount: 2 },
+    work: { show: true, amount: 6 },
+    education: { show: true, amount: 4 },
     projects: { show: true, amount: 2 },
     contact: { show: true },
   });
@@ -229,8 +229,8 @@ const App = () => {
     const savedBlockSettings = loadFromLocalStorage("portfolioBlockSettings", {
       intro: { show: true },
       skills: { show: true },
-      work: { show: true, amount: 3 },
-      education: { show: true, amount: 2 },
+      work: { show: true, amount: 6 },
+      education: { show: true, amount: 4 },
       projects: { show: true, amount: 2 },
       contact: { show: true },
     });
@@ -1279,6 +1279,264 @@ const App = () => {
                               </div>
                             </div>
                           </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  ROC Nijmegen
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Front-end Development Teacher
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Nijmegen, The Netherlands
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  August 2021 – August 2022
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  description
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Delivered courses on HTML, CSS, JavaScript,
+                                  ReactJS, and GIT. Served as mentor and
+                                  internship supervisor for students.
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Ubiquiti
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Front-end Developer
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Stockholm, Sweden
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  September 2020 – July 2021
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  description
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Contributed to development of UniFi Portal,
+                                  UniFi Network, and internal component
+                                  libraries. Utilized ReactJS and TypeScript in
+                                  a large, collaborative development team.
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  company
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Ceed Learning
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  position
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Web Developer & Multimedia Designer
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Johannesburg, South Africa
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  August 2018 – August 2019
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  description
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Designed, developed, and maintained Ceed
+                                  Learning's website and e-learning platform.
+                                  Worked part-time alongside teaching duties,
+                                  balancing multiple responsibilities
+                                  effectively.
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
                           <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
@@ -1341,8 +1599,7 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
-                                  August 2021 – August 2022, August 2018 –
-                                  February 2020
+                                  August 2018 – February 2020
                                 </ColoredText>
                                 ,
                               </div>
@@ -1557,7 +1814,7 @@ const App = () => {
                               </div>
                             </div>
                           </Collapsible>
-                          <Collapsible bracketType="curly">
+                          <Collapsible bracketType="curly" showComma={true}>
                             <div className="ml-4">
                               <div>
                                 <ColoredText
@@ -1620,6 +1877,140 @@ const App = () => {
                                   theme={getCurrentTheme()}
                                 >
                                   2015 – 2018
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  degree
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Full Stack Development Bootcamp
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  "university"
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Salt
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Stockholm, Sweden
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  2020
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly">
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  degree
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  IT & Management
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  "university"
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  ROC de Leijgraaf
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  location
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Veghel, The Netherlands
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  duration
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  2010 – 2014
                                 </ColoredText>
                               </div>
                             </div>

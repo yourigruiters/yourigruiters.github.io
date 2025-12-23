@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const PageHeader = ({ title, imageUrl }) => {
+const PageHeader = ({ title, imageUrl, number }) => {
   const navigate = useNavigate();
 
   return (
@@ -10,7 +10,7 @@ const PageHeader = ({ title, imageUrl }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       <button
         onClick={() => navigate(-1)}
-        className="absolute top-4 left-4 bg-white/20 backdrop-blur-md p-2 rounded-full shadow-sm text-white hover:bg-white/30 transition-colors border border-white/30"
+        className="absolute top-4 left-4 bg-white/20 backdrop-blur-md p-2 rounded-full shadow-sm text-white hover:bg-white/30 transition-colors border border-white/30 z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +27,11 @@ const PageHeader = ({ title, imageUrl }) => {
           />
         </svg>
       </button>
+      {number && (
+        <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white font-serif font-bold text-xl px-4 py-1.5 rounded-full shadow-sm border border-white/30">
+          {number}
+        </div>
+      )}
       <div className="absolute bottom-4 left-4 right-4">
         <h1 className="text-3xl font-bold text-white shadow-sm">{title}</h1>
       </div>

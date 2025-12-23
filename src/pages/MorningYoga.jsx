@@ -10,7 +10,7 @@ import sunriseImage from "../assets/images/sunrise.png";
 const MorningYoga = () => {
   return (
     <div className="bg-white min-h-screen pb-10">
-      <PageHeader title="Morning Yoga" imageUrl={sunriseImage} />
+      <PageHeader title="Morning Yoga" imageUrl={sunriseImage} number="01" />
 
       <div className="mt-6">
         <SectionText>
@@ -58,6 +58,7 @@ const MorningYoga = () => {
           title="Meditation"
           description="Clear your mind after your practice."
           imageUrl={sunriseImage}
+          number="03"
         />
 
         <LinkCard
@@ -65,6 +66,7 @@ const MorningYoga = () => {
           title="Healthy Breakfast"
           description="Fuel your body right."
           imageUrl={sunriseImage}
+          number="02"
         />
 
         <BottomBackBtn />

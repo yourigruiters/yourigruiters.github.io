@@ -7,7 +7,7 @@ const BottomBackBtn = () => {
   return (
     <div className="w-full flex justify-center mt-8 mb-4">
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")}
         className="flex items-center gap-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors font-medium shadow-sm"
       >
         <svg

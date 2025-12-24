@@ -4,6 +4,8 @@ import SectionText from "../components/content/SectionText";
 import SectionQuote from "../components/content/SectionQuote";
 import BottomBackBtn from "../components/content/BottomBackBtn";
 import img10 from "../assets/images/10.JPG";
+import img10a from "../assets/images/10a.JPG";
+import SectionImage from "../components/content/SectionImage";
 
 const Story10 = () => {
   return (
@@ -41,6 +43,10 @@ const Story10 = () => {
             You’re beautiful. And one more thing, you’re not afraid to speak up
             to me when I seem to do something negative.
           </p>
+        </SectionText>
+
+        <SectionImage src={img10a} alt="Christmas gift example" />
+        <SectionText>
           <p>
             I could’ve said many more things above, but I wanted to end on the
             last one also.. We’ve already spoken about this a bit more often
@@ -58,7 +64,6 @@ const Story10 = () => {
             according to myself, been this way since chatting to you in July..
           </p>
         </SectionText>
-
         <SectionQuote quote="I appreciate you, and you’re worth every bit of my time and effort! Thank you for always being there for me." />
 
         <div className="mt-8"></div>

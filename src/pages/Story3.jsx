@@ -4,8 +4,10 @@ import SectionText from "../components/content/SectionText";
 import SectionQuote from "../components/content/SectionQuote";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
+import img3a from "../assets/images/3a.JPG";
 import img3 from "../assets/images/3.JPG";
 import img4 from "../assets/images/4.JPG";
+import SectionImage from "../components/content/SectionImage";
 
 const Story3 = () => {
   return (
@@ -23,6 +25,11 @@ const Story3 = () => {
             provide you with the exact same words, unfortunately. If only that
             was recorded in the moment so we could replay it at our wedding..
           </p>
+        </SectionText>
+
+        <SectionImage src={img3a} alt="Christmas gift example" />
+
+        <SectionText>
           <p>
             From my point of view, as I’ll never forget these images until my
             brain starts to disfunction, there’s two initial moments that I can

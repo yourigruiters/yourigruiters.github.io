@@ -11,11 +11,14 @@ import Story8 from "./pages/Story8";
 import Story9 from "./pages/Story9";
 import Story10 from "./pages/Story10";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
     <div className="min-h-screen w-full bg-gray-900 flex justify-center font-sans antialiased">
       <div className="w-full max-w-[500px] bg-gray-50 min-h-[calc(100svh-2rem)] my-4 relative shadow-2xl border border-gray-200 ring-8 ring-gray-800">
         <HashRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/1" element={<Story1 />} />

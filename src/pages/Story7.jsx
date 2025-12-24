@@ -4,8 +4,8 @@ import SectionText from "../components/content/SectionText";
 import SectionList from "../components/content/SectionList";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img7 from "../assets/images/7.png";
-import img8 from "../assets/images/8.png";
+import img7 from "../assets/images/7.JPG";
+import img8 from "../assets/images/8.JPG";
 
 const Story7 = () => {
   return (
@@ -41,10 +41,68 @@ const Story7 = () => {
           </p>
         </SectionText>
 
+        <SectionText>
+          <p className="font-bold text-lg text-gray-800 mt-4 mb-2">Bali</p>
+        </SectionText>
         <SectionList
           items={[
-            "PER COUNTRY LIST OF ACTIVITIES",
-            "(Update this list in code)",
+            "Fire and light temple show",
+            "Monkey temple",
+            "Cooking class",
+            "Rice fields trip",
+            "Jungle hike",
+            "Mount Batur trekking",
+            "Hotsprings",
+            "Viewpoint pictures",
+            "Mini golf",
+          ]}
+        />
+
+        <SectionText>
+          <p className="font-bold text-lg text-gray-800 mt-4 mb-2">Singapore</p>
+        </SectionText>
+        <SectionList
+          items={[
+            "Botanical gardens",
+            "Gardens by the bay",
+            "Supertree walks",
+            "Supertree show",
+            "Marina Bay",
+            "Bay water shows",
+            "Oceanarium",
+            "Cable car",
+            "Country based food trips",
+          ]}
+        />
+
+        <SectionText>
+          <p className="font-bold text-lg text-gray-800 mt-4 mb-2">Vietnam</p>
+        </SectionText>
+        <SectionList
+          items={[
+            "Party street",
+            "Cafe apartments",
+            "Vietnam War Museum",
+            "Fish cafe",
+            "Vietnam tunnels",
+            "Hanoi train street",
+            "Grand World",
+            "WATER PUPPET SHOW!",
+            "Ha Giang Loop",
+            "Hat making tour",
+          ]}
+        />
+
+        <SectionText>
+          <p className="font-bold text-lg text-gray-800 mt-4 mb-2">Thailand</p>
+        </SectionText>
+        <SectionList
+          items={[
+            "Grand Palace",
+            "Muay Thai",
+            "Floating Market",
+            "Train trip",
+            "Animal cafe",
           ]}
         />
 

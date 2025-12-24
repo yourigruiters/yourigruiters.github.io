@@ -1,17 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import OptionCard from "../components/OptionCard";
-import img1 from "../assets/images/1.png";
-import img2 from "../assets/images/2.png";
-import img3 from "../assets/images/3.png";
-import img4 from "../assets/images/4.png";
-import img5 from "../assets/images/5.png";
-import img6 from "../assets/images/6.png";
-import img7 from "../assets/images/7.png";
-import img8 from "../assets/images/8.png";
-import img9 from "../assets/images/9.png";
-import img10 from "../assets/images/10.png";
-import img11 from "../assets/images/11.png";
+import img1 from "../assets/images/1.JPG";
+import img2 from "../assets/images/2.JPG";
+import img3 from "../assets/images/3.JPG";
+import img4 from "../assets/images/4.JPG";
+import img5 from "../assets/images/5.JPG";
+import img6 from "../assets/images/6.JPG";
+import img7 from "../assets/images/7.JPG";
+import img8 from "../assets/images/8.JPG";
+import img9 from "../assets/images/9.JPG";
+import img10 from "../assets/images/10.JPG";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -90,28 +89,19 @@ const Home = () => {
     },
     {
       id: "story-9",
-      title: "Activities done together",
-      description:
-        "Just a list of the 3 thing we’ve done together so far, it’s nothing.",
+      title: "Uncertainty of the future",
+      description: "…",
       imageUrl: img9,
       path: "/9",
       number: "09",
     },
     {
       id: "story-10",
-      title: "Uncertainty of the future",
-      description: "…",
+      title: "You",
+      description: "My favourite.",
       imageUrl: img10,
       path: "/10",
       number: "10",
-    },
-    {
-      id: "story-11",
-      title: "You",
-      description: "My favourite.",
-      imageUrl: img11,
-      path: "/11",
-      number: "11",
     },
   ];
 

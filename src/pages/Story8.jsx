@@ -3,8 +3,8 @@ import PageHeader from "../components/content/PageHeader";
 import SectionText from "../components/content/SectionText";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img8 from "../assets/images/8.png";
-import img9 from "../assets/images/9.png";
+import img8 from "../assets/images/8.JPG";
+import img9 from "../assets/images/9.JPG";
 
 const Story8 = () => {
   return (
@@ -53,8 +53,8 @@ const Story8 = () => {
 
         <LinkCard
           to="/9"
-          title="Activities done together"
-          description="Just a list of the 3 thing we’ve done together so far, it’s nothing."
+          title="Uncertainty of the future"
+          description="…"
           imageUrl={img9}
           number="09"
         />

@@ -10,7 +10,6 @@ import Story7 from "./pages/Story7";
 import Story8 from "./pages/Story8";
 import Story9 from "./pages/Story9";
 import Story10 from "./pages/Story10";
-import Story11 from "./pages/Story11";
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
             <Route path="/8" element={<Story8 />} />
             <Route path="/9" element={<Story9 />} />
             <Route path="/10" element={<Story10 />} />
-            <Route path="/11" element={<Story11 />} />
           </Routes>
         </HashRouter>
       </div>

@@ -9,7 +9,7 @@ const PageHeader = ({ title, imageUrl, number }) => {
       <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")}
         className="absolute top-4 left-4 bg-white/20 backdrop-blur-md p-2 rounded-full shadow-sm text-white hover:bg-white/30 transition-colors border border-white/30 z-10"
       >
         <svg

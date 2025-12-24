@@ -3,8 +3,8 @@ import PageHeader from "../components/content/PageHeader";
 import SectionText from "../components/content/SectionText";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img1 from "../assets/images/1.png";
-import img2 from "../assets/images/2.png";
+import img1 from "../assets/images/1.JPG";
+import img2 from "../assets/images/2.JPG";
 
 const Story1 = () => {
   return (

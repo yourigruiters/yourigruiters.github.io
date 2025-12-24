@@ -4,8 +4,8 @@ import SectionText from "../components/content/SectionText";
 import SectionQuote from "../components/content/SectionQuote";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img6 from "../assets/images/6.png";
-import img7 from "../assets/images/7.png";
+import img6 from "../assets/images/6.JPG";
+import img7 from "../assets/images/7.JPG";
 
 const Story6 = () => {
   return (

@@ -6,7 +6,7 @@ const OptionCard = ({ title, description, imageUrl, onClick, number }) => {
       onClick={onClick}
       className="w-full bg-white rounded-xl shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300 mb-4 border border-gray-100 relative group"
     >
-      <div className="h-48 w-full overflow-hidden relative">
+      <div className="h-96 w-full overflow-hidden relative">
         <img
           src={imageUrl}
           alt={title}

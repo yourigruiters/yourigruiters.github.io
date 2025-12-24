@@ -4,8 +4,8 @@ import SectionText from "../components/content/SectionText";
 import SectionList from "../components/content/SectionList";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img5 from "../assets/images/5.png";
-import img6 from "../assets/images/6.png";
+import img5 from "../assets/images/5.JPG";
+import img6 from "../assets/images/6.JPG";
 
 const Story5 = () => {
   return (
@@ -34,7 +34,21 @@ const Story5 = () => {
         </SectionText>
 
         <SectionList
-          items={["LIST OF HIGHLIGHTS", "(Update this list in code)"]}
+          items={[
+            "Garden walks",
+            "Beach days",
+            "Nepalese food",
+            "Fremantle prison",
+            "Fremantle markets",
+            "Scarborough visit",
+            "Museum visit",
+            "Library days",
+            "Monopoly deal",
+            "Movie nights",
+            "Soccer match",
+            "Rescuing Twiggy",
+            "Rottnest Island",
+          ]}
         />
 
         <SectionText>

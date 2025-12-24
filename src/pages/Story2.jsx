@@ -4,8 +4,8 @@ import SectionText from "../components/content/SectionText";
 import SectionList from "../components/content/SectionList";
 import LinkCard from "../components/content/LinkCard";
 import BottomBackBtn from "../components/content/BottomBackBtn";
-import img2 from "../assets/images/2.png";
-import img3 from "../assets/images/3.png";
+import img2 from "../assets/images/2.JPG";
+import img3 from "../assets/images/3.JPG";
 
 const Story2 = () => {
   return (

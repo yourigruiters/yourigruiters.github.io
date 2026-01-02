@@ -109,7 +109,7 @@ const App = () => {
     intro: { show: true },
     skills: { show: true },
     work: { show: true, showOnlyFullTime: true },
-    education: { show: true, showOnlyUniversityDegrees: true },
+    education: { show: true, showOnlyUniversityDegrees: false },
     projects: { show: true, amount: 2 },
     contact: { show: true },
   });
@@ -297,7 +297,7 @@ const App = () => {
       intro: { show: true },
       skills: { show: true },
       work: { show: true, showOnlyFullTime: true },
-      education: { show: true, showOnlyUniversityDegrees: true },
+      education: { show: true, showOnlyUniversityDegrees: false },
       projects: { show: true, amount: 2 },
       contact: { show: true },
     });

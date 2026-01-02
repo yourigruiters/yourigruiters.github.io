@@ -1,7 +1,8 @@
 const EducationBlock = ({ settings, blockSettings }) => {
   const isDarkMode = settings?.darkmode ?? true;
+  const variant = settings?.variant || "Combined";
   const showOnlyUniversityDegrees =
-    blockSettings?.education?.showOnlyUniversityDegrees ?? true;
+    blockSettings?.education?.showOnlyUniversityDegrees ?? false;
 
   const education = [
     {
@@ -9,12 +10,14 @@ const EducationBlock = ({ settings, blockSettings }) => {
       university: "Salt",
       location: "Stockholm, Sweden",
       duration: "2020",
+      type: "developer",
     },
     {
       degree: "Bachelor of IT & Education",
       university: "Fontys University of Applied Sciences",
       location: "Eindhoven, The Netherlands",
       duration: "2015 – 2018",
+      type: "teacher",
       cumLaude: true,
     },
     {
@@ -22,6 +25,7 @@ const EducationBlock = ({ settings, blockSettings }) => {
       university: "Fontys University of Applied Sciences",
       location: "Eindhoven, The Netherlands",
       duration: "2014 – 2018",
+      type: "developer",
       cumLaude: true,
     },
     {
@@ -29,24 +33,40 @@ const EducationBlock = ({ settings, blockSettings }) => {
       university: "ROC de Leijgraaf",
       location: "Veghel, The Netherlands",
       duration: "2010 – 2014",
+      type: "developer",
     },
   ];
 
-  // Filter education based on showOnlyUniversityDegrees prop
-  const filteredEducation = showOnlyUniversityDegrees
-    ? education.filter((edu) => edu.degree.toLowerCase().includes("bachelor"))
-    : education;
+  // Filter education based on showOnlyUniversityDegrees prop and variant
+  const filteredEducation = education.filter((edu) => {
+    // First apply the university degree filter if active
+    if (
+      showOnlyUniversityDegrees &&
+      !edu.degree.toLowerCase().includes("bachelor")
+    ) {
+      return false;
+    }
+
+    // Then apply the variant filter
+    if (variant === "Teacher") {
+      return edu.type === "teacher";
+    } else if (variant === "Developer") {
+      return edu.type === "developer";
+    }
+    // "Combined" or any other value shows everything
+    return true;
+  });
 
   return (
     <div
       id="education"
-      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`items-center min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 md:flex ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
       }`}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2
             className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 ${

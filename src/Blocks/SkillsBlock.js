@@ -70,13 +70,13 @@ const SkillsBlock = ({ settings }) => {
   return (
     <div
       id="skills"
-      className={`min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 ${
+      className={`items-center min-h-screen py-12 sm:py-12 md:py-16 px-4 sm:px-6 md:flex ${
         isDarkMode
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-50 via-white to-slate-100"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2
             className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 ${

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import profileImage from "../media/personal.jpg";
 
 const IntroBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
@@ -133,6 +133,20 @@ const IntroBlock = ({ settings }) => {
           >
             {content.subtitle}
           </h2>
+
+          <div className="mb-8 flex justify-center">
+            <div
+              className={`relative w-32 h-32 sm:w-48 sm:h-48 rounded-full overflow-hidden border-2 shadow-xl ${
+                isDarkMode ? "border-slate-400" : "border-slate-600"
+              }`}
+            >
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
 
           <div
             className={`max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-2 ${

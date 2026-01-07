@@ -3,6 +3,31 @@ const ProjectsBlock = ({ settings }) => {
 
   const projects = [
     {
+      name: "Aurelion",
+      tech: [
+        "React",
+        "Vite",
+        "TypeScript",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "React Router",
+      ],
+      status: "Playable",
+      description:
+        "A simplified city-builder and management game built with React, Redux, and TypeScript. Manage resources, construct buildings, and grow your settlement in a dangerous world. The game architecture has been refined to allow for seamless extension.",
+      features: [
+        "Resource Management",
+        "City Building",
+        "Population Management",
+        "Dynamic Events",
+        "Daily Activities",
+        "Military Research",
+        "Level Scaling",
+      ],
+      statusColor: "blue",
+      githubUrl: "https://github.com/yourigruiters/Aurelion",
+    },
+    {
       name: "Ubiquiti Chat Frontend",
       tech: ["React", "TypeScript", "Redux", "Socket.IO", "Sass", "Cypress"],
       status: "Completed",

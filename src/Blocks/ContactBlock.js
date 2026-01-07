@@ -4,9 +4,10 @@ const ContactBlock = ({ settings }) => {
   const contactInfo = {
     email: "youriroc@gmail.com",
     phone: "0424513249",
-    location: "Perth, Australia",
+    location: "Sydney, Australia",
     linkedin: "https://nl.linkedin.com/in/yourigruiters",
     instagram: "https://www.instagram.com/youri.gruiters",
+    github: "https://github.com/yourigruiters",
   };
 
   return (
@@ -215,21 +216,35 @@ const ContactBlock = ({ settings }) => {
                 </div>
               </div>
 
-              <div
-                className={`p-3 sm:p-4 rounded-lg border ${
-                  isDarkMode
-                    ? "bg-slate-700 border-slate-600"
-                    : "bg-slate-50 border-slate-300"
-                }`}
-              >
-                <p
-                  className={`text-xs sm:text-sm ${
-                    isDarkMode ? "text-slate-300" : "text-slate-700"
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <div
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    isDarkMode ? "bg-gray-700" : "bg-gray-600"
                   }`}
                 >
-                  💡 <strong>Available for:</strong> casual positions on a
-                  'working holiday visa' in Australia.
-                </p>
+                  <span className="text-white text-lg sm:text-xl flex items-center justify-center pb-0 md:pb-2">
+                    💻
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p
+                    className={`text-xs sm:text-sm font-medium ${
+                      isDarkMode ? "text-slate-400" : "text-slate-600"
+                    }`}
+                  >
+                    GitHub
+                  </p>
+                  <a
+                    href={contactInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-sm sm:text-base md:text-lg font-semibold hover:text-gray-400 transition-colors duration-300 break-all ${
+                      isDarkMode ? "text-white" : "text-slate-900"
+                    }`}
+                  >
+                    Follow on GitHub
+                  </a>
+                </div>
               </div>
             </div>
           </div>

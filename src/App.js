@@ -2577,7 +2577,7 @@ const App = () => {
                               color="yellow"
                               theme={getCurrentTheme()}
                             >
-                              Perth, Australia
+                              Sydney, Australia
                             </ColoredText>
                             ,
                           </div>

@@ -25,7 +25,7 @@ const ProjectsBlock = ({ settings }) => {
         "Level Scaling",
       ],
       statusColor: "blue",
-      githubUrl: "https://github.com/yourigruiters/Aurelion",
+      githubUrl: "https://aurelion.yourigruiters.com",
     },
     {
       name: "Ubiquiti Chat Frontend",

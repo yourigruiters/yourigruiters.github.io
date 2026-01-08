@@ -2564,7 +2564,7 @@ const App = () => {
                               color="yellow"
                               theme={getCurrentTheme()}
                             >
-                              0424513249
+                              +61424513249
                             </ColoredText>
                             ,
                           </div>

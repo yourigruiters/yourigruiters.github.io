@@ -12,7 +12,7 @@ const ProjectsBlock = ({ settings }) => {
         "Tailwind CSS",
         "React Router",
       ],
-      status: "Playable",
+      status: "Playable on bigger screens",
       description:
         "A simplified city-builder and management game built with React, Redux, and TypeScript. Manage resources, construct buildings, and grow your settlement in a dangerous world. The game architecture has been refined to allow for seamless extension.",
       features: [

@@ -12,7 +12,7 @@ const ProjectsBlock = ({ settings }) => {
         "Tailwind CSS",
         "React Router",
       ],
-      status: "Playable on bigger screens",
+      status: "Online | Desktop screens",
       description:
         "A simplified city-builder and management game built with React, Redux, and TypeScript. Manage resources, construct buildings, and grow your settlement in a dangerous world. The game architecture has been refined to allow for seamless extension.",
       features: [
@@ -28,45 +28,33 @@ const ProjectsBlock = ({ settings }) => {
       githubUrl: "https://aurelion.yourigruiters.com",
     },
     {
-      name: "Ubiquiti Chat Frontend",
-      tech: ["React", "TypeScript", "Redux", "Socket.IO", "Sass", "Cypress"],
-      status: "Completed",
-      description:
-        "Frontend for real-time chat application created for Ubiquiti coding challenge. Built with custom React setup, TypeScript, and Redux for state management with comprehensive testing suite.",
-      features: [
-        "Real-time Messaging UI",
-        "TypeScript Implementation",
-        "Redux State Management",
-        "Custom Webpack Config",
-        "E2E Testing with Cypress",
-        "Mobile Responsive Design",
-        "Sass Styling with BEM",
+      name: "React Firebase Chat App",
+      tech: [
+        "React",
+        "TypeScript",
+        "Firebase",
+        "Tailwind CSS",
+        "Vite",
+        "React Router",
       ],
-      statusColor: "green",
-      githubUrl: "https://github.com/yourigruiters/React-Chat-Frontend",
-    },
-    {
-      name: "Ubiquiti Chat Backend",
-      tech: ["Express", "TypeScript", "Socket.IO", "Winston", "Mocha", "Chai"],
-      status: "Completed",
+      status: "Online",
       description:
-        "Backend server for real-time chat application created for Ubiquiti coding challenge. Features WebSocket communication, logging, and comprehensive unit testing with proper signal handling.",
+        "A modern, real-time chat application built with React, TypeScript, and Firebase. This application features secure user authentication, real-time messaging, and support for both public and private (password-protected) chat rooms.",
       features: [
-        "WebSocket Communication",
-        "TypeScript Server Implementation",
-        "Winston Logging System",
-        "Unit Testing with Mocha/Chai",
-        "SIGINT/SIGTERM Signal Handling",
-        "CORS Configuration",
-        "Heroku Deployment Ready",
+        "Google Authentication",
+        "Real-time Messaging",
+        "Password-protected Rooms",
+        "Search & Discovery",
+        "Admin Privileges",
+        "Responsive Design",
       ],
-      statusColor: "green",
-      githubUrl: "https://github.com/yourigruiters/React-Chat-Backend",
+      statusColor: "blue",
+      githubUrl: "https://chat.yourigruiters.com",
     },
     {
       name: "Full Stack Hangouts",
       tech: ["React", "Node.js", "Express", "MongoDB"],
-      status: "Completed",
+      status: "Github",
       description:
         "A comprehensive social platform for organizing and managing events and hangouts. Built with modern web technologies and featuring user authentication and event management.",
       features: [
@@ -79,23 +67,6 @@ const ProjectsBlock = ({ settings }) => {
       ],
       statusColor: "green",
       githubUrl: "https://github.com/yourigruiters/Full-Stack-Hangouts",
-    },
-    {
-      name: "JavaScript MMORPG",
-      tech: ["JavaScript", "HTML5", "Canvas", "WebSockets"],
-      status: "Discontinued",
-      description:
-        "A browser-based multiplayer online role-playing game built with vanilla JavaScript and HTML5 Canvas. Features real-time multiplayer gameplay, character progression, and interactive game mechanics.",
-      features: [
-        "Real-time Multiplayer",
-        "Character Progression",
-        "Interactive Gameplay",
-        "Canvas Rendering",
-        "WebSocket Communication",
-        "Game State Management",
-      ],
-      statusColor: "yellow",
-      githubUrl: "https://github.com/yourigruiters/JS-MMORPG",
     },
   ];
 

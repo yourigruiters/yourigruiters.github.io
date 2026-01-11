@@ -149,7 +149,7 @@ const ProjectsBlock = ({ settings }) => {
                   isDarkMode ? "text-amber-200" : "text-amber-800"
                 }`}
               >
-                Work Agreement Notice
+                Work Agreement Notice and personal projects
               </h3>
               <p
                 className={`text-xs sm:text-sm leading-relaxed ${
@@ -159,7 +159,10 @@ const ProjectsBlock = ({ settings }) => {
                 Due to work agreements and confidentiality requirements, I
                 cannot showcase work-related projects. The projects displayed
                 here are personal sample projects and older portfolio pieces
-                available on my GitHub profile.
+                available on my GitHub profile. These range from smaller
+                prototypes to larger applications, specifically created to
+                showcase my understanding of different development languages and
+                concepts.
               </p>
             </div>
           </div>

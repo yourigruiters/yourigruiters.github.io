@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import project1img from "../media/project1.png";
 import project2img from "../media/project2.png";
 import project3img from "../media/project3.png";
@@ -286,8 +287,8 @@ const ProjectsBlock = ({ settings }) => {
       </div>
 
       {/* Modal View */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+      {selectedProject && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity cursor-pointer"
@@ -501,7 +502,8 @@ const ProjectsBlock = ({ settings }) => {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

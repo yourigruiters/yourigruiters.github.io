@@ -1,14 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.14c4f64f.css",
-    "main.js": "/static/js/main.6550a8cc.js",
-    "static/media/personal.jpg": "/static/media/personal.f249e38f240c687338ca.jpg",
+    "main.css": "/static/css/main.ab05d848.css",
+    "main.js": "/static/js/main.40e711b9.js",
+    "static/media/project1.png": "/static/media/project1.6f1141be0f1fd7132838.png",
+    "static/media/project3.png": "/static/media/project3.693688b01ad04170638a.png",
+    "static/media/persona3.jpeg": "/static/media/persona3.c317f60aa219f87a0844.jpeg",
+    "static/media/project2.png": "/static/media/project2.e748fe82adaea2f7e750.png",
+    "static/media/persona2.jpeg": "/static/media/persona2.32d635f5578b6bf3c142.jpeg",
+    "static/media/persona1.jpeg": "/static/media/persona1.24ec56bb0c678de24ece.jpeg",
+    "static/media/ubiquiti.png": "/static/media/ubiquiti.fcc55655233e08465057.png",
+    "static/media/happyhorizon.webp": "/static/media/happyhorizon.3d380f92b37b70ab65d2.webp",
     "index.html": "/index.html",
-    "main.14c4f64f.css.map": "/static/css/main.14c4f64f.css.map",
-    "main.6550a8cc.js.map": "/static/js/main.6550a8cc.js.map"
+    "main.ab05d848.css.map": "/static/css/main.ab05d848.css.map",
+    "main.40e711b9.js.map": "/static/js/main.40e711b9.js.map"
   },
   "entrypoints": [
-    "static/css/main.14c4f64f.css",
-    "static/js/main.6550a8cc.js"
+    "static/css/main.ab05d848.css",
+    "static/js/main.40e711b9.js"
   ]
 }

@@ -200,97 +200,97 @@ const WorkBlock = ({ settings, blockSettings }) => {
                     />
                   </div>
                 )}
-                
+
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3 sm:mb-4">
                     <div className="flex-1">
-                    <h3
-                      className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors duration-300 ${
-                        isDarkMode ? "text-white" : "text-slate-900"
-                      }`}
-                    >
-                      {job.position}
-                    </h3>
-                    <h4
-                      className={`text-base sm:text-lg md:text-xl font-semibold mb-1 ${
-                        isDarkMode ? "text-blue-400" : "text-blue-600"
-                      }`}
-                    >
-                      {job.company}
-                    </h4>
-                    <p
-                      className={`text-xs sm:text-sm mb-2 sm:mb-3 ${
-                        isDarkMode ? "text-slate-400" : "text-slate-600"
-                      }`}
-                    >
-                      📍 {job.location}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium ${
-                        isDarkMode
-                          ? "bg-slate-700 text-slate-300"
-                          : "bg-slate-100 text-slate-700"
-                      }`}
-                    >
-                      {job.duration}
-                    </div>
-                    <div
-                      className={`w-6 h-6 flex items-center justify-center transition-transform duration-300 ${
-                        expandedItems[index] ? "rotate-180" : "rotate-0"
-                      }`}
-                    >
-                      <svg
-                        className={`w-4 h-4 ${
+                      <h3
+                        className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors duration-300 ${
+                          isDarkMode ? "text-white" : "text-slate-900"
+                        }`}
+                      >
+                        {job.position}
+                      </h3>
+                      <h4
+                        className={`text-base sm:text-lg md:text-xl font-semibold mb-1 ${
+                          isDarkMode ? "text-blue-400" : "text-blue-600"
+                        }`}
+                      >
+                        {job.company}
+                      </h4>
+                      <p
+                        className={`text-xs sm:text-sm mb-2 sm:mb-3 ${
                           isDarkMode ? "text-slate-400" : "text-slate-600"
                         }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
+                        📍 {job.location}
+                      </p>
                     </div>
-                  </div>
-                </div>
-
-                {/* Collapsible content */}
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    expandedItems[index]
-                      ? "max-h-96 opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <p
-                    className={`text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 ${
-                      isDarkMode ? "text-slate-300" : "text-slate-700"
-                    }`}
-                  >
-                    {job.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {job.highlights.map((highlight, highlightIndex) => (
-                      <span
-                        key={highlightIndex}
-                        className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium ${
                           isDarkMode
                             ? "bg-slate-700 text-slate-300"
                             : "bg-slate-100 text-slate-700"
                         }`}
                       >
-                        {highlight}
-                      </span>
-                    ))}
+                        {job.duration}
+                      </div>
+                      <div
+                        className={`w-6 h-6 flex items-center justify-center transition-transform duration-300 ${
+                          expandedItems[index] ? "rotate-180" : "rotate-0"
+                        }`}
+                      >
+                        <svg
+                          className={`w-4 h-4 ${
+                            isDarkMode ? "text-slate-400" : "text-slate-600"
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                </div>
+
+                  {/* Collapsible content */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      expandedItems[index]
+                        ? "max-h-96 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <p
+                      className={`text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 ${
+                        isDarkMode ? "text-slate-300" : "text-slate-700"
+                      }`}
+                    >
+                      {job.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
+                      {job.highlights.map((highlight, highlightIndex) => (
+                        <span
+                          key={highlightIndex}
+                          className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                            isDarkMode
+                              ? "bg-slate-700 text-slate-300"
+                              : "bg-slate-100 text-slate-700"
+                          }`}
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

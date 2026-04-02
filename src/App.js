@@ -28,73 +28,6 @@ const loadFromLocalStorage = (key, defaultValue = null) => {
   }
 };
 
-// Function to filter technologies based on variant
-const getFilteredTechnologies = (variant) => {
-  const allTechnologies = [
-    "HTML",
-    "CSS",
-    "Javascript",
-    "Typescript",
-    "CraftCMS",
-    "React",
-    "Redux",
-    "Vue",
-    "Pinia",
-    "GIT",
-    "Rest API's",
-    "GraphQL",
-    "Firebase",
-    "NoSQL",
-    "Wordpress",
-    "NodeJS",
-    "Express",
-    "Socket.IO",
-    "MongoDB",
-    "Tailwind",
-    "Bootstrap",
-    "PHP",
-    "SQL",
-    "jQuery",
-    "Curriculum Development",
-    "Student Mentoring",
-    "Technical Training",
-    "Agile Scrum",
-    "Client Coordination",
-    "Team Leadership",
-    "Technical Writing",
-    "Presentation Skills",
-    "Cross-functional Collaboration",
-  ];
-
-  if (variant === "Combined") {
-    return allTechnologies;
-  } else if (variant === "Developer") {
-    // Remove: Curriculum Development, Student Mentoring
-    return allTechnologies.filter(
-      (tech) =>
-        tech !== "Curriculum Development" && tech !== "Student Mentoring"
-    );
-  } else if (variant === "Teacher") {
-    // Remove: CraftCMS, Vue, Pinia, Rest API's, GraphQL, Express, NodeJS, Socket.IO, MongoDB, Client Coordination, Team Leadership, Cross-functional Collaboration
-    return allTechnologies.filter(
-      (tech) =>
-        tech !== "CraftCMS" &&
-        tech !== "Vue" &&
-        tech !== "Pinia" &&
-        tech !== "Rest API's" &&
-        tech !== "GraphQL" &&
-        tech !== "Express" &&
-        tech !== "NodeJS" &&
-        tech !== "Socket.IO" &&
-        tech !== "MongoDB" &&
-        tech !== "Client Coordination" &&
-        tech !== "Team Leadership" &&
-        tech !== "Cross-functional Collaboration"
-    );
-  }
-  return allTechnologies;
-};
-
 const App = () => {
   const [leftWidth, setLeftWidth] = useState(35);
   const [isDragging, setIsDragging] = useState(false);
@@ -150,7 +83,7 @@ const App = () => {
     const deltaX = e.clientX - dragStartX.current;
     const deltaPercentage = (deltaX / containerRect.width) * 100;
     const newWidth = Math.floor(
-      Math.max(10, Math.min(90, dragStartWidth.current + deltaPercentage))
+      Math.max(10, Math.min(90, dragStartWidth.current + deltaPercentage)),
     );
 
     setLeftWidth(newWidth);
@@ -197,7 +130,7 @@ const App = () => {
 
   const toggleAllCollapsibles = () => {
     const allOpen = Object.values(collapsibleStates).every(
-      (state) => state === true
+      (state) => state === true,
     );
     const newState = !allOpen;
 
@@ -239,9 +172,9 @@ const App = () => {
         action: () =>
           updateSetting(
             "editorTheme",
-            settings.editorTheme === "Dark" ? "Light" : "Dark"
+            settings.editorTheme === "Dark" ? "Light" : "Dark",
           ),
-      }
+      },
     );
 
     // Add variant options (only show the 2 that are not currently selected)
@@ -262,7 +195,7 @@ const App = () => {
   const executeCommand = (commandText) => {
     const suggestions = getCommandSuggestions();
     const command = suggestions.find(
-      (s) => s.text.toLowerCase() === commandText.toLowerCase()
+      (s) => s.text.toLowerCase() === commandText.toLowerCase(),
     );
     if (command) {
       command.action();
@@ -312,7 +245,7 @@ const App = () => {
         education: false,
         projects: false,
         contact: false,
-      }
+      },
     );
 
     const savedLeftWidth = loadFromLocalStorage("portfolioLeftWidth", 35);
@@ -470,7 +403,7 @@ const App = () => {
                 }`}
               >
                 {Object.values(collapsibleStates).every(
-                  (state) => state === true
+                  (state) => state === true,
                 )
                   ? "Close all"
                   : "Open all"}
@@ -1197,7 +1130,7 @@ const App = () => {
                                 updateBlockSetting(
                                   "work",
                                   "showOnlyFullTime",
-                                  e.target.value === "true"
+                                  e.target.value === "true",
                                 )
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${
@@ -1848,7 +1781,7 @@ const App = () => {
                                 updateBlockSetting(
                                   "education",
                                   "showOnlyUniversityDegrees",
-                                  e.target.value === "true"
+                                  e.target.value === "true",
                                 )
                               }
                               className={`px-2 py-1 rounded text-xs border-2 focus:outline-none ml-2 appearance-none ${

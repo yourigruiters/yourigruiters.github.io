@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import hhImg from "../media/happyhorizon.webp";
+import system4Img from "../media/system4.jpeg";
+import rocImg from "../media/ROC Nijmegen.png";
+import ubiquitiImg from "../media/ubiquiti.png";
 
 const WorkBlock = ({ settings, blockSettings }) => {
   const isDarkMode = settings?.darkmode ?? true;
@@ -8,6 +12,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
   const workExperience = [
     {
       company: "Happy Horizon B.V.",
+      image: hhImg,
       position: "Front-end Developer",
       location: "Eindhoven, The Netherlands",
       duration: "April 2023 – June 2025",
@@ -24,6 +29,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
     },
     {
       company: "System4",
+      image: system4Img,
       position: "Front-end Developer",
       location: "Uden, The Netherlands",
       duration: "September 2022 – April 2023",
@@ -39,6 +45,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
     },
     {
       company: "ROC Nijmegen",
+      image: rocImg,
       position: "Front-end Development Teacher",
       location: "Nijmegen, The Netherlands",
       duration: "August 2021 – August 2022",
@@ -54,6 +61,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
     },
     {
       company: "Ubiquiti",
+      image: ubiquitiImg,
       position: "Front-end Developer",
       location: "Stockholm, Sweden",
       duration: "September 2020 – July 2021",
@@ -70,6 +78,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
     },
     {
       company: "ROC Nijmegen",
+      image: rocImg,
       position: "Front-end Development Teacher",
       location: "Nijmegen, The Netherlands",
       duration: "August 2018 – February 2020",
@@ -85,6 +94,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
     },
     {
       company: "Ceed Learning",
+      image: null,
       position: "Web Developer & Multimedia Designer",
       location: "Johannesburg, South Africa",
       duration: "August 2018 – August 2019",
@@ -176,9 +186,24 @@ const WorkBlock = ({ settings, blockSettings }) => {
               } shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group`}
               onClick={() => toggleExpanded(index)}
             >
-              <div className="w-full">
-                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3 sm:mb-4">
-                  <div className="flex-1">
+              <div className="w-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+                {job.image && (
+                  <div
+                    className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border shadow-sm bg-white ${
+                      isDarkMode ? "border-slate-700" : "border-slate-200"
+                    }`}
+                  >
+                    <img
+                      src={job.image}
+                      alt={`${job.company} logo`}
+                      className="w-full h-full object-contain p-1.5 sm:p-2"
+                    />
+                  </div>
+                )}
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3 sm:mb-4">
+                    <div className="flex-1">
                     <h3
                       className={`text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors duration-300 ${
                         isDarkMode ? "text-white" : "text-slate-900"
@@ -265,6 +290,7 @@ const WorkBlock = ({ settings, blockSettings }) => {
                       </span>
                     ))}
                   </div>
+                </div>
                 </div>
               </div>
             </div>

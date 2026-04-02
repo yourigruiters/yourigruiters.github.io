@@ -1,4 +1,6 @@
-import profileImage from "../media/personal.jpg";
+import persona1 from "../media/persona1.jpeg";
+import persona2 from "../media/persona2.jpeg";
+import persona3 from "../media/persona3.jpeg";
 
 const IntroBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
@@ -9,6 +11,7 @@ const IntroBlock = ({ settings }) => {
     switch (variant) {
       case "Teacher":
         return {
+          image: persona2,
           subtitle: "Educator & Front-end Developer",
           description: (
             <>
@@ -38,6 +41,7 @@ const IntroBlock = ({ settings }) => {
         };
       case "Developer":
         return {
+          image: persona3,
           subtitle: "Front-end Developer & Educator",
           description: (
             <>
@@ -64,6 +68,7 @@ const IntroBlock = ({ settings }) => {
         };
       default: // Combined
         return {
+          image: persona1,
           subtitle: "Front-end Developer & Educator",
           description: (
             <>
@@ -141,7 +146,7 @@ const IntroBlock = ({ settings }) => {
               }`}
             >
               <img
-                src={profileImage}
+                src={content.image}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

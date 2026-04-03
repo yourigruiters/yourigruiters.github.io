@@ -287,224 +287,225 @@ const ProjectsBlock = ({ settings }) => {
       </div>
 
       {/* Modal View */}
-      {selectedProject && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity cursor-pointer"
-            onClick={() => setSelectedProject(null)}
-          />
-
-          {/* Modal Content */}
-          <div
-            className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl z-10 ${
-              isDarkMode
-                ? "bg-slate-800 border-slate-700"
-                : "bg-white border-slate-200"
-            } border flex flex-col`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
+      {selectedProject &&
+        createPortal(
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
+            {/* Backdrop */}
             <div
-              className={`sticky top-0 z-20 flex justify-between items-center p-4 sm:p-6 border-b ${
+              className="absolute inset-0 bg-slate-900/60 transition-opacity cursor-pointer"
+              onClick={() => setSelectedProject(null)}
+            />
+
+            {/* Modal Content */}
+            <div
+              className={`relative w-full max-w-4xl max-h-[90dvh] overflow-y-auto rounded-2xl shadow-2xl z-10 ${
                 isDarkMode
-                  ? "bg-slate-800 border-slate-700 text-white"
-                  : "bg-white border-slate-200 text-slate-900"
-              } rounded-t-2xl`}
+                  ? "bg-slate-800 border-slate-700"
+                  : "bg-white border-slate-200"
+              } border flex flex-col`}
+              onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl sm:text-2xl font-bold">
-                {selectedProject.name}
-              </h3>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className={`p-2 rounded-full transition-colors ${
-                  isDarkMode
-                    ? "hover:bg-slate-700 text-slate-400 hover:text-white"
-                    : "hover:bg-slate-100 text-slate-500 hover:text-slate-900"
-                }`}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* Body */}
-            <div className="p-4 sm:p-6 flex-1">
-              {/* Status & Tech Stack */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusStyles(
-                    selectedProject.status,
-                    selectedProject.statusColor,
-                  )}`}
-                >
-                  {selectedProject.status}
-                </span>
-                {selectedProject.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      isDarkMode
-                        ? "bg-slate-700 text-slate-300"
-                        : "bg-slate-100 text-slate-700"
-                    }`}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Image Section */}
-              {selectedProject.image ? (
-                <div className="mb-6">
-                  <div
-                    className={`aspect-video rounded-lg overflow-hidden border w-full ${
-                      isDarkMode ? "border-slate-700" : "border-slate-200"
-                    }`}
-                  >
-                    <img
-                      src={selectedProject.image}
-                      alt={`${selectedProject.name} screenshot`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className={`w-full aspect-video sm:aspect-[21/9] rounded-xl flex items-center justify-center mb-6 border-2 border-dashed ${
-                    isDarkMode
-                      ? "border-slate-700 bg-slate-800/50 text-slate-500"
-                      : "border-slate-300 bg-slate-50 text-slate-400"
-                  }`}
-                >
-                  <span className="text-sm font-medium">
-                    Project image will appear here
-                  </span>
-                </div>
-              )}
-
-              {/* Full Description */}
+              {/* Header */}
               <div
-                className={`mb-8 space-y-4 ${
-                  isDarkMode ? "text-slate-300" : "text-slate-700"
-                }`}
+                className={`sticky top-0 z-20 flex justify-between items-center p-4 sm:p-6 border-b ${
+                  isDarkMode
+                    ? "bg-slate-800 border-slate-700 text-white"
+                    : "bg-white border-slate-200 text-slate-900"
+                } rounded-t-2xl`}
               >
-                <h4
-                  className={`text-sm font-semibold uppercase tracking-wider ${
-                    isDarkMode ? "text-slate-400" : "text-slate-500"
+                <h3 className="text-xl sm:text-2xl font-bold">
+                  {selectedProject.name}
+                </h3>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className={`p-2 rounded-full transition-colors ${
+                    isDarkMode
+                      ? "hover:bg-slate-700 text-slate-400 hover:text-white"
+                      : "hover:bg-slate-100 text-slate-500 hover:text-slate-900"
                   }`}
                 >
-                  About the Project
-                </h4>
-                {selectedProject.fullDescription ? (
-                  <div
-                    className={`leading-relaxed text-sm sm:text-base [&>p]:mb-4 [&>p:last-child]:mb-0 [&_strong]:font-semibold ${
-                      isDarkMode
-                        ? "[&_strong]:text-white"
-                        : "[&_strong]:text-slate-900"
-                    }`}
-                    dangerouslySetInnerHTML={{
-                      __html: selectedProject.fullDescription,
-                    }}
-                  />
-                ) : (
-                  <p className="leading-relaxed whitespace-pre-line text-sm sm:text-base">
-                    {selectedProject.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Features List */}
-              <div className="mb-6">
-                <h4
-                  className={`text-sm font-semibold uppercase tracking-wider mb-4 ${
-                    isDarkMode ? "text-slate-400" : "text-slate-500"
-                  }`}
-                >
-                  Key Features
-                </h4>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {selectedProject.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <svg
-                        className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                          isDarkMode ? "text-blue-400" : "text-blue-600"
-                        }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <span
-                        className={`text-sm sm:text-base ${
-                          isDarkMode ? "text-slate-300" : "text-slate-700"
-                        }`}
-                      >
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div
-              className={`p-4 sm:p-6 border-t flex justify-end gap-4 rounded-b-2xl ${
-                isDarkMode
-                  ? "bg-slate-800/90 border-slate-700"
-                  : "bg-slate-50 border-slate-200"
-              }`}
-            >
-              {selectedProject.type && selectedProject.githubUrl && (
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center justify-center px-6 py-2.5 rounded-lg font-semibold border transition-all duration-300 hover:-translate-y-0.5 shadow-sm hover:shadow ${getTypeButtonStyles(
-                    selectedProject.type,
-                  )}`}
-                >
-                  {selectedProject.type === "website"
-                    ? "Go to Website"
-                    : "Go to Repository"}
                   <svg
-                    className="w-4 h-4 ml-2"
+                    className="w-6 h-6"
                     fill="none"
-                    viewBox="0 0 24 24"
                     stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
-                </a>
-              )}
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="p-4 sm:p-6 flex-1">
+                {/* Status & Tech Stack */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusStyles(
+                      selectedProject.status,
+                      selectedProject.statusColor,
+                    )}`}
+                  >
+                    {selectedProject.status}
+                  </span>
+                  {selectedProject.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        isDarkMode
+                          ? "bg-slate-700 text-slate-300"
+                          : "bg-slate-100 text-slate-700"
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Image Section */}
+                {selectedProject.image ? (
+                  <div className="mb-6">
+                    <div
+                      className={`aspect-video rounded-lg overflow-hidden border w-full ${
+                        isDarkMode ? "border-slate-700" : "border-slate-200"
+                      }`}
+                    >
+                      <img
+                        src={selectedProject.image}
+                        alt={`${selectedProject.name} screenshot`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className={`w-full aspect-video sm:aspect-[21/9] rounded-xl flex items-center justify-center mb-6 border-2 border-dashed ${
+                      isDarkMode
+                        ? "border-slate-700 bg-slate-800/50 text-slate-500"
+                        : "border-slate-300 bg-slate-50 text-slate-400"
+                    }`}
+                  >
+                    <span className="text-sm font-medium">
+                      Project image will appear here
+                    </span>
+                  </div>
+                )}
+
+                {/* Full Description */}
+                <div
+                  className={`mb-8 space-y-4 ${
+                    isDarkMode ? "text-slate-300" : "text-slate-700"
+                  }`}
+                >
+                  <h4
+                    className={`text-sm font-semibold uppercase tracking-wider ${
+                      isDarkMode ? "text-slate-400" : "text-slate-500"
+                    }`}
+                  >
+                    About the Project
+                  </h4>
+                  {selectedProject.fullDescription ? (
+                    <div
+                      className={`leading-relaxed text-sm sm:text-base [&>p]:mb-4 [&>p:last-child]:mb-0 [&_strong]:font-semibold ${
+                        isDarkMode
+                          ? "[&_strong]:text-white"
+                          : "[&_strong]:text-slate-900"
+                      }`}
+                      dangerouslySetInnerHTML={{
+                        __html: selectedProject.fullDescription,
+                      }}
+                    />
+                  ) : (
+                    <p className="leading-relaxed whitespace-pre-line text-sm sm:text-base">
+                      {selectedProject.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Features List */}
+                <div className="mb-6">
+                  <h4
+                    className={`text-sm font-semibold uppercase tracking-wider mb-4 ${
+                      isDarkMode ? "text-slate-400" : "text-slate-500"
+                    }`}
+                  >
+                    Key Features
+                  </h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {selectedProject.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <svg
+                          className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                            isDarkMode ? "text-blue-400" : "text-blue-600"
+                          }`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span
+                          className={`text-sm sm:text-base ${
+                            isDarkMode ? "text-slate-300" : "text-slate-700"
+                          }`}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div
+                className={`p-4 sm:p-6 border-t flex justify-end gap-4 rounded-b-2xl ${
+                  isDarkMode
+                    ? "bg-slate-800/90 border-slate-700"
+                    : "bg-slate-50 border-slate-200"
+                }`}
+              >
+                {selectedProject.type && selectedProject.githubUrl && (
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center justify-center px-6 py-2.5 rounded-lg font-semibold border transition-all duration-300 hover:-translate-y-0.5 shadow-sm hover:shadow ${getTypeButtonStyles(
+                      selectedProject.type,
+                    )}`}
+                  >
+                    {selectedProject.type === "website"
+                      ? "Go to Website"
+                      : "Go to Repository"}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
-        </div>,
-        document.body
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 };

@@ -3,12 +3,43 @@ import { createPortal } from "react-dom";
 import project1img from "../media/project1.png";
 import project2img from "../media/project2.png";
 import project3img from "../media/project3.png";
+import project4img from "../media/project4.jpg";
 
 const ProjectsBlock = ({ settings }) => {
   const isDarkMode = settings?.darkmode ?? true;
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
+    {
+      name: "Workouts",
+      tech: [
+        "React Native",
+        "Expo (SDK 57)",
+        "Expo Router",
+        "TypeScript",
+        "Firebase (Auth & Firestore)",
+        "NativeWind / Tailwind CSS",
+        "AsyncStorage",
+      ],
+      status: "Mobile application (iOS & Android)",
+      description:
+        "A streamlined, mobile-first training and body weight tracker engineered to help athletes structure, execute, and monitor their fitness progression with zero friction.",
+      fullDescription: `<p><b>Workouts</b> is a streamlined, mobile-first training and body weight tracker engineered to help athletes structure, execute, and monitor their fitness progression with zero friction. Built with <b>React Native</b> and <b>Expo</b>, the application provides an intuitive interface for designing custom training splits, organizing targeted workout days by muscle groups, and logging detailed set configurations (warmup/active sets, rep targets, load, and rest periods). In addition to routine management, it features a dedicated body weight tracker that calculates weekly averages from Monday to Sunday, providing lifters with accurate, smoothed trend metrics rather than noisy daily fluctuations.</p><p>The technical architecture prioritizes an <b>offline-first experience paired with seamless cloud synchronization</b>. Leveraging <b>@react-native-async-storage/async-storage</b> alongside <b>Firebase Firestore</b>, the app enables instant, zero-latency local state updates while synchronizing data in the background when connected. Authentication persistence is configured natively so users stay securely logged in across app restarts. The entire codebase is strictly typed with <b>TypeScript</b> and styled using <b>NativeWind (Tailwind CSS)</b>, resulting in a scalable, performant, and maintainable cross-platform foundation.</p>`,
+      image: project4img,
+      features: [
+        "Custom Splits & Routines",
+        "Muscle Group Categorization",
+        "Set & Rep Tracking",
+        "Daily Body Weight Tracker",
+        "Weekly Average Trends",
+        "Offline-First Cloud Sync",
+        "Persistent Authentication",
+        "Fast Reorder & Edit",
+      ],
+      statusColor: "blue",
+      type: "repository",
+      githubUrl: "https://github.com/yourigruiters/workouts",
+    },
     {
       name: "Aurelion",
       tech: [

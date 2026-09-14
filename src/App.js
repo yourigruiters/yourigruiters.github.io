@@ -2182,6 +2182,74 @@ const App = () => {
                                   color="yellow"
                                   theme={getCurrentTheme()}
                                 >
+                                  Workouts
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  tech
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  React Native, Expo, Expo Router, TypeScript,
+                                  Firebase, NativeWind, AsyncStorage
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  status
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  Mobile application (iOS & Android)
+                                </ColoredText>
+                                ,
+                              </div>
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  githubUrl
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
+                                  https://github.com/yourigruiters/workouts
+                                </ColoredText>
+                              </div>
+                            </div>
+                          </Collapsible>
+                          <Collapsible bracketType="curly" showComma={true}>
+                            <div className="ml-4">
+                              <div>
+                                <ColoredText
+                                  color="blue"
+                                  theme={getCurrentTheme()}
+                                >
+                                  name
+                                </ColoredText>
+                                :{" "}
+                                <ColoredText
+                                  color="yellow"
+                                  theme={getCurrentTheme()}
+                                >
                                   Ubiquiti Chat Frontend
                                 </ColoredText>
                                 ,
@@ -2304,7 +2372,7 @@ const App = () => {
                               </div>
                             </div>
                           </Collapsible>
-                          <Collapsible bracketType="curly" showComma={true}>
+                          <Collapsible bracketType="curly">
                             <div className="ml-4">
                               <div>
                                 <ColoredText
@@ -2367,73 +2435,6 @@ const App = () => {
                                   theme={getCurrentTheme()}
                                 >
                                   https://github.com/yourigruiters/Full-Stack-Hangouts
-                                </ColoredText>
-                              </div>
-                            </div>
-                          </Collapsible>
-                          <Collapsible bracketType="curly">
-                            <div className="ml-4">
-                              <div>
-                                <ColoredText
-                                  color="blue"
-                                  theme={getCurrentTheme()}
-                                >
-                                  name
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText
-                                  color="yellow"
-                                  theme={getCurrentTheme()}
-                                >
-                                  JavaScript MMORPG
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText
-                                  color="blue"
-                                  theme={getCurrentTheme()}
-                                >
-                                  tech
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText
-                                  color="yellow"
-                                  theme={getCurrentTheme()}
-                                >
-                                  JavaScript, HTML5, Canvas, WebSockets
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText
-                                  color="blue"
-                                  theme={getCurrentTheme()}
-                                >
-                                  status
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText
-                                  color="yellow"
-                                  theme={getCurrentTheme()}
-                                >
-                                  Discontinued
-                                </ColoredText>
-                                ,
-                              </div>
-                              <div>
-                                <ColoredText
-                                  color="blue"
-                                  theme={getCurrentTheme()}
-                                >
-                                  githubUrl
-                                </ColoredText>
-                                :{" "}
-                                <ColoredText
-                                  color="yellow"
-                                  theme={getCurrentTheme()}
-                                >
-                                  https://github.com/yourigruiters/JS-MMORPG
                                 </ColoredText>
                               </div>
                             </div>

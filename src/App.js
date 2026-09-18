@@ -2498,7 +2498,7 @@ const App = () => {
                               color="yellow"
                               theme={getCurrentTheme()}
                             >
-                              +61424513249
+                              +31616446268
                             </ColoredText>
                             ,
                           </div>
@@ -2511,7 +2511,7 @@ const App = () => {
                               color="yellow"
                               theme={getCurrentTheme()}
                             >
-                              Sydney, Australia
+                              Uden, The Netherlands
                             </ColoredText>
                             ,
                           </div>

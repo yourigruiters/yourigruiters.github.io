@@ -3,8 +3,8 @@ const ContactBlock = ({ settings }) => {
 
   const contactInfo = {
     email: "youriroc@gmail.com",
-    phone: "+61424513249",
-    location: "Sydney, Australia",
+    phone: "+31616446268",
+    location: "Uden, The Netherlands",
     linkedin: "https://nl.linkedin.com/in/yourigruiters",
     instagram: "https://www.instagram.com/youri.gruiters",
     github: "https://github.com/yourigruiters",

@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.ab05d848.css",
-    "main.js": "/static/js/main.40e711b9.js",
+    "main.css": "/static/css/main.34e7d03f.css",
+    "main.js": "/static/js/main.3187d782.js",
+    "static/media/project4.jpg": "/static/media/project4.23c7d287134aecc9496a.jpg",
     "static/media/project1.png": "/static/media/project1.6f1141be0f1fd7132838.png",
     "static/media/project3.png": "/static/media/project3.693688b01ad04170638a.png",
     "static/media/persona3.jpeg": "/static/media/persona3.c317f60aa219f87a0844.jpeg",
@@ -11,11 +12,11 @@
     "static/media/ubiquiti.png": "/static/media/ubiquiti.fcc55655233e08465057.png",
     "static/media/happyhorizon.webp": "/static/media/happyhorizon.3d380f92b37b70ab65d2.webp",
     "index.html": "/index.html",
-    "main.ab05d848.css.map": "/static/css/main.ab05d848.css.map",
-    "main.40e711b9.js.map": "/static/js/main.40e711b9.js.map"
+    "main.34e7d03f.css.map": "/static/css/main.34e7d03f.css.map",
+    "main.3187d782.js.map": "/static/js/main.3187d782.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab05d848.css",
-    "static/js/main.40e711b9.js"
+    "static/css/main.34e7d03f.css",
+    "static/js/main.3187d782.js"
   ]
 }
